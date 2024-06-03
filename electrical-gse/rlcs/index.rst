@@ -5,5 +5,6 @@ Remote Launch Control System (RLCS)
    :maxdepth: 2
    :caption: Boards
 
-   rlcs-towerside-power-board.rst
-   rlcs-clientside-board.rst
+   towerside-power-board.rst
+   towerside-relay-board.rst
+   clientside-board.rst
