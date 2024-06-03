@@ -1,0 +1,16 @@
+# Jason owns the document hierarchy and build scripts
+* @JasonBrave
+
+# Onboarding and Tutorials
+/onboarding-tutorials/electrical-onboarding/ @JasonBrave
+/onboarding-tutorials/software-onboarding/ @Darth-Raazi
+/onboarding-tutorials/firmware-how-to/ @JasonBrave
+/onboarding-tutorials/software-how-to/ @Darth-Raazi
+
+# Jason owns electrical docs by default
+/avionics/ @JasonBrave
+/electrical-gse/ @JasonBrave
+/electrical-tools/ @JasonBrave
+
+# Ozayr owns software docs by default
+/software/ @Darth-Raazi
