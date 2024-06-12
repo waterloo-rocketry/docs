@@ -32,3 +32,26 @@ Sets altemeter arming
 +========+========+========+===================+==========+
 | 3 byte timestamp         | Altemer Arm State | None     |
 +--------------------------+-------------------+----------+
+
+Reset Command (RESET_CMD)
+-------------------------
+Resets command for all microcontrollers on board
+
++--------+--------+--------+----------+----------+
+| Byte 0 | Byte 1 | Byte 2 | Byte 3   | Byte 4-7 |
++========+========+========+==========+==========+
+| 3 byte timestamp         | BOARD_ID | None     |
++--------------------------+----------+----------+
+
+Actuator Analog Command (ACT_ANALOG_CMD)
+----------------------------------------
+Set analog actuator commanded state
+
++--------+--------+--------+-------------+----------+
+| Byte 0 | Byte 1 | Byte 2 | Byte 3      | Byte 4-7 |
++========+========+========+=============+==========+
+| 3 byte timestamp         | ACTUATOR_ID | None     |
++--------------------------+-------------+----------+
+
+
+
