@@ -38,7 +38,7 @@ Tank Heating Board
 The the relay is controled by I2C write one byte
 
 +-------------+--------+--------+
-| Bits        | 7-1    | 1      |
+| Bits        | 7-1    | 0      |
 +=============+========+========+
 | Description | Unused | ON/OFF |
 +-------------+--------+--------+
