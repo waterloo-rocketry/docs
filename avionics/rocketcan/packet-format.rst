@@ -70,6 +70,15 @@ Prints the debug message
 +----------+
 | Byte 1-7 |
 +==========+
-| Print    |
+| ASCII    |
 +----------+
 
+Debug Radio Command (DEBUG_RADIO_CMD)
+-------------------------------------
+Sets command for debug radio
+
++----------+
+| Byte 1-7 |
++==========+
+| ASCII    |
++----------+
