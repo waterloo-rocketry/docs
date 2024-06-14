@@ -7,6 +7,7 @@ RLCS Towerside
 
    towerside-power-board.rst
    towerside-relay-board.rst
+   tank-heating-control-board.rst
 
 Introduction
 ------------
