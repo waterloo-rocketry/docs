@@ -53,5 +53,23 @@ Set analog actuator commanded state
 | 3 byte timestamp         | ACTUATOR_ID | None     |
 +--------------------------+-------------+----------+
 
+Debug Message (DEBUG_MSG)
+-------------------------
+Commands board to send arbitrary 4 byte debug message
 
++--------+--------+--------+---------------------+--------------+------------------+
+| Byte 0 | Byte 1 | Byte 2 | Byte 3              | Byte 4       | Byte 5-7         |
++========+========+========+=====================+==============+==================+
+| 3 byte timestamp         | Debug's Importance  | Line Number  | Defines Message  |
++--------------------------+---------------------+--------------+------------------+
+
+Print Debug Message (DEBUG_PRINTF)
+----------------------------------
+Prints the debug message
+
++----------+
+| Byte 1-7 |
++==========+
+| Print    |
++----------+
 
