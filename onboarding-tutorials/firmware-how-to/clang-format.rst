@@ -16,6 +16,7 @@ In the LLVM install page, select "Add LLVM to the system PATH for all users", an
 
 Install Clang-format on MacOS
 -----------------------------
+Coming soon
 
 Test the Clang-format installation
 ----------------------------------
