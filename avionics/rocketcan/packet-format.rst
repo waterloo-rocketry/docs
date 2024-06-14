@@ -200,7 +200,7 @@ Shows the longitude
 +--------+--------+--------+---------------------+----------+---------------+--------------------------+
 | Byte 0 | Byte 1 | Byte 2 | Byte 3              | Byte 4   | Byte 5-6      | Byte 7                   |
 +========+========+========+=====================+==========+===============+==========================+
-| 3 byte timestamp         | Degrees of Longitude | idk      | idk (HI/LO)   | In Either East or West  |
+| 3 byte timestamp         | Degrees of Longitude| idk      | idk (HI/LO)   | In Either East or West  |
 +--------------------------+---------------------+----------+---------------+--------------------------+
 
 idk (GPS_ALT)
