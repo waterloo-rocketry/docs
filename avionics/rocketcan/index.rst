@@ -1,73 +1,81 @@
-# How does RocketCAN?
-a beginner's guide to canlib & co
+===================
+How does RocketCAN?
+===================
+    a beginner's guide to canlib & co
 
-## How does CAN in general?
-Honestly the best resource is wikipedia: https://en.wikipedia.org/wiki/CAN_bus
+    ========================
+    How does CAN in general?
+    ========================
+        Honestly the best resource is wikipedia: https://en.wikipedia.org/wiki/CAN_bus
 
-The most important thing to understand is the message format and how arbitration works. Each CAN message is composed of a bunch of different fields. The most important are:
-- SID (arbitration identifier). CAN is a multi-master bus - any board can try to send something on the bus at any time, and there may be collisions. Arbitration is the mechanism for deciding which message has priority.
-- control (data length). Basic CAN supports 0-8 bytes of data. Each message needs to specify its data length.
-- data. The stuff you want to send. This can be formatted however the heck you want, but the team has a standard data format that all boards are expected to agree on.
-- ACK. This is not under your control - this is "set" by other boards on the bus that listen to the incoming message. As part of the CAN protocol, other units on the bus check the validity of incoming messages. If the message is valid, they will assert ACK. If the transmitting board does not receive an ACK, it will abort the rest of the message and the transmission is considered unsuccessful.
-	- NOTE: this means that in order to successfully send a CAN message, you need at least one listener on the bus (e.g. usb debug).
+        The most important thing to understand is the message format and how arbitration works. Each CAN message is composed of a bunch of different fields. The most important are:
+            -  SID (arbitration identifier). CAN is a multi-master bus - any board can try to send something on the bus at any time, and there may be collisions. Arbitration is the mechanism for deciding which message has priority.
+            - control (data length). Basic CAN supports 0-8 bytes of data. Each message needs to specify its data length.
+            - data. The stuff you want to send. This can be formatted however the heck you want, but the team has a standard data format that all boards are expected to agree on.
+            - ACK. This is not under your control - this is "set" by other boards on the bus that listen to the incoming message. As part of the CAN protocol, other units on the bus check the validity of incoming messages. If the message is valid, they will assert ACK. If the transmitting board does not receive an ACK, it will abort the rest of the message and the transmission is considered unsuccessful.
+                - NOTE: this means that in order to successfully send a CAN message, you need at least one listener on the bus (e.g. usb debug).
 
 ![[Pasted image 20220626070137.png]]
 
-I really don't think I can explain arbitration better than this wiki section:
->The CAN specifications use the terms "dominant" bits and "recessive" bits, where dominant is a logical 0 (actively driven to a voltage by the transmitter) and recessive is a logical 1 (passively returned to a voltage by a resistor). The idle state is represented by the recessive level (Logical 1). If one node transmits a dominant bit and another node transmits a recessive bit then there is a collision and the dominant bit "wins". This means there is no delay to the higher-priority message, and the node transmitting the lower priority message automatically attempts to re-transmit six bit clocks after the end of the dominant message. This makes CAN very suitable as a real-time prioritized communications system.
+        I really don't think I can explain arbitration better than this 'wiki section'_:
+            - The CAN specifications use the terms "dominant" bits and "recessive" bits, where dominant is a logical 0 (actively driven to a voltage by the transmitter) and recessive is a logical 1 (passively returned to a voltage by a resistor). The idle state is represented by the recessive level (Logical 1). If one node transmits a dominant bit and another node transmits a recessive bit then there is a collision and the dominant bit "wins". This means there is no delay to the higher-priority message, and the node transmitting the lower priority message automatically attempts to re-transmit six bit clocks after the end of the dominant message. This makes CAN very suitable as a real-time prioritized communications system.
 
->The exact voltages for a logical 0 or 1 depend on the physical layer used, but the basic principle of CAN requires that each node listen to the data on the CAN network including the transmitting node(s) itself (themselves). If a logical 1 is transmitted by all transmitting nodes at the same time, then a logical 1 is seen by all of the nodes, including both the transmitting node(s) and receiving node(s). If a logical 0 is transmitted by all transmitting node(s) at the same time, then a logical 0 is seen by all nodes. If a logical 0 is being transmitted by one or more nodes, and a logical 1 is being transmitted by one or more nodes, then a logical 0 is seen by all nodes including the node(s) transmitting the logical 1. When a node transmits a logical 1 but sees a logical 0, it realizes that there is a contention and it quits transmitting. By using this process, any node that transmits a logical 1 when another node transmits a logical 0 "drops out" or loses the arbitration. A node that loses arbitration re-queues its message for later transmission and the CAN frame bit-stream continues without error until only one node is left transmitting. This means that the node that transmits the first 1 loses arbitration. Since the 11 (or 29 for CAN 2.0B) bit identifier is transmitted by all nodes at the start of the CAN frame, the node with the lowest identifier transmits more zeros at the start of the frame, and that is the node that wins the arbitration or has the highest priority.
+            - The exact voltages for a logical 0 or 1 depend on the physical layer used, but the basic principle of CAN requires that each node listen to the data on the CAN network including the transmitting node(s) itself (themselves). If a logical 1 is transmitted by all transmitting nodes at the same time, then a logical 1 is seen by all of the nodes, including both the transmitting node(s) and receiving node(s). If a logical 0 is transmitted by all transmitting node(s) at the same time, then a logical 0 is seen by all nodes. If a logical 0 is being transmitted by one or more nodes, and a logical 1 is being transmitted by one or more nodes, then a logical 0 is seen by all nodes including the node(s) transmitting the logical 1. When a node transmits a logical 1 but sees a logical 0, it realizes that there is a contention and it quits transmitting. By using this process, any node that transmits a logical 1 when another node transmits a logical 0 "drops out" or loses the arbitration. A node that loses arbitration re-queues its message for later transmission and the CAN frame bit-stream continues without error until only one node is left transmitting. This means that the node that transmits the first 1 loses arbitration. Since the 11 (or 29 for CAN 2.0B) bit identifier is transmitted by all nodes at the start of the CAN frame, the node with the lowest identifier transmits more zeros at the start of the frame, and that is the node that wins the arbitration or has the highest priority.
 
-source: https://en.wikipedia.org/wiki/CAN_bus#Data_transmission
-
-What this means is that you can define a heirarchy of which messages are most important (e.g. valve control messages can be prioritized over sensor data). **Note: you cannot have two different units transmit the same SID at the same time - this is invalid.** To get around this, every message we send on rocketCAN is has an SID composed of the "message type" and the board ID (which should be uniquely programmed per board).
+        What this means is that you can define a heirarchy of which messages are most important (e.g. valve control messages can be prioritized over sensor data). **Note: you cannot have two different units transmit the same SID at the same time - this is invalid.** To get around this, every message we send on rocketCAN is has an SID composed of the "message type" and the board ID (which should be uniquely programmed per board).
 
 ---
-## Architecture stuff
+    ==================
+    Architecture stuff
+    ==================
 
-### Why does RocketCAN?
-The reasoning behind rocketCAN is pretty well documented in various presentations, reports, etc:
-- Original presentation: https://docs.google.com/presentation/d/1lY-6Jb7F9jVUYJ2JZXEdMu1GOq21mpF8pozzrxEguzs/edit?usp=sharing
-- Podium session presentation: https://drive.google.com/file/d/1fRxTF7ohCUvl9OJgpzXgkvUX4kHPzG_L/view?usp=sharing
-- Podium session abstract: https://docs.google.com/document/d/1AnKkN07KEadL46xrn5BsaJCLON5rAeupkaKTvWgShUA/edit
-- Spicy slack thread: https://waterloorocketry.slack.com/archives/C07MX0QDS/p1620432775473100
+        ===================
+        Why does RocketCAN?
+        ===================
+            The reasoning behind rocketCAN is pretty well documented in various presentations, reports, etc:
+                - 'Original presentation'_
+                - 'Podium session presentation'_
+                - 'Podium session abstract'
+                - 'Spicy slack thread'_
 
-The story (again) is that in 2018 we had remotely actuated valves on the rocket for the first time (injector and vent). The bare minimum here was to have 1) a radio and 2) something to control the valve. In reality there was a bunch of other stuff we wanted so the total functionality ended up consisting of:
-- a radio
-- valve driving circuitry
-- sensors (pressure, accel, gyro, temperature...)
-- SD card logging
+            The story (again) is that in 2018 we had remotely actuated valves on the rocket for the first time (injector and vent). The bare minimum here was to have 1) a radio and 2) something to control the valve. In reality there was a bunch of other stuff we wanted so the total functionality ended up consisting of:
+                - a radio
+                - valve driving circuitry
+                - sensors (pressure, accel, gyro, temperature...)
+                - SD card logging
 
-Basically it was giant, we ran into a bunch of issues with it, and whenever something broke we either had to fix it right there, or swap the entire board which was painful and expensive. The hugeness was also a problem.
+            Basically it was giant, we ran into a bunch of issues with it, and whenever something broke we either had to fix it right there, or swap the entire board which was painful and expensive. The hugeness was also a problem.
 
-Behold its monolithic glory (fun fact, that's a windshield wiper motor that draws up to 10 A):
+            Behold its monolithic glory (fun fact, that's a windshield wiper motor that draws up to 10 A):
 ![[Pasted image 20220626064851.png]]
 
+        ============================================
+        The system architecture as it originally was
+        ============================================
+            Alex's note: This is super out of date at this point. Yall have changed a lot, so someone really needs to make an updated version of this.
 
-### The system architecture as it originally was
-
-Alex's note: This is super out of date at this point. Yall have changed a lot, so someone really needs to make an updated version of this.
-
-The main idea is that radio gets messages from RLCS client-side (relayed by tower-side), and sends instructions onto the CAN bus. Every board listens to the bus and acts on those messages. Other boards also broadcast their status and other data (such as valve status) over the bus; this gets relayed back to ops by radio.
+            The main idea is that radio gets messages from RLCS client-side (relayed by tower-side), and sends instructions onto the CAN bus. Every board listens to the bus and acts on those messages. Other boards also broadcast their status and other data (such as valve status) over the bus; this gets relayed back to ops by radio.
 ![[Pasted image 20220626062917.png]]
 
-@Team: please document your existing setup! A lot of people have complained that this knowledge is limited to a couple of people, and there's nothing they can reference for onboarding.
+            @Team: please document your existing setup! A lot of people have complained that this knowledge is limited to a couple of people, and there's nothing they can reference for onboarding.
 
 ---
-## Canhw stuff
 
-To onboard a board onto rocketCAN, it needs to have:
-- CAN module (internal or external)
-	- this is the module that handles message buffers, filtering, etc.
-	- The PIC18F26K83 has an internal CAN module that you can program directly by writing to the PIC's internal registers.
-	- The MCP2515 is an external module that you control over SPI
-	- The CAN module outputs its data over a pair of lines called CANTX/CANRX, which go to the transceiver
-- CAN transceiver
-	- this is connected to the physical bus and responsible for actually spitting data out over CANH/CANL
-- current sensing (not a CAN requirement, but a team requirement)
-	- if a board is connected to the shared 12V (or whatever it is now) rail, then it needs to report its current consumption over the bus
+    ===========
+    Canhw stuff
+    ===========
+        To onboard a board onto rocketCAN, it needs to have:
+            - CAN module (internal or external)
+                - this is the module that handles message buffers, filtering, etc.
+                - The PIC18F26K83 has an internal CAN module that you can program directly by writing to the PIC's internal registers.
+                - The MCP2515 is an external module that you control over SPI
+                - The CAN module outputs its data over a pair of lines called CANTX/CANRX, which go to the transceiver
+            - CAN transceiver
+                - this is connected to the physical bus and responsible for actually spitting data out over CANH/CANL
+            - current sensing (not a CAN requirement, but a team requirement)
+                - if a board is connected to the shared 12V (or whatever it is now) rail, then it needs to report its current consumption over the bus
 
-How things are connected with an internal module
+        How things are connected with an internal module
 ```C
 -------------------                 -----------
 |                 |                 |         |
@@ -352,3 +360,10 @@ The pic18f26k83 CAN driver is a good reference - it's pretty readable and also h
 - TI "how to debug can" whitepaper: https://www.ti.com/lit/an/slyt529/slyt529.pdf?ts=1656202344705
 	- this is a good one to read thoroughly!
 - Generic electrical onboarding slack post: https://waterloorocketry.slack.com/archives/C07MX0QDS/p1548901868070500
+
+
+_wiki section: https://en.wikipedia.org/wiki/CAN_bus#Data_transmission
+_Original presentation: https://docs.google.com/presentation/d/1lY-6Jb7F9jVUYJ2JZXEdMu1GOq21mpF8pozzrxEguzs/edit?usp=sharing
+_Podium session presentation: https://drive.google.com/file/d/1fRxTF7ohCUvl9OJgpzXgkvUX4kHPzG_L/view?usp=sharing
+_Podium session abstract: https://docs.google.com/document/d/1AnKkN07KEadL46xrn5BsaJCLON5rAeupkaKTvWgShUA/edit
+_Spicy slack thread: https://waterloorocketry.slack.com/archives/C07MX0QDS/p1620432775473100
