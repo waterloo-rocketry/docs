@@ -1,78 +1,19 @@
 Remote Launch Control System (RLCS)
 ===================================
 
-Towerside Board I2C Communication Protocol
-------------------------------------------
-
-Relay Board
-```````````
-The two relay is controled by I2C write one byte
-
-+-------------+--------+--------+-------+
-| Bits        | 7-2    | 1      | 0     |
-+=============+========+========+=======+
-| Description | Unused | Select | Power |
-+-------------+--------+--------+-------+
-
-The limit switch and current are reported by I2C read
-
-+------+----------------+
-| Byte | Description    |
-+======+================+
-|  0   | | Limit switch |
-|      | | 0 - Unknown  |
-|      | | 1 - Open     |
-|      | | 2 - Close    |
-+------+----------------+
-| 1    | Primary ADC-L  |
-+------+----------------+
-| 2    | Primary ADC-H  |
-+------+----------------+
-| 3    | Second ADC-L   |
-+------+----------------+
-| 4    | Second ADC-H   |
-+------+----------------+
-
-Tank Heating Board
-``````````````````
-The the relay is controled by I2C write one byte
-
-+-------------+--------+--------+
-| Bits        | 7-1    | 0      |
-+=============+========+========+
-| Description | Unused | ON/OFF |
-+-------------+--------+--------+
-
-The voltages and current are reported by I2C read
-
-+------+-------------------+
-| Byte | Description       |
-+======+===================+
-| 0    | Thermistor ADC-L  |
-+------+-------------------+
-| 1    | Thermistor ADC-H  |
-+------+-------------------+
-| 2    | Current ADC-L     |
-+------+-------------------+
-| 3    | Current ADC-H     |
-+------+-------------------+
-| 4    | 24V PWR IN ADC-L  |
-+------+-------------------+
-| 5    | 24V PWR IN ADC-H  |
-+------+-------------------+
-| 6    | Kelvin Low ADC-L  |
-+------+-------------------+
-| 7    | Kelvin Low ADC-H  |
-+------+-------------------+
-| 8    | Kelvin High ADC-L |
-+------+-------------------+
-| 9    | Kelvin High ADC-H |
-+------+-------------------+
-
 .. toctree::
    :maxdepth: 2
-   :caption: Boards
+   :caption: Components
 
-   towerside-power-board.rst
-   towerside-relay-board.rst
-   clientside-board.rst
+   towerside.rst
+   clientside.rst
+
+The Remote Launch Control System (RLCS) is the primary means of interfacing with the rocket and supporting
+fill plumbing during launch operations. The main objective of the system is to allow launching the rocket from up to
+3,000 ft from the tower. Once the RLCS operator takes control of the launch process, no human intervention should be
+required at the launch site in any possible error state that requires a human to approach the system. In the event of total failure, the system must put all engine and fill systems into a known safe state so that personnel can approach the rocket without placing themselves in danger.
+
+RLCS is made up of two halves, Clientside and Towerside, which communicate over a radio link formed by a pair of
+Litebeam 5ac gen2. Towerside is located beside the launch tower and handles actuating motorized valves and ignition.
+Clientside is located at mission control and houses switches that map to the various actuators and an LCD to display
+data to the operator. Both halves are built into weatherproof and robust Pelican cases to protect them from the elements.
