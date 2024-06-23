@@ -9,7 +9,7 @@
 - A basic understanding of C.
 
 ## Required Software
-We use the MPLAB X IDE and the XC8 and XC16 compilers from Microchip. Having a recent (3.8+) version of Python installed is also useful, but won’t be necessary for this tutorial.
+We use the [MPLAB X IDE](https://www.microchip.com/en-us/tools-resources/develop/mplab-x-ide) and the [XC8 and XC16](https://www.microchip.com/en-us/tools-resources/develop/mplab-xc-compilers) compilers from Microchip. Having a recent (3.8+) version of Python installed is also useful, but won’t be necessary for this tutorial.
 
 ## MPLAB is Awful
 1. So, let’s use it to create a project! First, open the MPLAB IDE and create a project (File → New Project).
@@ -76,7 +76,7 @@ This tells the PIC that it should use its internal oscillator as its clock, whic
 
 3. Go ahead and code up your solution based on the register you found above. I’ll spoil the surprise a bit and let you know that it won’t work yet, but its good to have something we can tweak and test with.
 
-4. Now it’s time to debug! Let’s start by using a multimeter to probe the voltage on the pin, to make sure it’s not a hardware issue (as it too often is :( ). This is where pulling up the PCB in KiCad can be helpful - if you have both the schematic and the PCB open and you click on something on the schematic it will select it for you in the PCB! This is very helpful for finding where to probe.  
+4. Now it’s time to debug! Let’s start by using a multimeter to probe the voltage on the pin, to make sure it’s not a hardware issue (as it too often is :anguished:). This is where pulling up the PCB in KiCad can be helpful - if you have both the schematic and the PCB open and you click on something on the schematic it will select it for you in the PCB! This is very helpful for finding where to probe.  
  > **Tip:** Remember to be very careful not to short two pins together when probing. Feel free to call someone over to help you figure out the multimeter and how best to probe.
 
 5. Now, you should find that when you press and release the button, the voltage on the pin doesn’t change! First of all make sure you are using the multimeter correctly by probing something you know is +3V3 (eg the +3V3 pad on `C1` or `R2`), and once you’ve confirmed that, think about why you’re not reading something different when the button is pressed.
