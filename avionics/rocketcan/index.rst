@@ -1,11 +1,11 @@
-===================
 How does RocketCAN?
 ===================
-    a beginner's guide to canlib & co
-
-    ========================
-    How does CAN in general?
-    ========================
+.. toctree::
+   :maxdepth: 1
+   packet-format.rst
+a beginner's guide to canlib & co
+How does CAN in general?
+------------------------
         Honestly the best resource is wikipedia: https://en.wikipedia.org/wiki/CAN_bus
 
         The most important thing to understand is the message format and how arbitration works. Each CAN message is composed of a bunch of different fields. The most important are:
