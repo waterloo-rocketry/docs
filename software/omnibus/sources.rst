@@ -1,4 +1,4 @@
-Omnibus
+Sources
 =======
 
 .. toctree::
@@ -7,5 +7,3 @@ Omnibus
 
    overview.rst
    sources.rst
-
-
