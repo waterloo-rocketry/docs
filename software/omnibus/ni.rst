@@ -15,3 +15,8 @@ It is worth noting that for windows this is straight forward, however, we do not
 Linux, but we will soon.
 
 Specific instructions on using DAQ with omnibus can be found in the electrical documentation.
+
+
+.. note::
+   There is another source called "fakeni" which is meant to expose the same interface as ni, but without actually reading
+   any data from hardware.
