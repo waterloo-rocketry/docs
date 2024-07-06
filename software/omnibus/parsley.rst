@@ -13,7 +13,8 @@ This protocol is called `canlib <https://github.com/waterloo-rocketry/canlib>` a
 Canlib provides utilities for developers to convert can messages into binary data and send them over the bus.
 
 A wire leaves our rocket (through our electrical disonnect) and connects the CAN bus to a board inside our DAQ (data aquisition) box called "DAQ can support".
-This board then recieves the raw binary data and sends it through a USB port to a computer.
+This board then recieves the raw binary data and sends it through a USB port to the DAQ computer (and old framework laptop which we mutalated and slapped inside
+the DAQ box).
 
 After this, parsley (this program!) reads the raw binary data coming in through the USB port and reconstructs the CAN messages. It then sends them over the
 omnibus for various sinks to use.
