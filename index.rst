@@ -89,3 +89,9 @@ Waterloo Rocketry Documentation Site
    :caption: Infrastructure
 
    infrastructure/equipments.rst
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Recovery
+
+   recovery/st-pats/index.rst
