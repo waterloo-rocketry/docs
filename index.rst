@@ -54,3 +54,9 @@ Waterloo Rocketry Documentation Site
    software/minerva/index.rst
    software/omnibus/index.rst
    software/parsley/index.rst
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Recovery
+
+   recovery/st-pats/index.rst
