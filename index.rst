@@ -59,4 +59,5 @@ Waterloo Rocketry Documentation Site
    :maxdepth: 2
    :caption: Recovery
 
+   recovery/brb/index.rst
    recovery/st-pats/index.rst
