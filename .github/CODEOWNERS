@@ -5,12 +5,12 @@
 /onboarding-tutorials/electrical-onboarding/ @JasonBrave
 /onboarding-tutorials/software-onboarding/ @Darth-Raazi
 /onboarding-tutorials/firmware-how-to/ @JasonBrave
-/onboarding-tutorials/software-how-to/ @Darth-Raazi
+/onboarding-tutorials/software-how-to/ @Darth-Raazi @zangjiucheng
 
 # Jason owns electrical docs by default
 /avionics/ @JasonBrave
 /electrical-gse/ @JasonBrave
 /electrical-tools/ @JasonBrave
 
-# Ozayr owns software docs by default
+# Ozayr / Oliver owns software docs by default
 /software/ @Darth-Raazi @zangjiucheng
