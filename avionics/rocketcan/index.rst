@@ -22,6 +22,20 @@ CAN 2.0B SID for 2025 rocket and beyond
 | Priority  | Message Type | Reserved  | Board Type ID | Board Instance ID |
 +-----------+--------------+-----------+---------------+-------------------+
 
+The priority bits are allocated as following:
+
++-----------+----------+
+| Bit value | Priority |
++===========+==========+
+| 00        | Highest  |
++-----------+----------+
+| 01        | High     |
++-----------+----------+
+| 10        | Medium   |
++-----------+----------+
+| 11        | Low      |
++-----------+----------+
+
 CAN 2.0A SID for Borealis and older rockets
 
 +--------------+----------+
