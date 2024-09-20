@@ -22,7 +22,7 @@ Waterloo Rocketry Documentation Site
    :maxdepth: 2
    :caption: Avionics
 
-   avionics/rocketcan/index.rst
+   avionics/rocketcannot/index.rst
    avionics/propulsion-board/index.rst
    avionics/charging-board/index.rst
    avionics/camera-board/index.rst
