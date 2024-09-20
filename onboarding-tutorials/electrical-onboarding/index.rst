@@ -26,6 +26,10 @@ MPLab and XC compilers
 ======================
 MPLab is an IDE(Integrated Development Environment) for Microchip PIC microcontrollers, XC8 and XC16 are the compilers. Use the following links to download them, `MPLAB X IDE <https://www.microchip.com/en-us/tools-resources/develop/mplab-x-ide>`_ and the `XC8 and XC16 compilers <https://www.microchip.com/en-us/tools-resources/develop/mplab-xc-compilers>`_
 
+omnibus
+=======
+`Refer to omnibus GitHub repositroy README.md <https://github.com/waterloo-rocketry/omnibus>`_
+
 LLVM clang-format
 =================
 :doc:`Refer to clang-format page </onboarding-tutorials/firmware-how-to/clang-format>`
