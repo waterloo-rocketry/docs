@@ -11,7 +11,7 @@ permissions:
 jobs:
   # Build job
   build:
-    name: Test Sphinx HTML compile
+    name: Test Compile Sphinx HTML
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
