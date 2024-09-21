@@ -1,0 +1,29 @@
+name: Test Sphinx HTML compile
+
+# Runs on pushes to pull request
+on: pull_request
+
+# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+  # Build job
+  build:
+    name: Test Compile Sphinx HTML
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Sphinx
+        run: |
+          sudo apt install python3-sphinx-rtd-theme
+      - name: Setup Pages
+        id: pages
+        uses: actions/configure-pages@v5
+      - name: Build with sphinx
+        run: make html SPHINXOPTS="-W"
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./_build/html
