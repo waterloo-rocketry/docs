@@ -11,9 +11,9 @@ Prerequisites
 - The KiCad files for the 2022 tutorial board.
 - A basic understanding of C.
 
-Required Software
------------------
-We use the `MPLAB X IDE <https://www.microchip.com/en-us/tools-resources/develop/mplab-x-ide>`_ and the `XC8 and XC16 <https://www.microchip.com/en-us/tools-resources/develop/mplab-xc-compilers>`_ compilers from Microchip. Having a recent (3.8+) version of Python installed is also useful, but won’t be necessary for this tutorial.
+Install IDE and Compiler
+------------------------
+We use the `MPLAB X IDE <https://www.microchip.com/en-us/tools-resources/develop/mplab-x-ide>`_ and the `XC8 and XC16 <https://www.microchip.com/en-us/tools-resources/develop/mplab-xc-compilers>`_ compilers from Microchip.
 
 MPLAB is Awful
 --------------
