@@ -1,5 +1,5 @@
-RLCS Towerside
-==============
+RLCS V3 Towerside
+=================
 
 .. toctree::
    :maxdepth: 2
@@ -7,7 +7,7 @@ RLCS Towerside
 
    towerside-power-board.rst
    towerside-relay-board.rst
-   tank-heating-control-board.rst
+   tank-heating-relay-board.rst
 
 Introduction
 ------------

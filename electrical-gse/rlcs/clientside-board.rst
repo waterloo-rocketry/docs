@@ -1,2 +1,0 @@
-RLCS Clientside Board
-=====================

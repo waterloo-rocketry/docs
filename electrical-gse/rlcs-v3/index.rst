@@ -1,5 +1,5 @@
-Remote Launch Control System (RLCS)
-===================================
+Remote Launch Control System (RLCS) V3
+======================================
 
 .. toctree::
    :maxdepth: 2

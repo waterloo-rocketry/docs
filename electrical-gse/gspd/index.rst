@@ -7,3 +7,5 @@ Ground Side Power Distribution (GSPD)
 
    input-board.rst
    converter-board.rst
+   48v-boost-board.rst
+
