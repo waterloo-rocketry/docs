@@ -7,6 +7,7 @@ Remote Launch Control System (RLCS)
 
    towerside.rst
    clientside.rst
+   timer.rst
 
 The Remote Launch Control System (RLCS) is the primary means of interfacing with the rocket and supporting
 fill plumbing during launch operations. The main objective of the system is to allow launching the rocket from up to
