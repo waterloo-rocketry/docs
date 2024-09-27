@@ -8,6 +8,7 @@ Waterloo Rocketry Documentation Site
    :caption: General
 
    general/index.rst
+   general/standards/index.rst
 
 .. toctree::
    :maxdepth: 2
@@ -23,20 +24,23 @@ Waterloo Rocketry Documentation Site
    :caption: Avionics
 
    avionics/rocketcan/index.rst
-   avionics/propulsion-board/index.rst
-   avionics/charging-board/index.rst
    avionics/camera-board/index.rst
    avionics/gps-board/index.rst
-   avionics/ltt/index.rst
+   avionics/live-telemetry/index.rst
    avionics/remote-arming/index.rst
+   avionics/srad-gnss-receiver/index.rst
+   avionics/injector-sensor-hub/index.rst
+   avionics/rocket-power-board/index.rst
+   avionics/srad-altimeter/index.rst
 
 .. toctree::
    :maxdepth: 2
    :caption: Electrical GSE and Mission Control
 
-   electrical-gse/rlcs/index.rst
+   electrical-gse/rlcs-v4/index.rst
    electrical-gse/daq/index.rst
    electrical-gse/gspd/index.rst
+   electrical-gse/auto-antenna-tower/index.rst
    electrical-gse/opstop/index.rst
    electrical-gse/srad-aprs-receiver/index.rst
 
@@ -46,6 +50,21 @@ Waterloo Rocketry Documentation Site
 
    electrical-tools/usb-debug/index.rst
    electrical-tools/hilt/index.rst
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Firmware Libraries
+
+   firmware-library/canlib/index.rst
+   firmware-library/rocketlib/index.rst
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Legacy Electrical Projects
+
+   electrical-gse/rlcs-v3/index.rst
+   avionics/propulsion-board/index.rst
+   avionics/charging-board/index.rst
 
 .. toctree::
    :maxdepth: 2

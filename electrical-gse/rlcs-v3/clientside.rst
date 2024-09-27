@@ -1,5 +1,5 @@
-RLCS Clientside
-===============
+RLCS V3 Clientside
+==================
 
 .. toctree::
    :maxdepth: 2
