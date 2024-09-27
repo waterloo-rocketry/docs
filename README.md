@@ -1,5 +1,5 @@
-# Docs for Waterloo Rocketry Software / Firmware
-This repository contains the documentation for the software and firmware projects developed by the Waterloo Rocketry team. The documentation is written in reStructuredText and generated using Sphinx.
+# Docs for Waterloo Rocketry Software and Electrical Projects
+This repository contains the documentation for the software and electrical projects developed by the Waterloo Rocketry team. The documentation is written in reStructuredText and generated using Sphinx.
 
 ## For Developers setting up Sphinx Environment
 This guide will help you set up a Sphinx environment for generating project documentation. Sphinx is a powerful tool that converts reStructuredText files into various output formats HTML, we can use it to create professional-looking documentation for our projects.
