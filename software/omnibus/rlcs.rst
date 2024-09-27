@@ -1,7 +1,7 @@
 RLCS
 ====
 
-RLCS stands for `Remote Launch Control System <https://docs.waterloorocketry.com/electrical-gse/rlcs/index.html>`. It was originally designed long before
+RLCS stands for `Remote Launch Control System <https://docs.waterloorocketry.com/electrical-gse/rlcs/index.html>`_. It was originally designed long before
 omnibus was a thing to remotely fill and launch the rocket. However, later in its life, it was modified to communicate its internal state and processes over
 omnibus to allow us to gain an understanding of it during operations procedures.
 

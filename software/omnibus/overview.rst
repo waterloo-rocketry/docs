@@ -15,7 +15,7 @@ When using omnibus, the programs are usually running.
 
 There are numerous sources and sinks, each of which has its own subsection.
 
-The core library is built ontop of `zeromq <https://zeromq.org/>`, which is a thin abstraction ontop of web sockets.
+The core library is built ontop of `zeromq <https://zeromq.org/>`_, which is a thin abstraction ontop of web sockets.
 
 
 Core Library
@@ -47,7 +47,7 @@ Sender
 This class is used by sources to send information over omnibus. Most sources include these lines, which include
 Sender in a project and make use of it.
 
-...code-block:: python
+.. code-block:: python
 
     from omnibus import Sender
 
@@ -68,7 +68,7 @@ Receiver
 
 Receiver is the complement to Sender. Its purpose is to receive messages sent over omnibus. Here is an example of its use.
 
-...code-block:: python
+.. code-block:: python
 
     from omnibus import Receiver
 

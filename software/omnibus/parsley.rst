@@ -9,7 +9,7 @@ to this central data bus so that they can communicate. You can think about the b
 other board attached on the bus. Each board recieves these bits and decides what to do with them (if anything).
 
 In order to make use of this bus, we have written up a standard communication protocol aggreed upon by all of the boards on our rocket.
-This protocol is called `canlib <https://github.com/waterloo-rocketry/canlib>` and sees data packaged into messages known as "CAN messages".
+This protocol is called `canlib <https://github.com/waterloo-rocketry/canlib>`_ and sees data packaged into messages known as "CAN messages".
 Canlib provides utilities for developers to convert can messages into binary data and send them over the bus.
 
 A wire leaves our rocket (through our electrical disonnect) and connects the CAN bus to a board inside our DAQ (data aquisition) box called "DAQ can support".
@@ -30,7 +30,7 @@ The code is divided into two subsections to deal with perform these tasks
 #. Parsing binary data into CAN messages
 
 The code used to solve the second of these problems has been extracted out of omnibus into its own submodule. Confusingly, this submodule is
-also known as `parsley <https://github.com/waterloo-rocketry/parsley>`. This piece of code is amazingly well documented and written thanks
+also known as `parsley <https://github.com/waterloo-rocketry/parsley>`_. This piece of code is amazingly well documented and written thanks
 to the wonderful Micheal. As a result, I will not be explaining it here. If you have questions about it, go to the github repo linked above.
 
 Before we dig into the code, I explain the options
@@ -39,7 +39,7 @@ Before we dig into the code, I explain the options
     * When reading data from a USB port, you need to specify which USB port you are actually reading. there are a few options for figuring this out.
       If you are on windows, you can open your device manager. Scroll until you find something called "COM ports" or something similar. Upon expanding that, you will
       see a few options that are something like `COM 5`, `COM 7` etc. One of them is the port you want, just try all the options until one of them works.
-      If you are on linux, the port will be a file path. Specifically, it will be of the from `/dev/tty0`, `dev/tty1`, etc. `This article <https://www.cyberciti.biz/faq/find-out-linux-serial-ports-with-setserial/>`
+      If you are on linux, the port will be a file path. Specifically, it will be of the from `/dev/tty0`, `dev/tty1`, etc. `This article <https://www.cyberciti.biz/faq/find-out-linux-serial-ports-with-setserial/>`_
       will help you figure out which specific one you want to use.
 * baud
     * baud refers to speed at which data is transfered over the USB port you are using. For 99% of applications, the default value should be fine. If it isn't, godspeed soilder,

@@ -5,11 +5,11 @@ Omnibus was originally created to work with the Data Acquisition (DAQ) system. T
 work with it. The heart of the DAQ briefcase is the National Instruments (Ni) box. This is what converts the values received
 from the electronic sensors to digital values. The python library used to interface with this box can be found here.
 
-`NI-DAQmx Python documentation <https://nidaqmx-python.readthedocs.io/en/latest/>`
+`NI-DAQmx Python documentation <https://nidaqmx-python.readthedocs.io/en/latest/>`_
 
 In order to run this source, you will need to download this software onto your computer.
 
-`NI-DAQmx <https://www.ni.com/en-ca/support/downloads/drivers/download.ni-daqmx.html#460239>`
+`NI-DAQmx <https://www.ni.com/en-ca/support/downloads/drivers/download.ni-daqmx.html#460239>`_
 
 It is worth noting that for windows this is straight forward, however, we do not know how to install this on either Mac or
 Linux, but we will soon.
