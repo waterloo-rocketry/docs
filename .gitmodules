@@ -1,0 +1,3 @@
+[submodule "firmware-library/rocketlib"]
+	path = firmware-library/rocketlib
+	url = https://github.com/waterloo-rocketry/rocketlib.git

@@ -56,7 +56,7 @@ Waterloo Rocketry Documentation Site
    :caption: Firmware Libraries
 
    firmware-library/canlib/index.rst
-   firmware-library/rocketlib/index.rst
+   firmware-library/rocketlib/doc/index.rst
 
 .. toctree::
    :maxdepth: 2
