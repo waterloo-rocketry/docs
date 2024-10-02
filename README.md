@@ -10,7 +10,7 @@ This guide will help you set up a Sphinx environment for generating project docu
 ## Step 1: Clone the Repository
 Clone the repository to your local machine:
 ```bash
-git clone git@github.com:waterloo-rocketry/docs.git
+git clone --recurse-submodules git@github.com:waterloo-rocketry/docs.git
 ```
 
 ## Step 2: Set up and activate a Virtual Environment
