@@ -8,3 +8,4 @@ Data Acquisition System (DAQ)
    power-board.rst
    patch-panel.rst
    thermocouple-board.rst
+   sensors.rst
