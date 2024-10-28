@@ -60,11 +60,11 @@ Waterloo Rocketry Documentation Site
 
 .. toctree::
    :maxdepth: 2
-   :caption: Legacy Electrical Projects
+   :caption: Controls
 
-   electrical-gse/rlcs-v3/index.rst
-   avionics/propulsion-board/index.rst
-   avionics/charging-board/index.rst
+   controls/processor-board/index.rst
+   controls/processor-firmware/index.rst
+   controls/motor-control-board/index.rst
 
 .. toctree::
    :maxdepth: 2
@@ -73,3 +73,11 @@ Waterloo Rocketry Documentation Site
    software/minerva/index.rst
    software/omnibus/index.rst
    software/parsley/index.rst
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Legacy Electrical Projects
+
+   electrical-gse/rlcs-v3/index.rst
+   avionics/propulsion-board/index.rst
+   avionics/charging-board/index.rst
