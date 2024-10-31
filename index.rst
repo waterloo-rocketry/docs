@@ -8,7 +8,6 @@ Waterloo Rocketry Documentation Site
    :caption: General
 
    general/index.rst
-   general/standards/index.rst
 
 .. toctree::
    :maxdepth: 2

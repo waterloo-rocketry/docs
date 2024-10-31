@@ -49,3 +49,8 @@ html_context = {
 latex_elements = {
   'extraclassoptions': 'openany,oneside'
 }
+
+extensions = [
+    'sphinx.ext.graphviz',
+    # other extensions
+]
