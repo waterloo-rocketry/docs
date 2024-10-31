@@ -59,12 +59,12 @@ Example:
 
 .. code-block:: c
 
-    w_status_t res = W_SUCCESS;             // Initialize status
+    w_status_t res = W_SUCCESS; // Initialize status
 
-    res |= i2c_init();                      // Capture status code into res
+    res |= i2c_init(); // Capture status code into res
 
-    uint8_t value = 0;                      // Return status code by passing the output value as a parameter instead
-    res |= calculate_something(&value);     // Capture status code, and receive output value into the parameter
+    uint8_t value = 0; // Return status code by passing the output value as a parameter instead
+    res |= calculate_something(&value); // Capture status code, and receive output value into the parameter
 
     // In this example we don't care about specific failures, only success or not success
     if (res == W_SUCCESS) {
