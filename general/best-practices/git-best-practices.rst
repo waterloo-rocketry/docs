@@ -6,8 +6,8 @@ Git Best Practices
 1. Prirotize using rebasing over merging. This will help keep the commit history clean and linear.
 2. Only the PR owner should merge the PR. (Unless the PR owner is unavailable, then the PR owner should assign another team member to merge the PR.)
 3. Feature Branch name rule should be descriptive and follow the structure: `<watid>/<feature-name>`. For example, `j7zang/pic18f26k83-i2c-master-driver`.
-4. Open a draft PR as soon as new feature branch is created, and set it as a draft PR, and only remove draft status of the PR when the R is ready for review.
-   
+4. Open a draft PR as soon as new feature branch is created, and set it as a draft PR, and only remove draft status of the PR when the PR is ready for review.
+
 **For reviewing PR**
 
 1. If you have any concerns or questions about the PR, please discuss them with the PR owner before approving the PR.
