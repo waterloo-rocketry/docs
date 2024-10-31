@@ -39,4 +39,4 @@ This section will cover common `git` commands that you will use frequently.
 
 These are just a few of the many `git` commands available. You can find more commands and options in the `git documentation <https://git-scm.com/doc>`_.
 
-What's Next? Now that you have learned the basics of `git`, you can move on the next section to learn our team `git` usage specifics.
+What's Next? Now that you have learned the basics of `git`, you can move on to learn our team  :doc:`Git Best Practices </general/best-practices/git-best-practices>`.
