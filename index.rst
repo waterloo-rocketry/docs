@@ -7,12 +7,13 @@ Waterloo Rocketry Documentation Site
    :maxdepth: 2
    :caption: General
 
-   general/index.rst
+   general/standards/index.rst
 
 .. toctree::
    :maxdepth: 2
    :caption: Onboarding & Tutorials
 
+   onboarding-tutorials/git-usage/index.rst
    onboarding-tutorials/electrical-onboarding/index.rst
    onboarding-tutorials/software-onboarding/index.rst
    onboarding-tutorials/firmware-how-to/index.rst

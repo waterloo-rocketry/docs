@@ -1,5 +1,5 @@
-Git Usage Guidelines
-====================
+Git Tutorial
+============
 
 This guide is intended to help you get started with `git`. It will cover the
 basics of using `git`, as well as team `git` usage specifics.
