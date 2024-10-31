@@ -43,13 +43,14 @@ Formatting
 ===============
 Just use `team-wide clang-format config <https://github.com/waterloo-rocketry/rocketlib/blob/master/.clang-format>`_
 
-RocketLib
-*************
-All RocketCAN firmware projects should include `RocketLib <https://github.com/waterloo-rocketry/rocketlib/blob/799ca8196b572062380c05ed9bdea1c1a9be4da1/include/common.h#L12>`_ as a submodule.
+Secure Coding Standard
+**********************
 
-Errors
-==========
-All functions that have a possibility of failing should return a `RocketLib status code <https://github.com/waterloo-rocketry/rocketlib/blob/799ca8196b572062380c05ed9bdea1c1a9be4da1/include/common.h#L12>`_ unless the function is blatently trivial.
+We use ????? coding standard
+
+Errors Handling
+===============
+All functions that have a possibility of failing should return a `rocketlib status code <https://github.com/waterloo-rocketry/rocketlib/blob/799ca8196b572062380c05ed9bdea1c1a9be4da1/include/common.h#L12>`_ unless the function is blatently trivial.
 The status code must reflect the outcome of the function's execution.
 
 Accordingly, callers should not ignore status codes returned by functions. Status codes should be read and handled appropriately.
@@ -71,4 +72,3 @@ Example:
     } else {
         // Something failed!
     }
-
