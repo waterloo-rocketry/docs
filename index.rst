@@ -78,10 +78,10 @@ Waterloo Rocketry Documentation Site
 
 .. toctree::
    :maxdepth: 2
-   :caption: Recovery
+   :caption: Rocket Retrieval
 
-   recovery/brb/index.rst
-   recovery/st-pats/index.rst
+   rocket-retrieval/brb/index.rst
+   rocket-retrieval/st-pats/index.rst
 
 .. toctree::
    :maxdepth: 2
