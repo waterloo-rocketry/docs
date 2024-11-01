@@ -31,9 +31,10 @@ jobs:
         uses: actions/checkout@v4
         with:
           submodules: 'true'
-      - name: Install Sphinx
+      - name: Install Sphinx and Graphviz
         run: |
-          sudo apt install python3-sphinx-rtd-theme
+          sudo apt-get update
+          sudo apt install -y python3-sphinx-rtd-theme graphviz
       - name: Setup Pages
         id: pages
         uses: actions/configure-pages@v5
