@@ -85,14 +85,15 @@ Waterloo Rocketry Documentation Site
 
 .. toctree::
    :maxdepth: 2
+   :caption: Infrastructure
+
+   infrastructure/equipments.rst
+
+.. toctree::
+   :maxdepth: 2
    :caption: Legacy Electrical Projects
 
    electrical-gse/rlcs-v3/index.rst
    avionics/propulsion-board/index.rst
    avionics/charging-board/index.rst
 
-.. toctree::
-   :maxdepth: 2
-   :caption: Infrastructure
-
-   infrastructure/equipments.rst
