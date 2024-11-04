@@ -24,6 +24,7 @@ Waterloo Rocketry Documentation Site
    :maxdepth: 2
    :caption: Avionics
 
+   avionics/integration/index.rst
    avionics/rocketcan/index.rst
    avionics/camera-board/index.rst
    avionics/gps-board/index.rst
