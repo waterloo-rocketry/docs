@@ -1,9 +1,7 @@
-RLCS
-====
+RLCS V3
+=======
 
-RLCS stands for `Remote Launch Control System <https://docs.waterloorocketry.com/electrical-gse/rlcs/index.html>`_. It was originally designed long before
-omnibus was a thing to remotely fill and launch the rocket. However, later in its life, it was modified to communicate its internal state and processes over
-omnibus to allow us to gain an understanding of it during operations procedures.
+RLCS V3 stands for :doc:`Remote Launch Control System Version 3</electrical-gse/rlcs-v3/index>`. It was originally designed long before omnibus was a thing to remotely fill and launch the rocket. However, later in its life, it was modified to communicate its internal state and processes over omnibus to allow us to gain an understanding of it during operations procedures.
 
 RLCS was modified to communicate its data over a USB port (in a very similar way to the source parsley). This data is then read by the RLCS source parsed using
 parsley (the submodule parsley, used for parsing various types of binary data) and sent over the CAN bus.
