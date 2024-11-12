@@ -43,6 +43,11 @@ Formatting
 ===============
 Just use `team-wide clang-format config <https://github.com/waterloo-rocketry/rocketlib/blob/master/.clang-format>`_
 
+Global Variables
+================
+
+All global variables shall be initialized.
+
 Embedded Coding Standard
 ***************************
 All firmware projects should adopt the `BARR Embedded C Coding Standard <https://barrgroup.com/embedded-systems/books/embedded-c-coding-standard>`_.
@@ -75,6 +80,10 @@ Rocketlib
 Rocketlib aims to standarize common modules for team-wide use.
 All firmware projects should add rocketlib as a submodule and use the modules it provides
 where appropriate (avoid reinventing the wheel).
+
+Safe function usage
+===================
+:code:`snprintf` shall be used over :code:`sprintf`, to avoid buffer overflow.
 
 Error Handling
 ===============
