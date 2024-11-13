@@ -43,11 +43,6 @@ Formatting
 ===============
 Just use `team-wide clang-format config <https://github.com/waterloo-rocketry/rocketlib/blob/master/.clang-format>`_
 
-Global Variables
-================
-
-All global variables shall be initialized.
-
 Embedded Coding Standard
 ***************************
 All firmware projects should adopt the `BARR Embedded C Coding Standard <https://barrgroup.com/embedded-systems/books/embedded-c-coding-standard>`_.
@@ -83,7 +78,7 @@ where appropriate (avoid reinventing the wheel).
 
 Safe function usage
 ===================
-:code:`snprintf` shall be used over :code:`sprintf`, to avoid buffer overflow.
+Safe C function that explicitly set output buffer size should be used, to prevent buffer overflow, for example :code:`snprintf` should be used over :code:`sprintf`, .
 
 Error Handling
 ===============
