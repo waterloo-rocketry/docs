@@ -29,4 +29,4 @@ PCB should be placed in a Git repository for PCB, each KiCAD PCB design shall be
 Software and Firmware
 ---------------------
 
-Each software and firmware project should have it's own Git repository, for avionics firmware the repository name shall start with :code:`_canhw`
+Each software and firmware project should have it's own Git repository, for avionics firmware the repository name shall start with :code:`cansw_`
