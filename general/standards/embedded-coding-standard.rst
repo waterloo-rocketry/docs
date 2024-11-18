@@ -76,6 +76,10 @@ Rocketlib aims to standarize common modules for team-wide use.
 All firmware projects should add rocketlib as a submodule and use the modules it provides
 where appropriate (avoid reinventing the wheel).
 
+Safe function usage
+===================
+Safe C function that explicitly set output buffer size should be used, to prevent buffer overflow, for example :code:`snprintf` should be used over :code:`sprintf`, .
+
 Error Handling
 ===============
 All functions that have a possibility of failing should return a `rocketlib status code <https://github.com/waterloo-rocketry/rocketlib/blob/799ca8196b572062380c05ed9bdea1c1a9be4da1/include/common.h#L12>`_ unless the function is blatently trivial.
