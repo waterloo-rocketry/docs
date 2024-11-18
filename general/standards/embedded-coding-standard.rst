@@ -45,7 +45,7 @@ Just use `team-wide clang-format config <https://github.com/waterloo-rocketry/ro
 
 Embedded Coding Standard
 ***************************
-All firmware projects should adopt the `BARR Embedded C Coding Standard <https://barrgroup.com/embedded-systems/books/embedded-c-coding-standard>`_.
+All firmware projects should adopt the `BARR Embedded C Coding Standard <https://barrgroup.com/embedded-systems/books/embedded-c-coding-standard>`_. Download: :download:`barr_c_coding_standard_2018.pdf <_static/barr_c_coding_standard_2018.pdf>`
 
     A C coding standard is a set of rules for source code that is adopted by a team of programmers working together on a project, such as the design of an embedded system.
     
