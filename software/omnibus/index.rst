@@ -7,5 +7,6 @@ Omnibus
 
    overview.rst
    sources.rst
+   sinks.rst
 
 
