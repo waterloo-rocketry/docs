@@ -6,3 +6,4 @@ Firmware How-To
    :caption: Tutorial
 
    clang-format.rst
+   stm32-freertos.rst
