@@ -41,7 +41,7 @@ For firmware libraries:
 	
 Formatting
 ===============
-Just use `team-wide clang-format config <https://github.com/waterloo-rocketry/rocketlib/blob/master/.clang-format>`_
+Use the :doc:`team-wide clang-format </onboarding-tutorials/firmware-how-to/clang-format>`
 
 Embedded Coding Standard
 ***************************
