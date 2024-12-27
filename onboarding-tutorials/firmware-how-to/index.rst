@@ -6,3 +6,4 @@ Firmware How-To
    :caption: Tutorial
 
    clang-format.rst
+   eclipse.rst
