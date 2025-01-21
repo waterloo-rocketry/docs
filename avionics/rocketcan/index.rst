@@ -4,6 +4,7 @@ RocketCAN
 .. toctree::
    :maxdepth: 1
 
+   board-id.rst
    packet-format.rst
 
 What is RocketCAN
