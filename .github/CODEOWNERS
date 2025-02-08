@@ -2,18 +2,18 @@
 * @JasonBrave
 
 # Onboarding and Tutorials
-/onboarding-tutorials/electrical-onboarding/ @JasonBrave
-/onboarding-tutorials/software-onboarding/ @Darth-Raazi
-/onboarding-tutorials/firmware-how-to/ @JasonBrave
+/onboarding-tutorials/electrical-onboarding/ @JasonBrave @AshTheEngiqueer
+/onboarding-tutorials/software-onboarding/ @Darth-Raazi @zangjiucheng
+/onboarding-tutorials/firmware-how-to/ @JasonBrave @AshTheEngiqueer @celery6
 /onboarding-tutorials/software-how-to/ @Darth-Raazi @zangjiucheng
 
-# Jason owns electrical docs by default
-/avionics/ @JasonBrave
-/electrical-gse/ @JasonBrave
-/electrical-tools/ @JasonBrave
+ # Electrical
+/avionics/ @JasonBrave @AshTheEngiqueer
+/electrical-gse/ @JasonBrave @Pdada1
+/electrical-tools/ @JasonBrave @AshTheEngiqueer
 
-# Ozayr / Oliver owns software docs by default
+# Software
 /software/ @Darth-Raazi @zangjiucheng
 
-# Richard owns controls docs by default
-/controls/ @Redstone-ray
+# Controls
+/controls/ @Redstone-ray @celery6
