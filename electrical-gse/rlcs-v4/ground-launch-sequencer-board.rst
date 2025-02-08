@@ -1,2 +1,2 @@
-Ground Launch Sequencer Board
-=============================
+RLCS V4 Ground Launch Sequencer Board
+=====================================

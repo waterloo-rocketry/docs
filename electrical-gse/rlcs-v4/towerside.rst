@@ -7,3 +7,4 @@ RLCS V4 Towerside
 
    ground-launch-sequencer-board.rst
    towerside-relay-board.rst
+   tank-heating-relay-board.rst
