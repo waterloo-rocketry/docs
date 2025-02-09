@@ -60,7 +60,7 @@ Board Type IDs
      - :doc:`RLCS v4 Relay Board (Valve and Ignition)</electrical-gse/rlcs-v4/towerside-relay-board>`
      - 0x81
    * - RLCS_HEATING
-     - RLCS v4 Tank Heating Relay Board
+     - :doc:`RLCS v4 Tank Heating Relay Board</electrical-gse/rlcs-v4/tank-heating-relay-board>`
      - 0x82
    * - DAQ
      - :doc:`DAQ(Data Acquisition System) CAN Support</electrical-gse/daq/index>`

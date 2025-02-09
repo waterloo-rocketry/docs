@@ -1,6 +1,8 @@
 Packet Format
 #####################
 
+**Note:** All multi-byte data field are big-endian
+
 Message Packet Format Definition
 ********************************
 
