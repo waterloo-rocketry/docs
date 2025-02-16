@@ -10,11 +10,11 @@ GENERAL_BOARD_STATUS (0x001)
 ============================
 Board status broadcast
 
-+--------+---------+----------------------+--------------------+
-| Byte 0 | Byte 1  |Byte 2-5              |Byte 6-7            |
-+========+=========+======================+====================+
-| 2 byte timestamp |GENERAL_ERROR_BITFIELD|BOARD_ERROR_BITFIELD|
-+--------+---------+----------------------+--------------------+
++--------+---------+------------------------+----------------------+
+| Byte 0 | Byte 1  | Byte 2-5               | Byte 6-7             |
++========+=========+========================+======================+
+| 2 byte timestamp | GENERAL_ERROR_BITFIELD | BOARD_ERROR_BITFIELD |
++--------+---------+------------------------+----------------------+
 
 | **GENERAL_ERROR_BITFIELD:** General error code bitfield, see `general_board_status`_
 | **BOARD_ERROR_BITFIELD:** Board specific error code bitfield
@@ -23,11 +23,11 @@ RESET_CMD (0x002)
 =================
 Command to reset boards
 
-+--------+---------+-------------+-------------+
-| Byte 0 | Byte 1  |Byte 2       |Byte 3       |
-+========+=========+=============+=============+
-| 2 byte timestamp |BOARD_TYPE_ID|BOARD_INST_ID|
-+--------+---------+-------------+-------------+
++--------+---------+---------------+---------------+
+| Byte 0 | Byte 1  | Byte 2        | Byte 3        |
++========+=========+===============+===============+
+| 2 byte timestamp | BOARD_TYPE_ID | BOARD_INST_ID |
++--------+---------+---------------+---------------+
 
 | **BOARD_TYPE_ID:** Board Type ID of board to reset, set to 0 to reset all boards on bus
 | **BOARD_INST_ID:** Board Inst ID of board to reset, set to 0 to reset all board of specific type
@@ -36,11 +36,11 @@ DEBUG_RAW (0x003)
 =================
 6-bytes of raw data
 
-+--------+---------+--------+
-| Byte 0 | Byte 1  |Byte 2-7|
-+========+=========+========+
-| 2 byte timestamp |RAW_DATA|
-+--------+---------+--------+
++--------+---------+----------+
+| Byte 0 | Byte 1  | Byte 2-7 |
++========+=========+==========+
+| 2 byte timestamp | RAW_DATA |
++--------+---------+----------+
 
 | **RAW_DATA:** Raw data, 6 bytes
 
@@ -48,12 +48,14 @@ CONFIG_SET (0x004)
 ==================
 Set board specific configuration
 
-+--------+---------+---------+------------+
-| Byte 0 | Byte 1  |Byte 2-3 |Byte 4-7    |
-+========+=========+=========+============+
-| 2 byte timestamp |CONFIG_ID|CONFIG_VALUE|
-+--------+---------+---------+------------+
++--------+---------+---------------+---------------+-----------+--------------+
+| Byte 0 | Byte 1  | Byte 2        | Byte 3        | Byte 4-5  | Byte 6-7     |
++========+=========+===============+===============+===========+==============+
+| 2 byte timestamp | BOARD_TYPE_ID | BOARD_INST_ID | CONFIG_ID | CONFIG_VALUE |
++--------+---------+---------------+---------------+-----------+--------------+
 
+| **BOARD_TYPE_ID:** Board Type ID of target board, cannot be zero
+| **BOARD_INST_ID:** Board Inst ID of target board, set to 0 to set all board of specific type
 | **CONFIG_ID:** Configuration ID, Board Specific
 | **CONFIG_VALUE:** Configuration Value, Board and Config ID specific
 
@@ -61,11 +63,11 @@ CONFIG_STATUS (0x005)
 =====================
 Broadcast board specific configuration, for verify CONFIG_SET success
 
-+--------+---------+---------+------------+
-| Byte 0 | Byte 1  |Byte 2-3 |Byte 4-7    |
-+========+=========+=========+============+
-| 2 byte timestamp |CONFIG_ID|CONFIG_VALUE|
-+--------+---------+---------+------------+
++--------+---------+-----------+--------------+
+| Byte 0 | Byte 1  | Byte 2-3  | Byte 4-5     |
++========+=========+===========+==============+
+| 2 byte timestamp | CONFIG_ID | CONFIG_VALUE |
++--------+---------+-----------+--------------+
 
 | **CONFIG_ID:** Configuration ID, Board Specific
 | **CONFIG_VALUE:** Configuration Value, Board and Config ID specific
@@ -74,51 +76,51 @@ ACTUATOR_CMD (0x006)
 ====================
 Set actuator commanded state
 
-+--------+---------+-----------+--------------+
-| Byte 0 | Byte 1  |Byte 2     |Byte 3        |
-+========+=========+===========+==============+
-| 2 byte timestamp |ACTUATOR_ID|ACTUATOR_STATE|
-+--------+---------+-----------+--------------+
++--------+---------+-------------+--------------------+
+| Byte 0 | Byte 1  | Byte 2      | Byte 3             |
++========+=========+=============+====================+
+| 2 byte timestamp | ACTUATOR_ID | ACTUATOR_CMD_STATE |
++--------+---------+-------------+--------------------+
 
 | **ACTUATOR_ID:** Acturator ID, see `actuator_id`_
-| **ACTUATOR_STATE:** Actuator State, see `actuator_state`_
+| **ACTUATOR_CMD_STATE:** Actuator Commanded State, see `actuator_state`_
 
 ACTUATOR_ANALOG_CMD (0x007)
 ===========================
 Analog Actuator Command
 
-+--------+---------+-----------+---------------------+
-| Byte 0 | Byte 1  |Byte 2     |Byte 3-4             |
-+========+=========+===========+=====================+
-| 2 byte timestamp |ACTUATOR_ID|ACTUATOR_ANALOG_STATE|
-+--------+---------+-----------+---------------------+
++--------+---------+-------------+---------------------------+
+| Byte 0 | Byte 1  | Byte 2      | Byte 3-4                  |
++========+=========+=============+===========================+
+| 2 byte timestamp | ACTUATOR_ID | ACTUATOR_ANALOG_CMD_STATE |
++--------+---------+-------------+---------------------------+
 
 | **ACTUATOR_ID:** Acturator ID, see `actuator_id`_
-| **ACTUATOR_ANALOG_STATE:** Actuator State (16 bit analog, Board/Actuator specific)
+| **ACTUATOR_ANALOG_CMD_STATE:** Actuator Analog Commanded State (16 bit analog, Definition Board/Actuator specific)
 
 ACTUATOR_STATUS (0x008)
 =======================
 Actuator Status Message
 
-+--------+---------+-----------+-------------------+------------------+
-| Byte 0 | Byte 1  |Byte 2     |Byte 3             |Byte 4            |
-+========+=========+===========+===================+==================+
-| 2 byte timestamp |ACTUATOR_ID|ACTUATOR_CURR_STATE|ACTUATOR_REQ_STATE|
-+--------+---------+-----------+-------------------+------------------+
++--------+---------+-------------+---------------------+--------------------+
+| Byte 0 | Byte 1  | Byte 2      | Byte 3              | Byte 4             |
++========+=========+=============+=====================+====================+
+| 2 byte timestamp | ACTUATOR_ID | ACTUATOR_CURR_STATE | ACTUATOR_CMD_STATE |
++--------+---------+-------------+---------------------+--------------------+
 
 | **ACTUATOR_ID:** Acturator ID, see `actuator_id`_
 | **ACTUATOR_CURR_STATE:** Actuator Current State, see `actuator_state`_
-| **ACTUATOR_REQ_STATE:** Actuator Requested State, see `actuator_state`_
+| **ACTUATOR_CMD_STATE:** Actuator Commanded State, see `actuator_state`_
 
 ALT_ARM_CMD (0x009)
 ===================
 Command to arm altimeter
 
-+--------+---------+------+-------------+
-| Byte 0 | Byte 1  |Byte 2|Byte 3       |
-+========+=========+======+=============+
-| 2 byte timestamp |ALT_ID|ALT_ARM_STATE|
-+--------+---------+------+-------------+
++--------+---------+--------+---------------+
+| Byte 0 | Byte 1  | Byte 2 | Byte 3        |
++========+=========+========+===============+
+| 2 byte timestamp | ALT_ID | ALT_ARM_STATE |
++--------+---------+--------+---------------+
 
 | **ALT_ID:** Altimeter ID, see `altimeter_id`_
 | **ALT_ARM_STATE:** Altimeter set arm state, see `alt_arm_state`_
@@ -127,11 +129,11 @@ ALT_ARM_STATUS (0x00A)
 ======================
 Altimeter Arm Status
 
-+--------+---------+------+-------------+--------+--------+
-| Byte 0 | Byte 1  |Byte 2|Byte 3       |Byte 4-5|Byte 6-7|
-+========+=========+======+=============+========+========+
-| 2 byte timestamp |ALT_ID|ALT_ARM_STATE|DROGUE_V|MAIN_V  |
-+--------+---------+------+-------------+--------+--------+
++--------+---------+--------+---------------+----------+----------+
+| Byte 0 | Byte 1  | Byte 2 | Byte 3        | Byte 4-5 | Byte 6-7 |
++========+=========+========+===============+==========+==========+
+| 2 byte timestamp | ALT_ID | ALT_ARM_STATE | DROGUE_V | MAIN_V   |
++--------+---------+--------+---------------+----------+----------+
 
 | **ALT_ID:** Altimeter ID, see `altimeter_id`_
 | **ALT_ARM_STATE:** Altimeter current arm state, see `alt_arm_state`_
@@ -142,114 +144,114 @@ SENSOR_TEMP (0x00B)
 ===================
 Temperature Sensor
 
-+--------+---------+---------------+--------+
-| Byte 0 | Byte 1  |Byte 2         |Byte 3-6|
-+========+=========+===============+========+
-| 2 byte timestamp |TEMP_SENSOR_NUM|TEMP    |
-+--------+---------+---------------+--------+
++--------+---------+----------------+----------+
+| Byte 0 | Byte 1  | Byte 2         | Byte 3-6 |
++========+=========+================+==========+
+| 2 byte timestamp | TEMP_SENSOR_ID | TEMP     |
++--------+---------+----------------+----------+
 
-| **TEMP_SENSOR_NUM:** Tempterature sensor ID
+| **TEMP_SENSOR_ID:** Tempterature sensor ID
 | **TEMP:** Temperature
 
 SENSOR_ALTITUDE (0x00C)
 =======================
 Altitude sensor message(exclude GPS with have a specific message)
 
-+--------+---------+--------+
-| Byte 0 | Byte 1  |Byte 2-5|
-+========+=========+========+
-| 2 byte timestamp |ALT     |
-+--------+---------+--------+
++--------+---------+----------+
+| Byte 0 | Byte 1  | Byte 2-5 |
++========+=========+==========+
+| 2 byte timestamp | ALT      |
++--------+---------+----------+
 
 | **ALT:** Altitude in ft
 
 SENSOR_IMU_X (0x00D)
 ====================
-+--------+---------+------+------------+---------------+
-| Byte 0 | Byte 1  |Byte 2|Byte 3-4    |Byte 5-6       |
-+========+=========+======+============+===============+
-| 2 byte timestamp |IMU_ID|LINEAR_ACCEL|ANGULAR_VELOITY|
-+--------+---------+------+------------+---------------+
++--------+---------+--------+--------------+------------------+
+| Byte 0 | Byte 1  | Byte 2 | Byte 3-4     | Byte 5-6         |
++========+=========+========+==============+==================+
+| 2 byte timestamp | IMU_ID | LINEAR_ACCEL | ANGULAR_VELOCITY |
++--------+---------+--------+--------------+------------------+
 
 | **IMU_ID:** IMU Unique Indentifier, see `imu_id`_
 | **LINEAR_ACCEL:** Linear Acceleration on X axis
-| **ANGULAR_VELOITY:** Angular Velocity around X axis
+| **ANGULAR_VELOCITY:** Angular Velocity around X axis
 
 SENSOR_IMU_Y (0x00E)
 ====================
-+--------+---------+------+------------+---------------+
-| Byte 0 | Byte 1  |Byte 2|Byte 3-4    |Byte 5-6       |
-+========+=========+======+============+===============+
-| 2 byte timestamp |IMU_ID|LINEAR_ACCEL|ANGULAR_VELOITY|
-+--------+---------+------+------------+---------------+
++--------+---------+--------+--------------+------------------+
+| Byte 0 | Byte 1  | Byte 2 | Byte 3-4     | Byte 5-6         |
++========+=========+========+==============+==================+
+| 2 byte timestamp | IMU_ID | LINEAR_ACCEL | ANGULAR_VELOCITY |
++--------+---------+--------+--------------+------------------+
 
 | **IMU_ID:** IMU Unique Indentifier, see `imu_id`_
 | **LINEAR_ACCEL:** Linear Acceleration on Y axis
-| **ANGULAR_VELOITY:** Angular Velocity around Y axis
+| **ANGULAR_VELOCITY:** Angular Velocity around Y axis
 
 SENSOR_IMU_Z (0x00F)
 ====================
-+--------+---------+------+------------+---------------+
-| Byte 0 | Byte 1  |Byte 2|Byte 3-4    |Byte 5-6       |
-+========+=========+======+============+===============+
-| 2 byte timestamp |IMU_ID|LINEAR_ACCEL|ANGULAR_VELOITY|
-+--------+---------+------+------------+---------------+
++--------+---------+--------+--------------+------------------+
+| Byte 0 | Byte 1  | Byte 2 | Byte 3-4     | Byte 5-6         |
++========+=========+========+==============+==================+
+| 2 byte timestamp | IMU_ID | LINEAR_ACCEL | ANGULAR_VELOCITY |
++--------+---------+--------+--------------+------------------+
 
 | **IMU_ID:** IMU Unique Indentifier, see `imu_id`_
 | **LINEAR_ACCEL:** Linear Acceleration on Z axis
-| **ANGULAR_VELOITY:** Angular Velocity around Z axis
+| **ANGULAR_VELOCITY:** Angular Velocity around Z axis
 
 SENSOR_MAG_X (0x010)
 ====================
-+--------+---------+------+--------+
-| Byte 0 | Byte 1  |Byte 2|Byte 3-4|
-+========+=========+======+========+
-| 2 byte timestamp |IMU_ID|MAG     |
-+--------+---------+------+--------+
++--------+---------+--------+----------+
+| Byte 0 | Byte 1  | Byte 2 | Byte 3-4 |
++========+=========+========+==========+
+| 2 byte timestamp | IMU_ID | MAG      |
++--------+---------+--------+----------+
 
 | **IMU_ID:** IMU Unique Indentifier, see `imu_id`_
 | **MAG:** magnetometer X value
 
 SENSOR_MAG_Y (0x011)
 ====================
-+--------+---------+------+--------+
-| Byte 0 | Byte 1  |Byte 2|Byte 3-4|
-+========+=========+======+========+
-| 2 byte timestamp |IMU_ID|MAG     |
-+--------+---------+------+--------+
++--------+---------+--------+----------+
+| Byte 0 | Byte 1  | Byte 2 | Byte 3-4 |
++========+=========+========+==========+
+| 2 byte timestamp | IMU_ID | MAG      |
++--------+---------+--------+----------+
 
 | **IMU_ID:** IMU Unique Indentifier, see `imu_id`_
 | **MAG:** magnetometer Y value
 
 SENSOR_MAG_Z (0x012)
 ====================
-+--------+---------+------+--------+
-| Byte 0 | Byte 1  |Byte 2|Byte 3-4|
-+========+=========+======+========+
-| 2 byte timestamp |IMU_ID|MAG     |
-+--------+---------+------+--------+
++--------+---------+--------+----------+
+| Byte 0 | Byte 1  | Byte 2 | Byte 3-4 |
++========+=========+========+==========+
+| 2 byte timestamp | IMU_ID | MAG      |
++--------+---------+--------+----------+
 
 | **IMU_ID:** IMU Unique Indentifier, see `imu_id`_
 | **MAG:** magnetometer Z value
 
 SENSOR_ANALOG (0x013)
 =====================
-+--------+---------+---------+--------+
-| Byte 0 | Byte 1  |Byte 2   |Byte 3-4|
-+========+=========+=========+========+
-| 2 byte timestamp |SENSOR_ID|VALUE   |
-+--------+---------+---------+--------+
++--------+---------+-----------+----------+
+| Byte 0 | Byte 1  | Byte 2    | Byte 3-4 |
++========+=========+===========+==========+
+| 2 byte timestamp | SENSOR_ID | VALUE    |
++--------+---------+-----------+----------+
 
 | **SENSOR_ID:** Sensor ID, see `analog_sensor_id`_
 | **VALUE:** Analog sensor value
 
 GPS_TIMESTAMP (0x014)
 =====================
-+--------+---------+---------+-----------+-----------+------------+
-| Byte 0 | Byte 1  |Byte 2   |Byte 3     |Byte 4     |Byte 5      |
-+========+=========+=========+===========+===========+============+
-| 2 byte timestamp |UTC_HOURS|UTC_MINUTES|UTC_SECONDS|UTC_DSECONDS|
-+--------+---------+---------+-----------+-----------+------------+
++--------+---------+-----------+-------------+-------------+--------------+
+| Byte 0 | Byte 1  | Byte 2    | Byte 3      | Byte 4      | Byte 5       |
++========+=========+===========+=============+=============+==============+
+| 2 byte timestamp | UTC_HOURS | UTC_MINUTES | UTC_SECONDS | UTC_DSECONDS |
++--------+---------+-----------+-------------+-------------+--------------+
 
 | **UTC_HOURS:** Hour
 | **UTC_MINUTES:** Minutes
@@ -258,11 +260,11 @@ GPS_TIMESTAMP (0x014)
 
 GPS_LATITUDE (0x015)
 ====================
-+--------+---------+-------+-------+----------+------+
-| Byte 0 | Byte 1  |Byte 2 |Byte 3 |Byte 4-5  |Byte 6|
-+========+=========+=======+=======+==========+======+
-| 2 byte timestamp |DEGREES|MINUTES|DMINUTES_H|DIR_NS|
-+--------+---------+-------+-------+----------+------+
++--------+---------+---------+---------+------------+--------+
+| Byte 0 | Byte 1  | Byte 2  | Byte 3  | Byte 4-5   | Byte 6 |
++========+=========+=========+=========+============+========+
+| 2 byte timestamp | DEGREES | MINUTES | DMINUTES_H | DIR_NS |
++--------+---------+---------+---------+------------+--------+
 
 | **DEGREES:** Degrees
 | **MINUTES:** Minutes
@@ -271,11 +273,11 @@ GPS_LATITUDE (0x015)
 
 GPS_LONGITUDE (0x016)
 =====================
-+--------+---------+-------+-------+----------+------+
-| Byte 0 | Byte 1  |Byte 2 |Byte 3 |Byte 4-5  |Byte 6|
-+========+=========+=======+=======+==========+======+
-| 2 byte timestamp |DEGREES|MINUTES|DMINUTES_H|DIR_EW|
-+--------+---------+-------+-------+----------+------+
++--------+---------+---------+---------+------------+--------+
+| Byte 0 | Byte 1  | Byte 2  | Byte 3  | Byte 4-5   | Byte 6 |
++========+=========+=========+=========+============+========+
+| 2 byte timestamp | DEGREES | MINUTES | DMINUTES_H | DIR_EW |
++--------+---------+---------+---------+------------+--------+
 
 | **DEGREES:** Degrees
 | **MINUTES:** Minutes
@@ -284,36 +286,36 @@ GPS_LONGITUDE (0x016)
 
 GPS_ALTITUDE (0x017)
 ====================
-+--------+---------+--------+------+
-| Byte 0 | Byte 1  |Byte 2-5|Byte 2|
-+========+=========+========+======+
-| 2 byte timestamp |ALT     |DALT  |
-+--------+---------+--------+------+
++--------+---------+----------+--------+
+| Byte 0 | Byte 1  | Byte 2-5 | Byte 2 |
++========+=========+==========+========+
+| 2 byte timestamp | ALT      | DALT   |
++--------+---------+----------+--------+
 
 | **ALT:** Altitude in ft
 | **DALT:** No description
 
 GPS_INFO (0x018)
 ================
-+--------+---------+-------+-------+
-| Byte 0 | Byte 1  |Byte 2 |Byte 3 |
-+========+=========+=======+=======+
-| 2 byte timestamp |NUM_SAT|QUALITY|
-+--------+---------+-------+-------+
++--------+---------+---------+---------+
+| Byte 0 | Byte 1  | Byte 2  | Byte 3  |
++========+=========+=========+=========+
+| 2 byte timestamp | NUM_SAT | QUALITY |
++--------+---------+---------+---------+
 
 | **NUM_SAT:** Number of satellite
 | **QUALITY:** Quality
 
 STATE_EST_DATA (0x019)
 ======================
-+--------+---------+------------+--------+
-| Byte 0 | Byte 1  |Byte 2      |Byte 3-6|
-+========+=========+============+========+
-| 2 byte timestamp |STATE_EST_ID|DATA    |
-+--------+---------+------------+--------+
++--------+---------+--------------+----------+
+| Byte 0 | Byte 1  | Byte 2       | Byte 3-6 |
++========+=========+==============+==========+
+| 2 byte timestamp | STATE_EST_ID | DATA     |
++--------+---------+--------------+----------+
 
 | **STATE_EST_ID:** State ID, see `state_est_id`_
-| **DATA:** State data
+| **DATA:** State data (IEEE 754 floating point)
 
 LEDS_ON (0x01A)
 ===============
@@ -501,16 +503,16 @@ IMU Unique Indentifier
    * - Enum Name
      - Description
      - ID
-   * - PROC_POLULU_ALTIMU10
+   * - PROC_ALTIMU10
      - Polulo AltIMU-10 Connected to Processor Board
      - 0x00
-   * - PROC_MOVELLA_MTI630
+   * - PROC_MTI630
      - Movella MTI-630 Connected to Processor Board
      - 0x01
-   * - PROC_ST
+   * - PROC_LSM6DSO32
      - ST LSM6DSO32 Soldered on Processor Board
      - 0x02
-   * - SRAD_ALT_POLULU_ALTIMU10
+   * - SRAD_ALT_ALTIMU10
      - Polulo AltIMU-10 Connected to SRAD Altimeter
      - 0x03
 
