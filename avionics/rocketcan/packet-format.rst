@@ -595,6 +595,9 @@ Sensor ID for Sensor Messages
    * - CANARD_ENCODER_2
      - No Description
      - 0x16
+   * - PROC_FLIGHT_PHASE_STATUS
+     - No Description
+     - 0x17
 
 state_est_id
 ============
@@ -608,58 +611,43 @@ State Estimation data field indentifier
    * - Enum Name
      - Description
      - ID
-   * - ALT_Q0
+   * - ATT_Q0
      - No Description
      - 0x00
-   * - ALT_Q1
+   * - ATT_Q1
      - No Description
      - 0x01
-   * - ALT_Q2
+   * - ATT_Q2
      - No Description
      - 0x02
-   * - RATE_WX
+   * - ATT_Q3
      - No Description
      - 0x03
-   * - RATE_WY
+   * - RATE_WX
      - No Description
      - 0x04
-   * - RATE_WZ
+   * - RATE_WY
      - No Description
      - 0x05
-   * - VEL_VX
+   * - RATE_WZ
      - No Description
      - 0x06
-   * - VEL_VY
+   * - VEL_VX
      - No Description
      - 0x07
-   * - VEL_VZ
+   * - VEL_VY
      - No Description
      - 0x08
-   * - ALT
+   * - VEL_VZ
      - No Description
      - 0x09
-   * - COEFF_CL
+   * - ALT
      - No Description
      - 0x0A
-   * - ANGLE_YAW
+   * - COEFF_CL
      - No Description
      - 0x0B
-   * - ANGLE_PITCH
-     - No Description
-     - 0x0C
-   * - ANGLE_ROLL
-     - No Description
-     - 0x0D
-   * - RATE_YAW
-     - No Description
-     - 0x0E
-   * - RATE_PITCH
-     - No Description
-     - 0x0F
-   * - RATE_ROLL
-     - No Description
-     - 0x10
    * - CANARD_ANGLE
      - No Description
-     - 0x11
+     - 0x0C
 
