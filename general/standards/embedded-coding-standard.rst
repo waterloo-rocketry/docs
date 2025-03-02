@@ -21,8 +21,8 @@ For most firmware:
 
 .. code-block:: c
 
-	#ifndef _FILENAME_H
-	#define _FILENAME_H
+	#ifndef FILENAME_H
+	#define FILENAME_H
 
 	/* Your code here */
 	
@@ -32,8 +32,8 @@ For firmware libraries:
 
 .. code-block:: c
 
-	#ifndef _LIBRARY_FILENAME_H
-	#define _LIBRARY_FILENAME_H
+	#ifndef LIBRARY_FILENAME_H
+	#define LIBRARY_FILENAME_H
 
 	/* Your code here */
 	
