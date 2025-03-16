@@ -324,46 +324,6 @@ LEDS_OFF (0x01B)
 Enums Definition
 ****************
 
-general_board_status
-====================
-
-General board status bitfield
-
-.. list-table:: general_board_status Enum Values
-   :widths: 25 60 15
-   :header-rows: 1
-
-   * - Enum Name
-     - Description
-     - ID
-   * - NOMINAL
-     - No Description
-     - 0x00
-   * - 5V_OVER_CURRENT
-     - No Description
-     - 0x01
-   * - 5V_OVER_VOLTAGE
-     - No Description
-     - 0x02
-   * - 5V_UNDER_VOLTAGE
-     - No Description
-     - 0x04
-   * - 12V_OVER_CURRENT
-     - No Description
-     - 0x08
-   * - 12V_OVER_VOLTAGE
-     - No Description
-     - 0x10
-   * - 12V_UNDER_VOLTAGE
-     - No Description
-     - 0x20
-   * - IO_ERROR
-     - No Description
-     - 0x40
-   * - FS_ERROR
-     - No Description
-     - 0x80
-
 actuator_id
 ===========
 
@@ -600,6 +560,9 @@ Sensor ID for Sensor Messages
    * - PROC_FLIGHT_PHASE_STATUS
      - No Description
      - 0x17
+   * - VELOCITY
+     - No Description
+     - 0x18
 
 state_est_id
 ============
@@ -652,4 +615,44 @@ State Estimation data field indentifier
    * - CANARD_ANGLE
      - No Description
      - 0x0C
+
+Bitfields Definition
+*********************
+
+general_board_status
+====================
+
+General board status bitfield
+
+.. list-table:: general_board_status Bitfield bits
+   :widths: 25 60 15
+   :header-rows: 1
+
+   * - Bitfield Name
+     - Description
+     - Offset
+   * - 5V_OVER_CURRENT
+     - No Description
+     - 0x00
+   * - 5V_OVER_VOLTAGE
+     - No Description
+     - 0x01
+   * - 5V_UNDER_VOLTAGE
+     - No Description
+     - 0x02
+   * - 12V_OVER_CURRENT
+     - No Description
+     - 0x03
+   * - 12V_OVER_VOLTAGE
+     - No Description
+     - 0x04
+   * - 12V_UNDER_VOLTAGE
+     - No Description
+     - 0x05
+   * - IO_ERROR
+     - No Description
+     - 0x06
+   * - FS_ERROR
+     - No Description
+     - 0x07
 
