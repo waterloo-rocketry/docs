@@ -234,7 +234,19 @@ SENSOR_MAG_Z (0x012)
 | **IMU_ID:** IMU Unique Indentifier, see `imu_id`_
 | **MAG:** magnetometer Z value
 
-SENSOR_ANALOG (0x013)
+SENSOR_BARO (0x013)
+===================
++--------+---------+--------+----------+----------+
+| Byte 0 | Byte 1  | Byte 2 | Byte 3-5 | Byte 6-7 |
++========+=========+========+==========+==========+
+| 2 byte timestamp | IMU_ID | PRESSURE | TEMP     |
++--------+---------+--------+----------+----------+
+
+| **IMU_ID:** IMU Unique Indentifier, see `imu_id`_
+| **PRESSURE:** barometer pressure reading, raw value
+| **TEMP:** barometer temperature reading, raw value
+
+SENSOR_ANALOG (0x014)
 =====================
 +--------+---------+-----------+----------+
 | Byte 0 | Byte 1  | Byte 2    | Byte 3-4 |
@@ -245,7 +257,7 @@ SENSOR_ANALOG (0x013)
 | **SENSOR_ID:** Sensor ID, see `analog_sensor_id`_
 | **VALUE:** Analog sensor value
 
-GPS_TIMESTAMP (0x014)
+GPS_TIMESTAMP (0x015)
 =====================
 +--------+---------+-----------+-------------+-------------+--------------+
 | Byte 0 | Byte 1  | Byte 2    | Byte 3      | Byte 4      | Byte 5       |
@@ -258,7 +270,7 @@ GPS_TIMESTAMP (0x014)
 | **UTC_SECONDS:** Seconds
 | **UTC_DSECONDS:** Decisecond
 
-GPS_LATITUDE (0x015)
+GPS_LATITUDE (0x016)
 ====================
 +--------+---------+---------+---------+------------+--------+
 | Byte 0 | Byte 1  | Byte 2  | Byte 3  | Byte 4-5   | Byte 6 |
@@ -271,7 +283,7 @@ GPS_LATITUDE (0x015)
 | **DMINUTES_H:** No description
 | **DIR_NS:** North/South
 
-GPS_LONGITUDE (0x016)
+GPS_LONGITUDE (0x017)
 =====================
 +--------+---------+---------+---------+------------+--------+
 | Byte 0 | Byte 1  | Byte 2  | Byte 3  | Byte 4-5   | Byte 6 |
@@ -284,7 +296,7 @@ GPS_LONGITUDE (0x016)
 | **DMINUTES_H:** No description
 | **DIR_EW:** East/West
 
-GPS_ALTITUDE (0x017)
+GPS_ALTITUDE (0x018)
 ====================
 +--------+---------+----------+--------+
 | Byte 0 | Byte 1  | Byte 2-5 | Byte 2 |
@@ -295,7 +307,7 @@ GPS_ALTITUDE (0x017)
 | **ALT:** Altitude in ft
 | **DALT:** No description
 
-GPS_INFO (0x018)
+GPS_INFO (0x019)
 ================
 +--------+---------+---------+---------+
 | Byte 0 | Byte 1  | Byte 2  | Byte 3  |
@@ -306,7 +318,7 @@ GPS_INFO (0x018)
 | **NUM_SAT:** Number of satellite
 | **QUALITY:** Quality
 
-STATE_EST_DATA (0x019)
+STATE_EST_DATA (0x01A)
 ======================
 +--------+---------+--------------+----------+
 | Byte 0 | Byte 1  | Byte 2       | Byte 3-6 |
@@ -317,52 +329,12 @@ STATE_EST_DATA (0x019)
 | **STATE_EST_ID:** State ID, see `state_est_id`_
 | **DATA:** State data (IEEE 754 floating point)
 
-LEDS_ON (0x01A)
+LEDS_ON (0x01B)
 ===============
-LEDS_OFF (0x01B)
+LEDS_OFF (0x01C)
 ================
 Enums Definition
 ****************
-
-general_board_status
-====================
-
-General board status bitfield
-
-.. list-table:: general_board_status Enum Values
-   :widths: 25 60 15
-   :header-rows: 1
-
-   * - Enum Name
-     - Description
-     - ID
-   * - NOMINAL
-     - No Description
-     - 0x00
-   * - 5V_OVER_CURRENT
-     - No Description
-     - 0x01
-   * - 5V_OVER_VOLTAGE
-     - No Description
-     - 0x02
-   * - 5V_UNDER_VOLTAGE
-     - No Description
-     - 0x04
-   * - 12V_OVER_CURRENT
-     - No Description
-     - 0x08
-   * - 12V_OVER_VOLTAGE
-     - No Description
-     - 0x10
-   * - 12V_UNDER_VOLTAGE
-     - No Description
-     - 0x20
-   * - IO_ERROR
-     - No Description
-     - 0x40
-   * - FS_ERROR
-     - No Description
-     - 0x80
 
 actuator_id
 ===========
@@ -600,6 +572,9 @@ Sensor ID for Sensor Messages
    * - PROC_FLIGHT_PHASE_STATUS
      - No Description
      - 0x17
+   * - VELOCITY
+     - No Description
+     - 0x18
 
 state_est_id
 ============
@@ -652,4 +627,44 @@ State Estimation data field indentifier
    * - CANARD_ANGLE
      - No Description
      - 0x0C
+
+Bitfields Definition
+*********************
+
+general_board_status
+====================
+
+General board status bitfield
+
+.. list-table:: general_board_status Bitfield bits
+   :widths: 25 60 15
+   :header-rows: 1
+
+   * - Bitfield Name
+     - Description
+     - Offset
+   * - 5V_OVER_CURRENT
+     - No Description
+     - 0x00
+   * - 5V_OVER_VOLTAGE
+     - No Description
+     - 0x01
+   * - 5V_UNDER_VOLTAGE
+     - No Description
+     - 0x02
+   * - 12V_OVER_CURRENT
+     - No Description
+     - 0x03
+   * - 12V_OVER_VOLTAGE
+     - No Description
+     - 0x04
+   * - 12V_UNDER_VOLTAGE
+     - No Description
+     - 0x05
+   * - IO_ERROR
+     - No Description
+     - 0x06
+   * - FS_ERROR
+     - No Description
+     - 0x07
 
