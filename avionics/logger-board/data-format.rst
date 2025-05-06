@@ -42,7 +42,7 @@ Each page is start with a signature, the signature consist of 4 bytes, the seque
    * - 3
      - Sequence Number `(seq_number = page_number & 0xff)`
 
-CAN message data are appended after page signature, up to the page boundry
+CAN message data are appended after page signature, up to the page boundry. Unused bytes after last message in the page shall be filled with `0xff`
 
 .. list-table:: CAN Message Packing Structure
    :widths: 25 75
@@ -52,9 +52,31 @@ CAN message data are appended after page signature, up to the page boundry
      - Data
    * - 0 - 3
      - SID, little endian
-   * - 4
+   * - 4 - 7
+     - Timestamp, milli-second, little endian (time when logger received CAN message)
+   * - 8
      - DLC(Data Length Code)
-   * - 5 - 12
+   * - 9 - 16
      - CAN Data Payload
 
-CAN Data Payload shall be DLC bytes, for example if DLC==1 then the size of CAN Message Packing structure shall be 6 bytes.
+CAN Data Payload shall be DLC bytes, `sizeof(packing_structure) = 9 + DLC`, for example if `DLC == 1` then the size of CAN Message Packing structure shall be 10 bytes. SID[31:29] shall be 0 for valid CAN messages. DLC shall be between 0 to 8 inclusive.
+
+Implementation Note
+===================
+
+Writer (Logger Board)
+---------------------
+Before each message is written to the page buffer, the firmware shall check to make sure enough space is left in the page buffer, if there's not enough space left, then firmware shall fill remaining space with `0xff` and write the page to SD card, then write the message to the new page buffer.
+
+Reader (Parsley)
+----------------
+
+.. code-block:: text
+
+   while(4096-RPTR >= 6):
+       sid = read_4_bytes()
+       if((sid & 0xe) == 0): # check SID[31:29]
+           # Valid CAN message
+       else:
+           # End of page
+
