@@ -27,6 +27,7 @@ Waterloo Rocketry Documentation Site
    avionics/integration/index.rst
    avionics/rocketcan/index.rst
    avionics/camera-board/index.rst
+   avionics/logger-board/index.rst
    avionics/gps-board/index.rst
    avionics/live-telemetry/index.rst
    avionics/remote-arming/index.rst
