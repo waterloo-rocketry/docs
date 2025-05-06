@@ -4,7 +4,7 @@ Interamap
 .. warning::
     The interamap is under heavy development, which means you can expect breaking changes and bugs.
 
-Interamap is a off-line interative map that can display real-time geographic information from the ZMQ network (Source).
+Interamap is a offline interative map that can display real-time geographic information from the ZMQ network (Source).
 
 Usage
 ~~~~~
@@ -36,7 +36,7 @@ Development Information
 Environment Setup
 -----------------
 
-**Lanugaue**: Python (3.10+), HTML, CSS, JavaScript
+**Lanugaue**: Python (3.11+), HTML, CSS, JavaScript
 
 **Dependencies**: 
     - pip package: PySide6, fastkml, offline_folium, folium, geocoder
@@ -46,14 +46,16 @@ Environment Setup
 Development Road Map
 --------------------
 
-- [ ] Function to update the map in real-time.
-- [ ] Support to replay the historical geographic information from the KMZ file based on the timestamp.
-- [ ] Support to export the real-time geographic information to the KMZ file.
-- [ ] Support to generate QR code for sharing the export KMZ file.
-- [ ] Hardware-in-the-loop (HIL) simulation for testing the interamap sink.
-- [ ] Support to display the geographic information from the different data source on the same map.
-- [ ] Dark mode support for off-line map.
+- [x] Function to update the map in real-time.
+- [x] Support to replay the historical geographic information from the KMZ file based on the timestamp.
+- [x] Support to export the real-time geographic information to the KMZ file.
+- [x] Support to generate QR code for sharing the export KMZ file.
+- [x] Support to display the geographic information from the different data source on the same map.
+- [x] Dark mode support for offline map.
+- [x] Hardware-in-the-loop (HIL) simulation for testing the interamap sink.
 - [ ] Support editing the geographic information on the map.
+- [ ] tile server stability and performance improvement.
+- [ ] Support satellite map for offline maps.
 
 Project Structure
 -----------------
@@ -64,23 +66,29 @@ Project Structure
     ├── main.py          # The main entry point of the interamap sink.
     ├── src/            # The folder that contains the source code for the interamap sink.
     │   ├── __init__.py # The init file of the interamap sink.
+    |   ├── config.py        # The configuration class that handles the configuration of the interamap sink.
     |   ├── data_stream.py # The data stream class that handles the ZMQ network.
     |   ├── kmz_parser.py  # The kmz parser class that handles the KMZ file.
     |   ├── real_time_map.py # The real-time map class that handles the real-time map display from the ZMQ network.
     |   ├── main_window.py # The main window class that handles the main window of the interamap sink.
     |   ├── map_view.py    # The map view class that handles the map view of the interamap sink.
+    │   ├── gps_cache.py   # Storage gps information in cache                                                                           
+    │   ├── http_server.py                                                   
     ├── interamap.py     # The main class of the interamap sink.
-    ├── config.py        # The configuration class that handles the configuration of the interamap sink.
     ├── main.py         # The main entry point of the interamap sink.
+    ├── schema.kml                                                                                             
     ├── tilwserver.py    # The tile server class that handles the tile server of the interamap sink.
-    ├── resources/       # The folder that contains the resources for the interamap sink.
-    |   ├── icons/       # The folder that contains the icons for the interamap sink.
-    |   ├── styles/      # The folder that contains the styles for the interamap sink, qss file.
+    ├── resources                                                                                         
     |   ├── mbtiles/     # The folder that contains the mbtiles data for the offline map. (Ex. ontario-latest.osm.mbtiles)
-    |   ├── kmz/         # The folder that contains the kmz file for the historical geographic information.
+    │   │   └── ontario-latest.osm.mbtiles  (Could be downloaded from https://drive.google.com/drive/u/1/folders/1nIU1vqQJ2A0i9TZeG5T14Rajfa-ljGfe)                                                         
+    |   └── styles/      # The folder that contains the styles for the interamap sink, qss file.
+    │       ├── darkmode.qss                                                                                  
+    │       └── lightmode.qss                                                                                
     ├── requirements.txt # The requirements file for the interamap sink.
     ├── README.md        # The README file for the interamap sink that contains the usage and development information.
     └── tests/           # The folder that contains the tests for the interamap sink.
+    │   └── test_gps_cache.py                                                
+    └── tileserver.py   # The tile server class that handles the offline tile server of the interamap sink.
 
 Development Guidelines
 ----------------------
