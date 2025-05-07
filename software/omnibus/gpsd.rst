@@ -74,7 +74,7 @@ Format
       - ``*79``
 
 
-Known Issues and Limitations:
+Known Issues and Limitations
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 1. TIMESTAMP is not the actual time the data was received; the package timestamp is delayed.
 2. Unable to determine the data source board.

@@ -15,7 +15,7 @@ The interamap sink runs with no arguments and it will start up a PyQt window. Th
     python sinks/interamap/main.py
 
 .. image:: image/interamap-demo.png
-    :alt: Interamap Demo Screenshot (Edition: Nov 1st, 2024)
+    :alt: Interamap Demo Screenshot (Edition: May 6th, 2025)
     :align: center
 
 You can select Data Sorce from the dropdown list, and the map will display the geographic information from the selected source.

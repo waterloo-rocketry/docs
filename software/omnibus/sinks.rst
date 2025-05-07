@@ -17,7 +17,7 @@ Sinks
          python launcher.py
 
 .. toctree::
-   :maxdepth: 3
+   :maxdepth: 4
    :caption: Subsections
 
    dashboard.rst
