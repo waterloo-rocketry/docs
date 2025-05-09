@@ -1,8 +1,8 @@
-Sources
-=======
+Sinks
+=====
 
 .. note::
-    Ensure the ZMQ network is running before starting the source.
+    Ensure the ZMQ network is running before starting the sink.
 
       **(Recommanded)** You can either start the ZMQ network by running the following command:
 
@@ -17,10 +17,12 @@ Sources
          python launcher.py
 
 .. toctree::
-   :maxdepth: 3
+   :maxdepth: 4
    :caption: Subsections
 
-   ni.rst
-   parsley.rst
-   rlcsv3.rst
-   replay_log.rst
+   dashboard.rst
+   globallog.rst
+   gpsd.rst
+   interamap.rst
+   printer.rst
+   txtconsole.rst
