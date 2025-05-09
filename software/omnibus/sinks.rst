@@ -2,15 +2,15 @@ Sinks
 =====
 
 .. note::
-    Ensure the ZMQ network is running before starting the GPSD sink.
+    Ensure the ZMQ network is running before starting the sink.
 
-    You can either start the ZMQ network by running the following command:
+      **(Recommanded)** You can either start the ZMQ network by running the following command:
 
       .. code-block:: bash
    
          python sources/main.py
 
-      **(Recommanded)** Or you can start the ZMQ network by `launcher.py` script: 
+      Or you can start the omnibus by `launcher.py` script: 
 
       .. code-block:: bash
 
