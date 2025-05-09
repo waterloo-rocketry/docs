@@ -75,7 +75,7 @@ Reader (Parsley)
 
    while(4096-RPTR >= 6):
        sid = read_4_bytes()
-       if((sid & 0xe) == 0): # check SID[31:29]
+       if((sid & 0xe0000000) == 0): # check SID[31:29]
            # Valid CAN message
        else:
            # End of page
