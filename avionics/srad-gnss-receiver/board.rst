@@ -32,7 +32,7 @@ Requirements
      - For raw data logging
    * - GPS. 1
      - Board shall support L1 C/A and L2C code, and should support L1C and L5 code
-     - ??? Scope Creep ???
+     - Allows future development to support all GPS bands/codes
    * - MECH. 1
      - Board shall have m3 mounting hole at 4 corners
      - For mounting to Recovery Electronics sled
