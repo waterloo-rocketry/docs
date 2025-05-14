@@ -24,4 +24,4 @@ Go to shell and type `clang-format --version`, the output should be `clang-forma
 
 Running clang-format on a CAN firmware repository
 -------------------------------------------------
-For PIC18 projects: Assuming the *rocketlib* git submodule is added to the root of the `cansw_*` git repository, run `cd rocketlib/scripts` to change current directory to the rocketlib scripts directory, then run `./format.sh` to format firmware code. Then all cansw and rocketlib code should be formatted, but not mcc_generated_files and canlib.
+For PIC18 projects: Assuming the *rocketlib* git submodule is added to the root of the `cansw_*` git repository, run `./rocketlib/scripts/format-cansw.sh` to format code.
