@@ -1,6 +1,6 @@
-************************************************
-Logger Board Firmware Design Specification [WIP]
-************************************************
+*******************************************************
+Motor Control Board Firmware Design Specification [WIP]
+*******************************************************
 
 Overview
 ========
@@ -15,7 +15,9 @@ Reference Documents
 List of reference documents (e.g. link to hardware Datasheets), example:
 
 * `PIC18F26K83(MCU) Datasheet <https://ww1.microchip.com/downloads/en/DeviceDoc/40001943A.pdf>`_
-* :doc:`Logger Data Format Specification<data-format>`
+* `IFM PT5402(Pressure Transducer) Datasheet <https://www.ifm.com/ca/en/product/PT5402#documents>`_
+
+Note if the firmware involves data storage or transmission(e.g. Logger SD card log, telemetry packet format), then a separate rst need to be created in the same directory, to describe data format(see :doc:`Logger Data Specification<../../avionics/logger-board/data-format>` for example)
 
 Initialization
 ==============
