@@ -90,3 +90,9 @@ Waterloo Rocketry Documentation Site
 
    recovery/brb/index.rst
    recovery/st-pats/index.rst
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Templates
+
+   templates/template-board/index.rst
