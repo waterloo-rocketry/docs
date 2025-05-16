@@ -2,6 +2,9 @@
 Motor Control Board Firmware Design Specification [WIP]
 *******************************************************
 
+.. warning::
+    This is just a template, this is NOT a completed design doc, delete this line when the firmware specification is complete
+
 Overview
 ========
 
