@@ -40,6 +40,7 @@ Waterloo Rocketry Documentation Site
    :maxdepth: 2
    :caption: Electrical GSE and Mission Control
 
+   electrical-gse/rlcs-v3/index.rst
    electrical-gse/rlcs-v4/index.rst
    electrical-gse/daq/index.rst
    electrical-gse/gspd/index.rst
@@ -76,14 +77,6 @@ Waterloo Rocketry Documentation Site
    software/minerva/index.rst
    software/omnibus/index.rst
    software/parsley/index.rst
-
-.. toctree::
-   :maxdepth: 2
-   :caption: Legacy Electrical Projects
-
-   electrical-gse/rlcs-v3/index.rst
-   avionics/propulsion-board/index.rst
-   avionics/charging-board/index.rst
 
 .. toctree::
    :maxdepth: 2
