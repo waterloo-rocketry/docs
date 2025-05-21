@@ -5,7 +5,7 @@ Rocket Power Board Firmware Design Specification
 Overview
 ========
 
-Rocket Power Board firmware is responsible for report various voltage and current data to CAN bus, and turn on/off 5V rail based on CAN command.
+Rocket Power Board firmware is responsible for report various voltage and current data to CAN bus, and turn on/off 12V and 5V rail based on CAN command.
 
 Reference Documents
 -------------------
@@ -58,10 +58,19 @@ CAN Message Sent by Firmware
      - Period
    * - SENSOR_ANALOG.BATT_VOLT
      - LiPo voltage
-     - 500 ms
+     - 250 ms
+   * - SENSOR_ANALOG.BATT_CURR
+     - LiPo output current
+     - 250 ms
+   * - SENSOR_ANALOG.12V_CURR
+     - 12V rail output current
+     - 250 ms
    * - SENSOR_ANALOG.5V_VOLT
-     - 5V output voltage
-     - 500 ms
+     - 5V rail voltage
+     - 250 ms
+   * - SENSOR_ANALOG.5V_CURR
+     - 5V rail output current
+     - 250 ms
 
 CAN Message Handled by Firmware
 -------------------------------
@@ -85,8 +94,6 @@ CAN Message handled in rocket configuration only (BOARD_INST_UNIQUE_ID = BOARD_U
 
    * - Message Type
      - Description
-   * - RESET_CMD
-     - Reset board if targeted(check with ``check_board_need_reset`` function in canlib)
    * - ACTUATOR_CMD.12V_RAIL_ROCKET
      - When BOARD_INST_UNIQUE_ID == BOARD_UNIQUE_ID_ROCKET, Turn on/off 12V power output
    * - ACTUATOR_CMD.5V_RAIL_ROCKET
@@ -120,4 +127,4 @@ GENERAL_BOARD_STATUS board specific error field usage
      - 0
    * - 5V_EFUSE_FAULT
      - 5V output eFuse Fault
-     - 0
+     - 1
