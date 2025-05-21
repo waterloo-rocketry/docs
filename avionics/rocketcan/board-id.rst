@@ -81,6 +81,29 @@ Board Type IDs
 Board Instance IDs
 ******************
 
+Common Instance IDs
+===================
+
+.. list-table:: Common Instance IDs
+   :widths: 25 60 15
+   :header-rows: 1
+
+   * - Enum Name
+     - Board Instance Name
+     - ID
+   * - ANY
+     - Any board
+     - 0x00
+   * - GROUND
+     - Board on ground
+     - 0x01
+   * - ROCKET
+     - Board on rocket
+     - 0x02
+   * - PAYLOAD
+     - Board in payload
+     - 0x03
+
 Canard Motor Control Board
 ==========================
 
@@ -93,10 +116,10 @@ Canard Motor Control Board
      - ID
    * - PRIMARY
      - Canard Motor Control Board Primary MCU
-     - 0x02
+     - 0x04
    * - FAILSAFE
      - Canard Motor Control Board Failsafe MCU
-     - 0x03
+     - 0x05
 
 Flight Camera Board
 ===================
@@ -110,41 +133,24 @@ Flight Camera Board
      - ID
    * - INJ_A
      - Injector Section Camera A
-     - 0x04
+     - 0x06
    * - INJ_B
      - Injector Section Camera B
-     - 0x05
+     - 0x07
    * - VENT_A
      - Vent Section Camera A
-     - 0x06
+     - 0x08
    * - VENT_B
      - Vent Section Camera B
-     - 0x07
+     - 0x09
    * - VENT_C
      - Vent Section Camera C
-     - 0x08
+     - 0x0A
    * - VENT_D
      - Vent Section Camera D
-     - 0x09
+     - 0x0B
    * - RECOVERY
      - Recovery Bulkhead Camera
-     - 0x0A
-
-Power Board
-===========
-
-.. list-table:: Power Board Instances
-   :widths: 25 60 15
-   :header-rows: 1
-
-   * - Enum Name
-     - Board Instance Name
-     - ID
-   * - ROCKET
-     - Rocket Power Board
-     - 0x0B
-   * - PAYLOAD
-     - Payload Power Board
      - 0x0C
 
 Thermocouple Board (K-type)
