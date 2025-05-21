@@ -27,21 +27,47 @@ Runtime
 Heart Beat
 ----------
 
-Red LED shall toggle every 500ms.
+Blue LED shall toggle every 500ms.
 
-Health Check
-------------
+Power output control
+--------------------
 
-Describe what health check need to be performed, example:
-
-* Firmware shall check 12V input voltage every 500ms, and report voltage with ``SENSOR_ANALOG.SENSOR_12V_VOLT`` CAN message, if the voltage is below 11.5V or above 12.7V, the firmware shall signal error with ``GENERAL_BOARD_STATUS`` CAN message.
+Refer to `CAN Message Handled by Firmware`_ section below. 5V output enable is controlled by ``5V_Fuse_RST/EN`` pin on the eFuse, when 5V output is enabled , the White LED shall light up. 12V output enable is controlled by ``12V_Fuse_RST/EN`` pin on the eFuse, when 12V output is enabled , the Red LED shall light up. Both 5V and 12V output shall be enabled at power-up.
 
 Sensor Reading
 --------------
 
-Describe what sensor shall be read and report to CAN bus, example:
+Refer to `CAN Message Sent by Firmware`_ section below.
 
-* Firmware shall read Oxidizer pressure transducer every 50 ms, ADC voltage reading shall be convert to pressure use formula described in section, when the pressure output be send to can use ``SENSOR_ANALOG.PRESSURE_OX`` CAN message.
+Health Check
+------------
+
+Health check shall be performed every 250 ms, immediately after sensor polling. All health check erros are signaled through ``GENERAL_BOARD_STATUS`` CAN Message. Note ``12V_EFUSE_FAULT`` and ``5V_EFUSE_FAULT`` are board specific error, refer to `GENERAL_BOARD_STATUS board specific error field usage`_ section below.
+
+.. list-table:: Errors signaled by health check
+   :widths: 25 75
+   :header-rows: 1
+
+   * - Name
+     - Condition
+   * - 5V_OVER_CURRENT
+     - I :sub:`5V_out` > TBD Value determined by experiment mA
+   * - 5V_OVER_VOLTAGE
+     - V :sub:`5V_out` > 5.2 V
+   * - 5V_UNDER_VOLTAGE
+     - V :sub:`5V_out` < 4.5 V
+   * - 12V_OVER_CURRENT
+     - I :sub:`12V_out` > TBD Value determined by experiment mA
+   * - BATT_OVER_CURRENT
+     - I :sub:`BATT` > TBD Value determined by experiment mA
+   * - BATT_OVER_VOLTAGE
+     - V :sub:`BATT` > 12.7 V
+   * - BATT_UNDER_VOLTAGE
+     - V :sub:`BATT` < 11.4 V
+   * - 12V_EFUSE_FAULT
+     - ``12V_Fuse_FLT`` = 0 (Fault signal is active Low)
+   * - 5V_EFUSE_FAULT
+     - ``5V_Fuse_FLT`` = 0 (Fault signal is active Low)
 
 CAN Communication
 =================
@@ -95,9 +121,9 @@ CAN Message handled in rocket configuration only (BOARD_INST_UNIQUE_ID = BOARD_U
    * - Message Type
      - Description
    * - ACTUATOR_CMD.12V_RAIL_ROCKET
-     - When BOARD_INST_UNIQUE_ID == BOARD_UNIQUE_ID_ROCKET, Turn on/off 12V power output
+     - Turn on/off 12V power output through eFuse
    * - ACTUATOR_CMD.5V_RAIL_ROCKET
-     - When BOARD_INST_UNIQUE_ID == BOARD_UNIQUE_ID_ROCKET, Turn on/off 5V power output
+     - Turn on/off 5V power output through eFuse
 
 CAN Message handled in payload configuration only (BOARD_INST_UNIQUE_ID = BOARD_UNIQUE_ID_PAYLOAD)
 
@@ -108,9 +134,9 @@ CAN Message handled in payload configuration only (BOARD_INST_UNIQUE_ID = BOARD_
    * - Message Type
      - Description
    * - ACTUATOR_CMD.12V_RAIL_PAYLOAD
-     - When BOARD_INST_UNIQUE_ID == BOARD_UNIQUE_ID_PAYLOAD, Turn on/off 12V power output
+     - Turn on/off 12V power output through eFuse
    * - ACTUATOR_CMD.5V_RAIL_PAYLOAD
-     - When BOARD_INST_UNIQUE_ID == BOARD_UNIQUE_ID_PAYLOAD, Turn on/off 5V power output
+     - Turn on/off 5V power output through eFuse
 
 GENERAL_BOARD_STATUS board specific error field usage
 -----------------------------------------------------
