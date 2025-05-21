@@ -363,39 +363,48 @@ Actuator ID for Actuator Command and Status Messages
    * - 5V_RAIL_PAYLOAD
      - No Description
      - 0x04
-   * - TELEMETRY
+   * - 12V_RAIL_ROCKET
      - No Description
      - 0x05
-   * - CAMERA_INJ_A
+   * - 12V_RAIL_PAYLOAD
      - No Description
      - 0x06
-   * - CAMERA_INJ_B
+   * - TELEMETRY
      - No Description
      - 0x07
-   * - CAMERA_VENT_A
+   * - CAMERA_INJ_A
      - No Description
      - 0x08
-   * - CAMERA_VENT_B
+   * - CAMERA_INJ_B
      - No Description
      - 0x09
-   * - CAMERA_VENT_C
+   * - CAMERA_VENT_A
      - No Description
      - 0x0A
-   * - CAMERA_VENT_D
+   * - CAMERA_VENT_B
      - No Description
      - 0x0B
-   * - CAMERA_RECOVERY
+   * - CAMERA_VENT_C
      - No Description
      - 0x0C
+   * - CAMERA_VENT_D
+     - No Description
+     - 0x0D
+   * - CAMERA_RECOVERY
+     - No Description
+     - 0x0E
    * - PROC_ESTIMATOR_INIT
      - Actuator command to start processor board state estimation
-     - 0x0D
+     - 0x0F
    * - CANARD_ENABLE
      - Power on Canard motor control board servo
-     - 0x0E
+     - 0x10
    * - CANARD_ANGLE
      - Canard Angle Command (from Processor board to Motor Control board)
-     - 0x0F
+     - 0x11
+   * - PAYLOAD_MOTOR_ENABLE
+     - Payload motor power on/off control
+     - 0x12
 
 actuator_state
 ==============
@@ -434,15 +443,21 @@ Altimeter ID for uniquely indentify each altimeter
    * - Enum Name
      - Description
      - ID
-   * - RAVEN
-     - Raven4 Altimeter (COTS)
+   * - ROCKET_RAVEN
+     - Raven4 Altimeter on Rocket (COTS)
      - 0x00
-   * - STRATOLOGGER
-     - StratoLoggerCF Altimeter (COTS)
+   * - ROCKET_STRATOLOGGER
+     - StratoLoggerCF Altimeter on Rocket (COTS)
      - 0x01
-   * - SRAD
-     - SRAD Altimeter
+   * - ROCKET_SRAD
+     - SRAD Altimeter on Rocket
      - 0x02
+   * - PAYLOAD_RAVEN
+     - Raven4 Altimeter on Payload (COTS)
+     - 0x03
+   * - RAYLOAD_STRATOLOGGER
+     - StratoLoggerCF Altimeter on Payload (COTS)
+     - 0x04
 
 alt_arm_state
 =============
@@ -661,10 +676,19 @@ General board status bitfield
    * - 12V_UNDER_VOLTAGE
      - No Description
      - 0x05
-   * - IO_ERROR
+   * - BATT_OVER_CURRENT
      - No Description
      - 0x06
-   * - FS_ERROR
+   * - BATT_OVER_VOLTAGE
      - No Description
      - 0x07
+   * - BATT_UNDER_VOLTAGE
+     - No Description
+     - 0x08
+   * - IO_ERROR
+     - No Description
+     - 0x09
+   * - FS_ERROR
+     - No Description
+     - 0x0A
 
