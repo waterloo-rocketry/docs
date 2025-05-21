@@ -1,36 +1,25 @@
-******************************************************
-Rocket Power Board Firmware Design Specification [WIP]
-******************************************************
-
-.. warning::
-    This is just a template, this is NOT a completed design doc, delete this line when the firmware specification is complete
+************************************************
+Rocket Power Board Firmware Design Specification
+************************************************
 
 Overview
 ========
 
-Give an overview what does the firmware do, example:
-
-Injector Sensor Hub firmware periodic reads analog sensors and report analog data to CAN, analog sensors includes pressure transducers and hall effect sensors.
+Rocket Power Board firmware is responsible for report various voltage and current data to CAN bus, and turn on/off 5V rail based on CAN command.
 
 Reference Documents
 -------------------
 
-List of reference documents (e.g. link to hardware Datasheets), example:
-
 * `PIC18F26K83(MCU) Datasheet <https://ww1.microchip.com/downloads/en/DeviceDoc/40001943A.pdf>`_
-* `IFM PT5402(Pressure Transducer) Datasheet <https://www.ifm.com/ca/en/product/PT5402#documents>`_
-
-Note if the firmware involves data storage or transmission(e.g. Logger SD card log, telemetry packet format), then a separate rst need to be created in the same directory, to describe data format(see :doc:`Logger Data Specification<../logger-board/data-format>` for example)
+* `eFuse Datasheet <https://www.ti.com/lit/ds/symlink/tps25947.pdf>`_
 
 Initialization
 ==============
 
-Describe step-by-step initialization sequence, example:
-
-#. Use setup using external oscillator, with 4xPLL
+#. Setup to use external oscillator
 #. Setup PPS(Peripheral Pin Select) for all peripherals
 #. Initialize ADC, setup to use FVR(Fixed Voltage Reference)
-#. Setup CAN module
+#. Initialize CAN module with canlib
 
 Runtime
 =======
@@ -52,7 +41,7 @@ Sensor Reading
 
 Describe what sensor shall be read and report to CAN bus, example:
 
-* Firmware shall read Oxidizer pressure transducer every 50 ms, ADC voltage reading shall be convert to pressure use formula described in `Convert pressure transducer ADC pin voltage input to pressure`_ section, when the pressure output be send to can use ``SENSOR_ANALOG.PRESSURE_OX`` CAN message.
+* Firmware shall read Oxidizer pressure transducer every 50 ms, ADC voltage reading shall be convert to pressure use formula described in section, when the pressure output be send to can use ``SENSOR_ANALOG.PRESSURE_OX`` CAN message.
 
 CAN Communication
 =================
@@ -67,14 +56,19 @@ CAN Message Sent by Firmware
    * - Message Type
      - Description
      - Period
-   * - SENSOR_ANALOG.PRESSURE_OX
-     - Report oxidizer tank pressure
-     - 10ms
+   * - SENSOR_ANALOG.BATT_VOLT
+     - LiPo voltage
+     - 500 ms
+   * - SENSOR_ANALOG.5V_VOLT
+     - 5V output voltage
+     - 500 ms
 
 CAN Message Handled by Firmware
 -------------------------------
 
-.. list-table:: CAN Message Handled by Firmware
+CAN Message handled in both rocket and payload configuration
+
+.. list-table:: CAN Message handled in both rocket and payload configuration
    :widths: 25 75
    :header-rows: 1
 
@@ -82,6 +76,34 @@ CAN Message Handled by Firmware
      - Description
    * - RESET_CMD
      - Reset board if targeted(check with ``check_board_need_reset`` function in canlib)
+
+CAN Message handled in rocket configuration only (BOARD_INST_UNIQUE_ID = BOARD_UNIQUE_ID_ROCKET)
+
+.. list-table:: CAN Message handled in rocket configuration only
+   :widths: 25 75
+   :header-rows: 1
+
+   * - Message Type
+     - Description
+   * - RESET_CMD
+     - Reset board if targeted(check with ``check_board_need_reset`` function in canlib)
+   * - ACTUATOR_CMD.12V_RAIL_ROCKET
+     - When BOARD_INST_UNIQUE_ID == BOARD_UNIQUE_ID_ROCKET, Turn on/off 12V power output
+   * - ACTUATOR_CMD.5V_RAIL_ROCKET
+     - When BOARD_INST_UNIQUE_ID == BOARD_UNIQUE_ID_ROCKET, Turn on/off 5V power output
+
+CAN Message handled in payload configuration only (BOARD_INST_UNIQUE_ID = BOARD_UNIQUE_ID_PAYLOAD)
+
+.. list-table:: CAN Message handled in payload configuration only
+   :widths: 25 75
+   :header-rows: 1
+
+   * - Message Type
+     - Description
+   * - ACTUATOR_CMD.12V_RAIL_PAYLOAD
+     - When BOARD_INST_UNIQUE_ID == BOARD_UNIQUE_ID_PAYLOAD, Turn on/off 12V power output
+   * - ACTUATOR_CMD.5V_RAIL_PAYLOAD
+     - When BOARD_INST_UNIQUE_ID == BOARD_UNIQUE_ID_PAYLOAD, Turn on/off 5V power output
 
 GENERAL_BOARD_STATUS board specific error field usage
 -----------------------------------------------------
@@ -93,16 +115,9 @@ GENERAL_BOARD_STATUS board specific error field usage
    * - Bitfield Name
      - Description
      - Offset
-   * - PT_OUT_OF_RANGE
-     - 4-20 mA Pressure transducer signals less that 4mA or more than 20mA
+   * - 12V_EFUSE_FAULT
+     - 12V output eFuse Fault
      - 0
-
-Mathematics Model
-=================
-
-Describe common used math equations in the firmware, if the equation is more than one line, then a link to a Matlab model should be provided.
-
-Convert pressure transducer ADC pin voltage input to pressure
--------------------------------------------------------------
-
-Insert formula here
+   * - 5V_EFUSE_FAULT
+     - 5V output eFuse Fault
+     - 0
