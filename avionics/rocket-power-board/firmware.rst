@@ -17,6 +17,7 @@ Initialization
 ==============
 
 #. Setup to use external oscillator
+#. Initialize all pins
 #. Setup PPS(Peripheral Pin Select) for all peripherals
 #. Initialize ADC, setup to use FVR(Fixed Voltage Reference)
 #. Initialize CAN module with canlib
@@ -51,23 +52,23 @@ Health check shall be performed every 250 ms, immediately after sensor polling. 
    * - Name
      - Condition
    * - 5V_OVER_CURRENT
-     - I :sub:`5V_out` > TBD Value determined by experiment mA
+     - I :sub:`5V_out` > 1.8 A
    * - 5V_OVER_VOLTAGE
      - V :sub:`5V_out` > 5.2 V
    * - 5V_UNDER_VOLTAGE
      - V :sub:`5V_out` < 4.5 V
    * - 12V_OVER_CURRENT
-     - I :sub:`12V_out` > TBD Value determined by experiment mA
+     - I :sub:`12V_out` > 2.3 A
    * - BATT_OVER_CURRENT
-     - I :sub:`BATT` > TBD Value determined by experiment mA
+     - I :sub:`BATT` > 4.5 A
    * - BATT_OVER_VOLTAGE
      - V :sub:`BATT` > 12.7 V
    * - BATT_UNDER_VOLTAGE
      - V :sub:`BATT` < 11.4 V
    * - 12V_EFUSE_FAULT
-     - ``12V_Fuse_FLT`` = 0 (Fault signal is active Low)
+     - ``12V_Fuse_FLT`` = 0 (Fault signal is active low)
    * - 5V_EFUSE_FAULT
-     - ``5V_Fuse_FLT`` = 0 (Fault signal is active Low)
+     - ``5V_Fuse_FLT`` = 0 (Fault signal is active low)
 
 CAN Communication
 =================
@@ -112,7 +113,7 @@ CAN Message handled in both rocket and payload configuration
    * - RESET_CMD
      - Reset board if targeted(check with ``check_board_need_reset`` function in canlib)
 
-CAN Message handled in rocket configuration only (BOARD_INST_UNIQUE_ID = BOARD_UNIQUE_ID_ROCKET)
+CAN Message handled in rocket configuration only ``(BOARD_INST_UNIQUE_ID = BOARD_UNIQUE_ID_ROCKET)``
 
 .. list-table:: CAN Message handled in rocket configuration only
    :widths: 25 75
@@ -125,7 +126,7 @@ CAN Message handled in rocket configuration only (BOARD_INST_UNIQUE_ID = BOARD_U
    * - ACTUATOR_CMD.5V_RAIL_ROCKET
      - Turn on/off 5V power output through eFuse
 
-CAN Message handled in payload configuration only (BOARD_INST_UNIQUE_ID = BOARD_UNIQUE_ID_PAYLOAD)
+CAN Message handled in payload configuration only ``(BOARD_INST_UNIQUE_ID = BOARD_UNIQUE_ID_PAYLOAD)``
 
 .. list-table:: CAN Message handled in payload configuration only
    :widths: 25 75
