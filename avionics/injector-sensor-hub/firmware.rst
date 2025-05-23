@@ -8,14 +8,10 @@ Injector Sensor Hub Firmware Design Specification [WIP]
 Overview
 ========
 
-Give an overview what does the firmware do, example:
-
-Injector Sensor Hub firmware periodic reads analog sensors and report analog data to CAN, analog sensors includes pressure transducers and hall effect sensors.
+Injector Sensor Hub firmware periodically reads analog sensors and reports analog data to CAN, analog sensors include pressure transducers and hall effect sensors.
 
 Reference Documents
 -------------------
-
-List of reference documents (e.g. link to hardware Datasheets), example:
 
 * `PIC18F26K83(MCU) Datasheet <https://ww1.microchip.com/downloads/en/DeviceDoc/40001943A.pdf>`_
 * `IFM PT5402(Pressure Transducer) Datasheet <https://www.ifm.com/ca/en/product/PT5402#documents>`_
@@ -25,12 +21,10 @@ Note if the firmware involves data storage or transmission(e.g. Logger SD card l
 Initialization
 ==============
 
-Describe step-by-step initialization sequence, example:
-
 #. Use setup using external oscillator, with 4xPLL
-#. Setup PPS(Peripheral Pin Select) for all peripherals
+#. Setup PPS(Peripheral Pin Select) for CAN
 #. Initialize ADC, setup to use FVR(Fixed Voltage Reference)
-#. Setup CAN module
+#. Initialize CAN module with canlib
 
 Runtime
 =======
