@@ -2,9 +2,6 @@
 Injector Sensor Hub Firmware Design Specification [WIP]
 *******************************************************
 
-.. warning::
-    This is just a template, this is NOT a completed design doc, delete this line when the firmware specification is complete
-
 Overview
 ========
 
@@ -16,12 +13,12 @@ Reference Documents
 * `PIC18F26K83(MCU) Datasheet <https://ww1.microchip.com/downloads/en/DeviceDoc/40001943A.pdf>`_
 * `IFM PT5402(Pressure Transducer) Datasheet <https://www.ifm.com/ca/en/product/PT5402#documents>`_
 
-Note if the firmware involves data storage or transmission(e.g. Logger SD card log, telemetry packet format), then a separate rst need to be created in the same directory, to describe data format(see :doc:`Logger Data Specification<../logger-board/data-format>` for example)
+TODO add documentation for OX Hall and Fuel Hall sensors?
 
 Initialization
 ==============
 
-#. Use setup using external oscillator, with 4xPLL
+#. Setup to use external oscillator with 4xPLL
 #. Setup PPS(Peripheral Pin Select) for CAN
 #. Initialize ADC, setup to use FVR(Fixed Voltage Reference)
 #. Initialize CAN module with canlib
@@ -37,14 +34,18 @@ Red LED shall toggle every 500ms.
 Health Check
 ------------
 
-Describe what health check need to be performed, example:
+TODO add 5V and 12V current check
+
+TODO to we add current/voltage error checks for sensors?
+
+TODO add 4-20mA pressure transducer current check, either here or in Sensor Reading
 
 * Firmware shall check 12V input voltage every 500ms, and report voltage with ``SENSOR_ANALOG.SENSOR_12V_VOLT`` CAN message, if the voltage is below 11.5V or above 12.7V, the firmware shall signal error with ``GENERAL_BOARD_STATUS`` CAN message.
 
 Sensor Reading
 --------------
 
-Describe what sensor shall be read and report to CAN bus, example:
+TODO add sensor reading for each sensor + brief methodology
 
 * Firmware shall read Oxidizer pressure transducer every 50 ms, ADC voltage reading shall be convert to pressure use formula described in `Convert pressure transducer ADC pin voltage input to pressure`_ section, when the pressure output be send to can use ``SENSOR_ANALOG.PRESSURE_OX`` CAN message.
 
@@ -53,6 +54,9 @@ CAN Communication
 
 CAN Message Sent by Firmware
 ----------------------------
+
+TODO add CAN message description for all sensor readings sent
+TODO add CAN message for health check?
 
 .. list-table:: CAN Message Sent by Firmware
    :widths: 25 65 10
@@ -67,6 +71,8 @@ CAN Message Sent by Firmware
 
 CAN Message Handled by Firmware
 -------------------------------
+
+TODO add handles board reset command and maybe also LED flash thing?
 
 .. list-table:: CAN Message Handled by Firmware
    :widths: 25 75
@@ -93,6 +99,9 @@ GENERAL_BOARD_STATUS board specific error field usage
 
 Mathematics Model
 =================
+
+TODO add ADC calculations including Vref and resolution for the sensors
+TODO anything else that sensors are doing that I'm not aware of
 
 Describe common used math equations in the firmware, if the equation is more than one line, then a link to a Matlab model should be provided.
 
