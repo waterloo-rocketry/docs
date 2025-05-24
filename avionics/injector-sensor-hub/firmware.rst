@@ -1,6 +1,6 @@
-*******************************************************
-Injector Sensor Hub Firmware Design Specification [WIP]
-*******************************************************
+*************************************************
+Injector Sensor Hub Firmware Design Specification
+*************************************************
 
 Overview
 ========
@@ -34,29 +34,43 @@ Red LED shall toggle every 500ms.
 Health Check
 ------------
 
-TODO add 5V and 12V current check
+Health check shall be performed every 500 ms. All health check erros are signaled through ``GENERAL_BOARD_STATUS`` CAN Message. 
 
-TODO to we add current/voltage error checks for sensors?
+.. list-table:: Errors signaled by health check
+   :widths: 25 75
+   :header-rows: 1
 
-TODO add 4-20mA pressure transducer current check, either here or in Sensor Reading
-
-* Firmware shall check 12V input voltage every 500ms, and report voltage with ``SENSOR_ANALOG.SENSOR_12V_VOLT`` CAN message, if the voltage is below 11.5V or above 12.7V, the firmware shall signal error with ``GENERAL_BOARD_STATUS`` CAN message.
+   * - Name
+     - Condition
+   * - 5V_OVER_CURRENT
+     - I :sub:`5V_out` > 1.8 A
+   * - 12V_OVER_CURRENT
+     - I :sub:`12V_out` > 2.3 A
 
 Sensor Reading
 --------------
 
-TODO add sensor reading for each sensor + brief methodology
+Firmware shall read from the following sensors:
 
-* Firmware shall read Oxidizer pressure transducer every 50 ms, ADC voltage reading shall be convert to pressure use formula described in `Convert pressure transducer ADC pin voltage input to pressure`_ section, when the pressure output be send to can use ``SENSOR_ANALOG.PRESSURE_OX`` CAN message.
+* Oxidizer Pressure Transducer
+* Fuel Pressure Transducer
+* CC #1 Pressure Transducer
+* Fuel Hall Sensor
+* Oxidizer Hall Sensor
+
+ADC voltage reading from PTs shall be converted to pressure using formula described in `Convert pressure transducer ADC pin voltage input to pressure`_ section. Pressure output is to be send to CAN using ``SENSOR_ANALOG`` CAN message. 
+
+TODO add blurb about how Hall Sensor reading is handled.
+
+TODO add 4-20mA pressure transducer current check.
+
+Refer to `CAN Message Sent by Firmware`_ section below for period of transmission and sensor IDs or refer to ``analog_sensor_id`` enum definitions.
 
 CAN Communication
 =================
 
 CAN Message Sent by Firmware
 ----------------------------
-
-TODO add CAN message description for all sensor readings sent
-TODO add CAN message for health check?
 
 .. list-table:: CAN Message Sent by Firmware
    :widths: 25 65 10
@@ -65,14 +79,27 @@ TODO add CAN message for health check?
    * - Message Type
      - Description
      - Period
+   * - GENERAL_BOARD_STATUS
+     - Report status_ok healthcheck
+     - 500 ms
    * - SENSOR_ANALOG.PRESSURE_OX
-     - Report oxidizer tank pressure
-     - 10ms
+     - Report Oxidizer Pressure Transducer pressure
+     - 50 ms
+   * - SENSOR_ANALOG.PRESSURE_FUEL
+     - Report Fuel Pressure Transducer pressure
+     - 50 ms
+   * - SENSOR_ANALOG.PRESSURE_CC
+     - Report CC #1 Pressure Transducer pressure
+     - 50 ms
+   * - TODO fill
+     - Report Fuel Hall Sensor reading
+     - 250 ms
+   * - TODO fill
+     - Report Oxidizer Hall Sensor reading
+     - 250 ms
 
 CAN Message Handled by Firmware
 -------------------------------
-
-TODO add handles board reset command and maybe also LED flash thing?
 
 .. list-table:: CAN Message Handled by Firmware
    :widths: 25 75
@@ -108,4 +135,4 @@ Describe common used math equations in the firmware, if the equation is more tha
 Convert pressure transducer ADC pin voltage input to pressure
 -------------------------------------------------------------
 
-Insert formula here
+TODO Insert formula here
