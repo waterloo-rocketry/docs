@@ -43,9 +43,9 @@ Health check shall be performed every 500 ms. All health check erros are signale
    * - Name
      - Condition
    * - 5V_OVER_CURRENT
-     - I :sub:`5V_out` > 1.8 A
+     - I :sub:`5V_out` > 100 mA
    * - 12V_OVER_CURRENT
-     - I :sub:`12V_out` > 2.3 A
+     - I :sub:`12V_out` > 150 mA
 
 Sensor Reading
 --------------
