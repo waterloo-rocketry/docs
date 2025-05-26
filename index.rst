@@ -80,9 +80,10 @@ Waterloo Rocketry Documentation Site
 
 .. toctree::
    :maxdepth: 2
-   :caption: Infrastructure
+   :caption: Payload
 
-   infrastructure/equipments.rst
+   payload/motor-board/index.rst
+   payload/sensor-board/index.rst
 
 .. toctree::
    :maxdepth: 2
@@ -90,6 +91,12 @@ Waterloo Rocketry Documentation Site
 
    recovery/brb/index.rst
    recovery/st-pats/index.rst
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Infrastructure
+
+   infrastructure/equipments.rst
 
 .. toctree::
    :maxdepth: 2
