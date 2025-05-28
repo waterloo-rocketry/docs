@@ -155,15 +155,16 @@ Temperature Sensor
 
 SENSOR_ALTITUDE (0x00C)
 =======================
-Altitude sensor message(exclude GPS with have a specific message)
+Altimeter altitude sensor message(exclude GPS with have a specific message)
 
-+--------+---------+----------+
-| Byte 0 | Byte 1  | Byte 2-5 |
-+========+=========+==========+
-| 2 byte timestamp | ALT      |
-+--------+---------+----------+
++--------+---------+----------+--------+
+| Byte 0 | Byte 1  | Byte 2-5 | Byte 2 |
++========+=========+==========+========+
+| 2 byte timestamp | ALT      | APOGEE |
++--------+---------+----------+--------+
 
 | **ALT:** Altitude in ft
+| **APOGEE:** Apogee detection status, see `apogee_state`_
 
 SENSOR_IMU_X (0x00D)
 ====================
@@ -372,39 +373,42 @@ Actuator ID for Actuator Command and Status Messages
    * - TELEMETRY
      - No Description
      - 0x07
-   * - CAMERA_INJ_A
+   * - CAMERA_CANARD_A
      - No Description
      - 0x08
-   * - CAMERA_INJ_B
+   * - CAMERA_CANARD_B
      - No Description
      - 0x09
-   * - CAMERA_VENT_A
+   * - CAMERA_SIDE_A
      - No Description
      - 0x0A
-   * - CAMERA_VENT_B
+   * - CAMERA_SIDE_B
      - No Description
      - 0x0B
-   * - CAMERA_VENT_C
-     - No Description
-     - 0x0C
-   * - CAMERA_VENT_D
-     - No Description
-     - 0x0D
    * - CAMERA_RECOVERY
      - No Description
-     - 0x0E
+     - 0x0C
+   * - CAMERA_PAYLOAD
+     - No Description
+     - 0x0D
    * - PROC_ESTIMATOR_INIT
      - Actuator command to start processor board state estimation
+     - 0x0E
+   * - SRAD_ALT_ESTIMATOR_INIT
+     - Actuator command to start SRAD Altimeter state estimation
      - 0x0F
+   * - SRAD_ALT_GPS_RESET
+     - Actuator command to reset GPS Receiver on SRAD Altimeter
+     - 0x10
    * - CANARD_ENABLE
      - Power on Canard motor control board servo
-     - 0x10
+     - 0x11
    * - CANARD_ANGLE
      - Canard Angle Command (from Processor board to Motor Control board)
-     - 0x11
+     - 0x12
    * - PAYLOAD_MOTOR_ENABLE
      - Payload motor power on/off control
-     - 0x12
+     - 0x13
 
 actuator_state
 ==============
@@ -542,54 +546,72 @@ Sensor ID for Sensor Messages
    * - MOTOR_CURR
      - Motor current in mA
      - 0x08
-   * - PRESSURE_OX
-     - Oxidizer Tank pressure in psi
+   * - RADIO_CURR
+     - Radio current in mA
      - 0x09
-   * - PRESSURE_FUEL
-     - Fuel Tank pressure in psi
+   * - GPS_CURR
+     - GPS Receiver current in mA
      - 0x0A
-   * - PRESSURE_CC
-     - Combustion Chamber pressure in psi
+   * - LOCAL_CURR
+     - Local voltage rail (e.g. 3.3V) current in mA
      - 0x0B
+   * - PRESSURE_OX
+     - Oxidizer Tank pressure in psi, read by Ox PT
+     - 0x0C
+   * - PRESSURE_FUEL
+     - Fuel Tank pressure in psi, read by Fuel PT
+     - 0x0D
+   * - PRESSURE_CC0
+     - Combustion Chamber pressure in psi, read by CC PT 0
+     - 0x0E
+   * - PRESSURE_CC1
+     - Combustion Chamber pressure in psi, read by CC PT 0
+     - 0x0F
+   * - OX_INJ_HALL
+     - Oxidizer Injector Valve hall-effect sensor reading
+     - 0x10
+   * - FUEL_INJ_HALL
+     - Fuel Injector Valve hall-effect sensor reading
+     - 0x11
    * - BARO_PRESSURE
      - Barometer pressure measurement
-     - 0x0C
+     - 0x12
    * - BARO_TEMP
      - Barometer temperature measurement
-     - 0x0D
+     - 0x13
    * - RA_BATT_VOLT_1
      - No Description
-     - 0x0E
+     - 0x14
    * - RA_BATT_VOLT_2
      - No Description
-     - 0x0F
+     - 0x15
    * - RA_BATT_CURR_1
      - No Description
-     - 0x10
+     - 0x16
    * - RA_BATT_CURR_2
      - No Description
-     - 0x11
+     - 0x17
    * - RA_MAG_VOLT_1
      - No Description
-     - 0x12
+     - 0x18
    * - RA_MAG_VOLT_2
      - No Description
-     - 0x13
+     - 0x19
    * - FPS
      - Camera framerate
-     - 0x14
+     - 0x1A
    * - CANARD_ENCODER_1
      - No Description
-     - 0x15
+     - 0x1B
    * - CANARD_ENCODER_2
      - No Description
-     - 0x16
+     - 0x1C
    * - PROC_FLIGHT_PHASE_STATUS
      - No Description
-     - 0x17
+     - 0x1D
    * - VELOCITY
      - No Description
-     - 0x18
+     - 0x1E
 
 state_est_id
 ============
@@ -642,6 +664,28 @@ State Estimation data field indentifier
    * - CANARD_ANGLE
      - No Description
      - 0x0C
+
+apogee_state
+============
+
+Apogee detection state
+
+.. list-table:: apogee_state Enum Values
+   :widths: 25 60 15
+   :header-rows: 1
+
+   * - Enum Name
+     - Description
+     - ID
+   * - UNKNOWN
+     - No Description
+     - 0x00
+   * - NOT_REACHED
+     - No Description
+     - 0x01
+   * - REACHED
+     - No Description
+     - 0x02
 
 Bitfields Definition
 *********************
