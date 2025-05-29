@@ -609,9 +609,15 @@ Sensor ID for Sensor Messages
    * - PROC_FLIGHT_PHASE_STATUS
      - No Description
      - 0x1D
-   * - VELOCITY
-     - No Description
+   * - PAYLOAD_LIM_1
+     - Payload Limit Switch 1
      - 0x1E
+   * - PAYLOAD_LIM_2
+     - Payload Limit Switch 2
+     - 0x1F
+   * - PAYLOAD_INFRARED
+     - PayloadInfrared Sensor
+     - 0x20
 
 state_est_id
 ============
