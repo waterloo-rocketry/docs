@@ -18,7 +18,7 @@ TODO add documentation for OX Hall and Fuel Hall sensors?
 Initialization
 ==============
 
-#. Setup to use external oscillator with 4xPLL
+#. Setup to use external oscillator with 1xPLL
 #. Setup PPS(Peripheral Pin Select) for CAN
 #. Initialize ADC, setup to use FVR(Fixed Voltage Reference)
 #. Initialize CAN module with canlib
