@@ -54,8 +54,7 @@ Firmware shall read from the following sensors:
 
 * Oxidizer Pressure Transducer
 * Fuel Pressure Transducer
-* CC #1 Pressure Transducer
-* CC #2 Pressure Transducer
+* CC Pressure Transducer
 * Fuel Hall Sensor
 * Oxidizer Hall Sensor
 
@@ -90,7 +89,7 @@ CAN Message Sent by Firmware
      - Report Fuel Pressure Transducer pressure
      - 50 ms
    * - SENSOR_ANALOG.PRESSURE_CC
-     - Report CC #1 and #2 Pressure Transducer pressure
+     - Report CC Pressure Transducer pressure
      - 50 ms
    * - TODO fill
      - Report Fuel Hall Sensor reading
