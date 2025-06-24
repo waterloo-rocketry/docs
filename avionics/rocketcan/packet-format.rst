@@ -155,15 +155,16 @@ Temperature Sensor
 
 SENSOR_ALTITUDE (0x00C)
 =======================
-Altitude sensor message(exclude GPS with have a specific message)
+Altimeter altitude sensor message(exclude GPS with have a specific message)
 
-+--------+---------+----------+
-| Byte 0 | Byte 1  | Byte 2-5 |
-+========+=========+==========+
-| 2 byte timestamp | ALT      |
-+--------+---------+----------+
++--------+---------+----------+--------+
+| Byte 0 | Byte 1  | Byte 2-5 | Byte 2 |
++========+=========+==========+========+
+| 2 byte timestamp | ALT      | APOGEE |
++--------+---------+----------+--------+
 
 | **ALT:** Altitude in ft
+| **APOGEE:** Apogee detection status, see `apogee_state`_
 
 SENSOR_IMU_X (0x00D)
 ====================
@@ -363,39 +364,51 @@ Actuator ID for Actuator Command and Status Messages
    * - 5V_RAIL_PAYLOAD
      - No Description
      - 0x04
-   * - TELEMETRY
+   * - 12V_RAIL_ROCKET
      - No Description
      - 0x05
-   * - CAMERA_INJ_A
+   * - 12V_RAIL_PAYLOAD
      - No Description
      - 0x06
-   * - CAMERA_INJ_B
+   * - TELEMETRY
      - No Description
      - 0x07
-   * - CAMERA_VENT_A
+   * - CAMERA_CANARD_A
      - No Description
      - 0x08
-   * - CAMERA_VENT_B
+   * - CAMERA_CANARD_B
      - No Description
      - 0x09
-   * - CAMERA_VENT_C
+   * - CAMERA_SIDE_A
      - No Description
      - 0x0A
-   * - CAMERA_VENT_D
+   * - CAMERA_SIDE_B
      - No Description
      - 0x0B
    * - CAMERA_RECOVERY
      - No Description
      - 0x0C
+   * - CAMERA_PAYLOAD
+     - No Description
+     - 0x0D
    * - PROC_ESTIMATOR_INIT
      - Actuator command to start processor board state estimation
-     - 0x0D
+     - 0x0E
+   * - SRAD_ALT_ESTIMATOR_INIT
+     - Actuator command to start SRAD Altimeter state estimation
+     - 0x0F
+   * - SRAD_ALT_GPS_RESET
+     - Actuator command to reset GPS Receiver on SRAD Altimeter
+     - 0x10
    * - CANARD_ENABLE
      - Power on Canard motor control board servo
-     - 0x0E
+     - 0x11
    * - CANARD_ANGLE
      - Canard Angle Command (from Processor board to Motor Control board)
-     - 0x0F
+     - 0x12
+   * - PAYLOAD_MOTOR_ENABLE
+     - Payload motor power on/off control
+     - 0x13
 
 actuator_state
 ==============
@@ -434,15 +447,21 @@ Altimeter ID for uniquely indentify each altimeter
    * - Enum Name
      - Description
      - ID
-   * - RAVEN
-     - Raven4 Altimeter (COTS)
+   * - ROCKET_RAVEN
+     - Raven4 Altimeter on Rocket (COTS)
      - 0x00
-   * - STRATOLOGGER
-     - StratoLoggerCF Altimeter (COTS)
+   * - ROCKET_STRATOLOGGER
+     - StratoLoggerCF Altimeter on Rocket (COTS)
      - 0x01
-   * - SRAD
-     - SRAD Altimeter
+   * - ROCKET_SRAD
+     - SRAD Altimeter on Rocket
      - 0x02
+   * - PAYLOAD_RAVEN
+     - Raven4 Altimeter on Payload (COTS)
+     - 0x03
+   * - RAYLOAD_STRATOLOGGER
+     - StratoLoggerCF Altimeter on Payload (COTS)
+     - 0x04
 
 alt_arm_state
 =============
@@ -527,54 +546,78 @@ Sensor ID for Sensor Messages
    * - MOTOR_CURR
      - Motor current in mA
      - 0x08
-   * - PRESSURE_OX
-     - Oxidizer Tank pressure in psi
+   * - RADIO_CURR
+     - Radio current in mA
      - 0x09
-   * - PRESSURE_FUEL
-     - Fuel Tank pressure in psi
+   * - GPS_CURR
+     - GPS Receiver current in mA
      - 0x0A
-   * - PRESSURE_CC
-     - Combustion Chamber pressure in psi
+   * - LOCAL_CURR
+     - Local voltage rail (e.g. 3.3V) current in mA
      - 0x0B
+   * - PRESSURE_OX
+     - Oxidizer Tank pressure in psi, read by Ox PT
+     - 0x0C
+   * - PRESSURE_FUEL
+     - Fuel Tank pressure in psi, read by Fuel PT
+     - 0x0D
+   * - PRESSURE_CC0
+     - Combustion Chamber pressure in psi, read by CC PT 0
+     - 0x0E
+   * - PRESSURE_CC1
+     - Combustion Chamber pressure in psi, read by CC PT 0
+     - 0x0F
+   * - OX_INJ_HALL
+     - Oxidizer Injector Valve hall-effect sensor reading
+     - 0x10
+   * - FUEL_INJ_HALL
+     - Fuel Injector Valve hall-effect sensor reading
+     - 0x11
    * - BARO_PRESSURE
      - Barometer pressure measurement
-     - 0x0C
+     - 0x12
    * - BARO_TEMP
      - Barometer temperature measurement
-     - 0x0D
+     - 0x13
    * - RA_BATT_VOLT_1
      - No Description
-     - 0x0E
+     - 0x14
    * - RA_BATT_VOLT_2
      - No Description
-     - 0x0F
+     - 0x15
    * - RA_BATT_CURR_1
      - No Description
-     - 0x10
+     - 0x16
    * - RA_BATT_CURR_2
      - No Description
-     - 0x11
+     - 0x17
    * - RA_MAG_VOLT_1
      - No Description
-     - 0x12
+     - 0x18
    * - RA_MAG_VOLT_2
      - No Description
-     - 0x13
+     - 0x19
    * - FPS
      - Camera framerate
-     - 0x14
+     - 0x1A
    * - CANARD_ENCODER_1
      - No Description
-     - 0x15
+     - 0x1B
    * - CANARD_ENCODER_2
      - No Description
-     - 0x16
+     - 0x1C
    * - PROC_FLIGHT_PHASE_STATUS
      - No Description
-     - 0x17
-   * - VELOCITY
-     - No Description
-     - 0x18
+     - 0x1D
+   * - PAYLOAD_LIM_1
+     - Payload Limit Switch 1
+     - 0x1E
+   * - PAYLOAD_LIM_2
+     - Payload Limit Switch 2
+     - 0x1F
+   * - PAYLOAD_INFRARED
+     - PayloadInfrared Sensor
+     - 0x20
 
 state_est_id
 ============
@@ -628,6 +671,28 @@ State Estimation data field indentifier
      - No Description
      - 0x0C
 
+apogee_state
+============
+
+Apogee detection state
+
+.. list-table:: apogee_state Enum Values
+   :widths: 25 60 15
+   :header-rows: 1
+
+   * - Enum Name
+     - Description
+     - ID
+   * - UNKNOWN
+     - No Description
+     - 0x00
+   * - NOT_REACHED
+     - No Description
+     - 0x01
+   * - REACHED
+     - No Description
+     - 0x02
+
 Bitfields Definition
 *********************
 
@@ -661,10 +726,19 @@ General board status bitfield
    * - 12V_UNDER_VOLTAGE
      - No Description
      - 0x05
-   * - IO_ERROR
+   * - BATT_OVER_CURRENT
      - No Description
      - 0x06
-   * - FS_ERROR
+   * - BATT_OVER_VOLTAGE
      - No Description
      - 0x07
+   * - BATT_UNDER_VOLTAGE
+     - No Description
+     - 0x08
+   * - IO_ERROR
+     - No Description
+     - 0x09
+   * - FS_ERROR
+     - No Description
+     - 0x0A
 

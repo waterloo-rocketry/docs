@@ -4,4 +4,5 @@ Motor Control Board
 .. toctree::
    :maxdepth: 1
 
-   firmware.rst
+   primary-firmware.rst
+   failsafe-firmware.rst
