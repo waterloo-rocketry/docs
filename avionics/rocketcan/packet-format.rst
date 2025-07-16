@@ -17,7 +17,7 @@ Board status broadcast
 +--------+---------+------------------------+----------------------+
 
 | **GENERAL_ERROR_BITFIELD:** General error code bitfield, see `general_board_status`_
-| **BOARD_ERROR_BITFIELD:** Board specific error code bitfield
+| **BOARD_ERROR_BITFIELD:** Board specific error code bitfield, see `board_specific_status`_
 
 RESET_CMD (0x002)
 =================
@@ -735,10 +735,38 @@ General board status bitfield
    * - BATT_UNDER_VOLTAGE
      - No Description
      - 0x08
-   * - IO_ERROR
+   * - MOTOR_OVER_CURRENT
      - No Description
      - 0x09
-   * - FS_ERROR
+   * - IO_ERROR
      - No Description
      - 0x0A
+   * - FS_ERROR
+     - No Description
+     - 0x0B
+   * - WATCHDOG_TIMEOUT
+     - No Description
+     - 0x0C
+
+board_specific_status
+=====================
+
+Board specific status bitfield
+
+.. list-table:: board_specific_status Bitfield bits
+   :widths: 25 60 15
+   :header-rows: 1
+
+   * - Bitfield Name
+     - Description
+     - Offset
+   * - 12V_EFUSE_FAULT
+     - No Description
+     - 0x00
+   * - 5V_EFUSE_FAULT
+     - No Description
+     - 0x01
+   * - PT_OUT_OF_RANGE
+     - No Description
+     - 0x02
 
