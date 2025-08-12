@@ -355,59 +355,59 @@ Actuator ID for Actuator Command and Status Messages
    * - FUEL_INJECTOR_VALVE
      - Oxidizer Injector Valve, for hall-effect sensor state feedback
      - 0x01
-   * - CHARGE_ENABLE
-     - Ground side charging board charging enable
+   * - ROCKET_CHARGE_ENABLE
+     - Rocket Ground-side Charging Enable
      - 0x02
+   * - PAYLOAD_CHARGE_ENABLE
+     - Payload Ground-side Charging Enable
+     - 0x03
    * - 5V_RAIL_ROCKET
      - No Description
-     - 0x03
+     - 0x04
    * - 5V_RAIL_PAYLOAD
      - No Description
-     - 0x04
+     - 0x05
    * - 12V_RAIL_ROCKET
      - No Description
-     - 0x05
+     - 0x06
    * - 12V_RAIL_PAYLOAD
      - No Description
-     - 0x06
+     - 0x07
    * - TELEMETRY
      - No Description
-     - 0x07
+     - 0x08
    * - CAMERA_CANARD_A
      - No Description
-     - 0x08
+     - 0x09
    * - CAMERA_CANARD_B
      - No Description
-     - 0x09
-   * - CAMERA_SIDE_A
-     - No Description
      - 0x0A
-   * - CAMERA_SIDE_B
-     - No Description
-     - 0x0B
    * - CAMERA_RECOVERY
      - No Description
-     - 0x0C
+     - 0x0B
    * - CAMERA_PAYLOAD
      - No Description
-     - 0x0D
+     - 0x0C
    * - PROC_ESTIMATOR_INIT
      - Actuator command to start processor board state estimation
-     - 0x0E
+     - 0x0D
    * - SRAD_ALT_ESTIMATOR_INIT
      - Actuator command to start SRAD Altimeter state estimation
-     - 0x0F
+     - 0x0E
    * - SRAD_ALT_GPS_RESET
      - Actuator command to reset GPS Receiver on SRAD Altimeter
-     - 0x10
+     - 0x0F
    * - CANARD_ENABLE
      - Power on Canard motor control board servo
-     - 0x11
+     - 0x10
    * - CANARD_ANGLE
      - Canard Angle Command (from Processor board to Motor Control board)
-     - 0x12
+     - 0x11
    * - PAYLOAD_MOTOR_ENABLE
-     - Payload motor power on/off control
+     - Payload Servo Motor Power Control
+     - 0x12
+   * - PAYLOAD_LOGGING_ENABLE
+     - Payload Sensor Board Logging Enable Control
      - 0x13
 
 actuator_state
@@ -459,7 +459,7 @@ Altimeter ID for uniquely indentify each altimeter
    * - PAYLOAD_RAVEN
      - Raven4 Altimeter on Payload (COTS)
      - 0x03
-   * - RAYLOAD_STRATOLOGGER
+   * - PAYLOAD_STRATOLOGGER
      - StratoLoggerCF Altimeter on Payload (COTS)
      - 0x04
 
@@ -555,23 +555,23 @@ Sensor ID for Sensor Messages
    * - LOCAL_CURR
      - Local voltage rail (e.g. 3.3V) current in mA
      - 0x0B
-   * - PRESSURE_OX
-     - Oxidizer Tank pressure in psi, read by Ox PT
+   * - PT_CHANNEL_0
+     - Pressure Transducer Channel 0, J3 on Injector Sensor Hub
      - 0x0C
-   * - PRESSURE_FUEL
-     - Fuel Tank pressure in psi, read by Fuel PT
+   * - PT_CHANNEL_1
+     - Pressure Transducer Channel 1, J4 on Injector Sensor Hub
      - 0x0D
-   * - PRESSURE_CC0
-     - Combustion Chamber pressure in psi, read by CC PT 0
+   * - PT_CHANNEL_2
+     - Pressure Transducer Channel 2, J6 on Injector Sensor Hub
      - 0x0E
-   * - PRESSURE_CC1
-     - Combustion Chamber pressure in psi, read by CC PT 0
+   * - PT_CHANNEL_3
+     - Pressure Transducer Channel 3, J8 on Injector Sensor Hub
      - 0x0F
-   * - OX_INJ_HALL
-     - Oxidizer Injector Valve hall-effect sensor reading
+   * - PT_CHANNEL_4
+     - Pressure Transducer Channel 4, J10 on Injector Sensor Hub
      - 0x10
-   * - FUEL_INJ_HALL
-     - Fuel Injector Valve hall-effect sensor reading
+   * - HALL_CHANNEL_0
+     - Hall-Effect Sensor Channel 0, J7 on Injector Sensor Hub
      - 0x11
    * - BARO_PRESSURE
      - Barometer pressure measurement
@@ -610,14 +610,23 @@ Sensor ID for Sensor Messages
      - No Description
      - 0x1D
    * - PAYLOAD_LIM_1
-     - Payload Limit Switch 1
+     - Payload Motor Board Limit Switch 1
      - 0x1E
    * - PAYLOAD_LIM_2
-     - Payload Limit Switch 2
+     - Payload Motor Board Limit Switch 2
      - 0x1F
-   * - PAYLOAD_INFRARED
-     - PayloadInfrared Sensor
+   * - PAYLOAD_SERVO_DIRECTION
+     - Payload Servo Direction
      - 0x20
+   * - PAYLOAD_INFRARED
+     - Payload Infrared Sensor Reading
+     - 0x21
+   * - HALL_CHANNEL_1
+     - Hall-Effect Sensor Channel 1, J5 on Injector Sensor Hub
+     - 0x22
+   * - HALL_CHANNEL_2
+     - Hall-Effect Sensor Channel 2, J9 on Injector Sensor Hub
+     - 0x23
 
 state_est_id
 ============

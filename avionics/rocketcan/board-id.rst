@@ -122,12 +122,6 @@ Flight Camera Board
    * - CANARD_B
      - Canard Section Camera B
      - 0x07
-   * - SIDE_A
-     - Side View Camera A
-     - 0x08
-   * - SIDE_B
-     - Side View Camera B
-     - 0x09
    * - RECOVERY
      - Recovery Bulkhead Camera
-     - 0x0A
+     - 0x08
