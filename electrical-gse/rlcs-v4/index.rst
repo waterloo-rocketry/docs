@@ -8,5 +8,5 @@ Remote Launch Control System (RLCS) V4
    towerside.rst
    clientside.rst
 
-.. image:: rlcsv4-system-architecture.svg
+.. image:: rlcsv4-system-architecture.png
    :align: center
