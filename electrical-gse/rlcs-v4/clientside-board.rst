@@ -2,6 +2,9 @@
 RLCS V4 Clientside Board
 ************************
 
+.. image:: clientside-board.png
+   :align: center
+
 Requirements
 ============
 
