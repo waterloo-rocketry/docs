@@ -1,6 +1,6 @@
 <mxfile host="app.diagrams.net" agent="Mozilla/5.0 (X11; Linux x86_64; rv:143.0) Gecko/20100101 Firefox/143.0" version="28.2.5" pages="4">
   <diagram name="System Architecture" id="21cekb98lOXPzb_RpxWp">
-    <mxGraphModel dx="1344" dy="868" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="1584" dy="919" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -534,15 +534,84 @@
     </mxGraphModel>
   </diagram>
   <diagram id="uAl0xX3CFQSMNfBa0iH6" name="Relay Board">
-    <mxGraphModel dx="1678" dy="973" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="1188" dy="689" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
         <mxCell id="b26dSTO4Rpf3lgWaEUPc-1" value="&lt;div&gt;Micro-Controller&lt;/div&gt;&lt;div&gt;PIC18F26K83&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
-          <mxGeometry x="440" y="400" width="170" height="90" as="geometry" />
+          <mxGeometry x="480" y="550" width="170" height="70" as="geometry" />
         </mxCell>
         <mxCell id="wGsE2kbmB2lTrqlxBKRH-1" value="12V -&amp;gt; 5V Buck" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffff88;strokeColor=#36393d;" vertex="1" parent="1">
-          <mxGeometry x="280" y="425" width="120" height="40" as="geometry" />
+          <mxGeometry x="280" y="565" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="hjOGshzSu36NPC0_t22o-1" value="" style="endArrow=classic;html=1;rounded=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" source="wGsE2kbmB2lTrqlxBKRH-1" target="b26dSTO4Rpf3lgWaEUPc-1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="400" y="580" as="sourcePoint" />
+            <mxPoint x="450" y="530" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="hjOGshzSu36NPC0_t22o-2" value="RLCS_12V_PWR" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="110" y="570" width="120" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="SLT3CtTxf0g_kG7U5xFa-1" value="" style="endArrow=classic;html=1;rounded=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="220" y="585" as="sourcePoint" />
+            <mxPoint x="280" y="584.5799999999999" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="SLT3CtTxf0g_kG7U5xFa-2" value="" style="endArrow=classic;startArrow=classic;html=1;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="520" y="660" as="sourcePoint" />
+            <mxPoint x="520" y="620" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="SLT3CtTxf0g_kG7U5xFa-3" value="I2C" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="510" y="620" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="SLT3CtTxf0g_kG7U5xFa-4" value="IO Expander" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#cdeb8b;strokeColor=#36393d;" vertex="1" parent="1">
+          <mxGeometry x="480" y="660" width="170" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="SLT3CtTxf0g_kG7U5xFa-6" value="" style="endArrow=classic;startArrow=classic;html=1;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="520" y="750" as="sourcePoint" />
+            <mxPoint x="520" y="700" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="SLT3CtTxf0g_kG7U5xFa-7" value="GPIO" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="510" y="710" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="SLT3CtTxf0g_kG7U5xFa-8" value="6-bit DIP Switch" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#eeeeee;strokeColor=#36393d;" vertex="1" parent="1">
+          <mxGeometry x="480" y="750" width="170" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="8C2CxAa5jT8RVhdmSnMM-1" value="" style="endArrow=classic;html=1;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="210" y="450" as="sourcePoint" />
+            <mxPoint x="270" y="450" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="8C2CxAa5jT8RVhdmSnMM-2" value="External Battery Power" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="150" y="430" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="8C2CxAa5jT8RVhdmSnMM-4" value="Power Output Screw Terminal" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffff88;strokeColor=#36393d;" vertex="1" parent="1">
+          <mxGeometry x="670" y="397.5" width="80" height="95" as="geometry" />
+        </mxCell>
+        <mxCell id="8C2CxAa5jT8RVhdmSnMM-5" value="Nominal Open Relay" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#cce5ff;strokeColor=#36393d;" vertex="1" parent="1">
+          <mxGeometry x="270" y="415" width="110" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="8C2CxAa5jT8RVhdmSnMM-6" value="Relay" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#cce5ff;strokeColor=#36393d;" vertex="1" parent="1">
+          <mxGeometry x="470" y="415" width="110" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="8C2CxAa5jT8RVhdmSnMM-8" value="" style="endArrow=classic;html=1;rounded=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" target="8C2CxAa5jT8RVhdmSnMM-6">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="380" y="449.58" as="sourcePoint" />
+            <mxPoint x="440" y="449.58" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="8C2CxAa5jT8RVhdmSnMM-9" value="" style="endArrow=classic;html=1;rounded=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="580" y="449.58" as="sourcePoint" />
+            <mxPoint x="670" y="450" as="targetPoint" />
+          </mxGeometry>
         </mxCell>
       </root>
     </mxGraphModel>
