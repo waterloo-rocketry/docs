@@ -52,5 +52,10 @@ latex_elements = {
 
 extensions = [
     'sphinx.ext.graphviz',
+    'breathe'
     # other extensions
 ]
+
+breathe_projects_source = {
+    "canlib" : ( "firmware-library/canlib/canlib", ["can.h", "message_types.h", "message/msg_common.h", "message/msg_actuator.h", "message/msg_general.h", "message/msg_gps.h", "message/msg_recovery.h", "message/msg_sensor.h", "message/msg_state_est.h",] )
+}

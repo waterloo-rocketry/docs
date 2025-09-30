@@ -1,2 +1,5 @@
 canlib
 ======
+
+.. autodoxygenindex::
+   :project: canlib
