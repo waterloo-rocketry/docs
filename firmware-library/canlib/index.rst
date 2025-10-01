@@ -1,5 +1,7 @@
 canlib
 ======
 
-.. autodoxygenindex::
-   :project: canlib
+.. toctree::
+   :maxdepth: 1
+
+   reference.rst
