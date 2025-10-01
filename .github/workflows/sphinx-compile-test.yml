@@ -21,7 +21,7 @@ jobs:
       - name: Install Sphinx and Graphviz
         run: |
           sudo apt-get update
-          sudo apt install -y python3-sphinx-rtd-theme graphviz
+          sudo apt install -y python3-sphinx-rtd-theme graphviz python3-breathe
       - name: Setup Pages
         id: pages
         uses: actions/configure-pages@v5
