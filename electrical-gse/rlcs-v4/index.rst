@@ -35,7 +35,7 @@ Requirements
      - RLCS v4 shall able to actuate 5 ball valve actuators (12V)
      - ?
    * - OPS. 4
-     - System shall able to set all actuator to a safe state(a pre defined state) 10 seconds after lost connection
+     - System shall able to set all actuator to a safe state(a pre defined state) 10 seconds(configurable throught firmware) after lost connection
      - ?
    * - OPS. 5
      - System shall able to safe state all valves without external power(i.e. have redundant power)
