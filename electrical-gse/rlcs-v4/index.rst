@@ -1,5 +1,6 @@
+**************************************
 Remote Launch Control System (RLCS) V4
-======================================
+**************************************
 
 .. toctree::
    :maxdepth: 2
@@ -15,8 +16,8 @@ The system conprises two parts, one part Towerside is located in EGSE case at te
 .. image:: rlcsv4-system-architecture.png
    :align: center
 
-Requirements
-============
+Requirements (RLCS)
+===================
 
 .. list-table:: Top level requirements
    :widths: 15 30 55
