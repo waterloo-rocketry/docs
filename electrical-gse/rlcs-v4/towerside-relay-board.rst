@@ -1,11 +1,12 @@
+*******************
 RLCS V4 Relay Board
-===================
+*******************
 
 .. image:: relay-board.png
    :align: center
 
-Requirements
-============
+Requirements (RelayBoard)
+=========================
 
 .. list-table:: Relay Board Requirements
    :widths: 15 30 55

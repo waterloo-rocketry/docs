@@ -1,5 +1,6 @@
+*****************
 RLCS V4 Towerside
-=================
+*****************
 
 .. toctree::
    :maxdepth: 2
@@ -12,8 +13,8 @@ The towerside is the remote part of the RLCS system, It handles receiving comman
 
 Refer to :doc:`RLCS v4</electrical-gse/rlcs-v4/index>` page for internal electrical connection diagram.
 
-Requirements
-============
+Requirements (Towerside)
+========================
 
 Note this project do not have mechanical requirements, because the requirements are covered in EGSE Respin requirements.
 

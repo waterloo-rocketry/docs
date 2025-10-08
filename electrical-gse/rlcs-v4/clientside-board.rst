@@ -7,8 +7,8 @@ RLCS V4 Clientside Board
 
 RLCS V4 Clientside board is the SRAD PCB inside the Clientside. The board connects to all internal electrical components in clientside. The board has a 5-12V to 3.3V buck converter to provide power to MCU, Ethernet Controller+PHY IC and missile switches. A 5-12V to 5V buck converter/switching circuit for providing power to LCD display. Ethernet Controller+PHY IC and Ethernet Jack with built-in magnet for Ethernet connection. A UART screw terminal as a back up solution of Ethernet does not work at board bring-up.
 
-Requirements
-============
+Requirements (ClientsideBoard)
+==============================
 
 .. list-table:: Clientside Board Requirements
    :widths: 15 30 55

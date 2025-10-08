@@ -1,5 +1,6 @@
+******************
 RLCS V4 Clientside
-==================
+******************
 
 .. toctree::
    :maxdepth: 2
@@ -14,8 +15,8 @@ Clientside is used by the RLCS Control operator to control motorized valves and 
 
 Refer to :doc:`RLCS v4</electrical-gse/rlcs-v4/index>` page for internal electrical connection diagram.
 
-Requirements
-============
+Requirements (Clientside)
+=========================
 
 .. list-table:: Clientside Requirements
    :widths: 15 30 55
