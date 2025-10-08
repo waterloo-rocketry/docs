@@ -7,6 +7,9 @@ RLCS V4 Clientside
 
    clientside-board.rst
 
+.. image:: clientside-box.png
+   :align: center
+
 Clientside is used by the RLCS Control operator to control motorized valves and ignition. Clientside is a relatively simple system composed of a SRAD PCB, a LCD module and several missile switches. Additionally, it exposes a USB port which allows it to send data to a computer for plotting and logging. Clientside contains a set of missile switch, each match to a motorized valve.
 
 Refer to :doc:`RLCS v4</electrical-gse/rlcs-v4/index>` page for internal electrical connection diagram.
@@ -37,7 +40,7 @@ Requirements
      - System shall have a red/green multi colour LED
      - RLCS Operator see if system is connected to towerside
    * - MECH. 6
-     - System should have a plastic case over electronics on the back side of the face plate
+     - System should have a plastic case over electronics on the back side of the face plate (refer to diagram below)
      - Protect electronics
    * - ELEC. 1
      - System have a 10/100 Mbps Ethernet connection
@@ -48,3 +51,6 @@ Requirements
    * - ELEC. 3
      - System shall be able to power from the USB port(ELEC.2) or a 3S LiPo battery
      - Redundant power supply
+
+.. image:: clientside-cross-section.png
+   :align: center
