@@ -16,7 +16,7 @@ Requirements (RelayBoard)
      - Description
      - Justification/Parent Requirement
    * - MECH. 1
-     - Board shall be no larger than 8 cm x 8 cm
+     - Board shall be no larger than ?
      - Proper mounting in EGSE respin
    * - MECH. 2
      - Board shall have M3 mounting hole on each of the corner
@@ -25,8 +25,8 @@ Requirements (RelayBoard)
      - Board shall have a screw terminal takes Battery Power, accept 12-16 awg wire
      - For power input
    * - ELEC. 2
-     - Board shall have a screw terminal takes 12V and 5V RLCS power
-     - 12V powers relay coil and 5V powersMCU
+     - Board shall have a screw terminal takes 12V and 5V RLCS power, 18-22 awg
+     - 12V powers relay coil and 5V powers MCU
    * - ELEC. 3
      - All power rail shall be proper decoupled
      - General electrical design rule
@@ -46,11 +46,8 @@ Requirements (RelayBoard)
      - Board shall have voltage sense on Battery in, each power output line
      - ?
    * - ELEC. 9
-     - Board shall have current sense on RLCS 12V and 5V in, Battery in
+     - Board shall have current sense on RLCS 12V and 5V in, Battery in, each power output line
      - ?
    * - ELEC. 10
-     - Board shall have current sense on GSPD 12V in, LiPo 12V in, USB 5V in, RLCS 12V out, RLCS 3.3V out
-     - ?
-   * - ELEC. 11
      - All ADC input shall be low pass filtered with cutoff(-3dB) frequency of 20kHz
      - ?
