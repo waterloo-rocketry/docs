@@ -27,10 +27,10 @@ Note this project do not have mechanical requirements, because the requirements 
      - Justification/Parent Requirement
    * - ELEC. 1
      - System have a 10/100 Mbps Ethernet connection
-     - For communicate with towerside GLS board through local network
+     - For communicate with clientside through local network
    * - OPS. 1
      - The Towerside shall have a external CAN connection to Rocket Electrical Disconnect
      - Control would need injector valve/QD state for unlocking
-   * - OPS. 2
+   * - RLCS. 1
      - The ED CAN bus shall be separated from internal CAN bus
      - If RocketCAN is fucked, we don’t want it to affect RLCS internal CAN bus operation

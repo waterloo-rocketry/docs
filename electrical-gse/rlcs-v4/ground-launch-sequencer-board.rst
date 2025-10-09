@@ -33,10 +33,10 @@ Requirements (GLSBoard)
      - Board shall have a simple power oring circuit between LiPo and GSPD 12V (TODISCUSS USB Power)
      - Seamless switching
    * - ELEC. 4
-     - Board shall have a 12V to 3.3V buck converter
+     - Board shall have a 5-12V to 3.3V buck converter
      - STM32 and KSZ8001(Ethernet PHY) needs it
    * - ELEC. 5
-     - All power rail shall be proper decoupled
+     - All IC shall be proper decoupled
      - General electrical design rule
    * - ELEC. 6
      - Board shall have DNP Keystone 5000 series testpoint on all on-board digital communication lines
@@ -45,8 +45,8 @@ Requirements (GLSBoard)
      - Board shall have a Ethernet connection, provided with a MagJack(Ethernet Jack with built-in magnet/transformer)
      - Reduce passive circuit on board
    * - ELEC. 8
-     - Board shall have a three CAN connection, each CAN connection shall have a screw terminal with pinout(CANH/CANL/GND), accept 22 awg ferrules, Each CAN connection shall have a DNP 0805 SMD terminatino resistor
-     - Reduce passive circuit on board
+     - Board shall have a three CAN connection, each CAN connection shall have a screw terminal with pinout(CANH/CANL/GND), accept 22 awg ferrules, Each CAN connection shall have a DNP 0805 SMD termination resistor
+     - ?
    * - ELEC. 9
      - Board shall have a USB Type-B connection
      - For dumping data over USB ACM device for CAN debugging
@@ -60,7 +60,7 @@ Requirements (GLSBoard)
      - Board shall have a total of 8 digits of seven segment display, shall be bright enough to view in daylight, should be made of 2x4 digit or 4x2 digit
      - Display valve states
    * - ELEC. 12
-     - Board shall have 0805 LED to display clientside arm state, towerside arm state, communication status
+     - Board shall have 0805 LED to display clientside arm state, towerside arm state, communication status, if system in safe state
      - ?
    * - ELEC. 13
      - Board shall have 0805 LED for each power rail as ON signal
