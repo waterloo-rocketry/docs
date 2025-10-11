@@ -32,7 +32,7 @@ omnibus
 
 LLVM clang-format
 =================
-:doc:`Refer to clang-format page </onboarding-tutorials/firmware-how-to/clang-format>`
+:doc:`Refer to clang-format page </onboarding-tutorials/firmware-how-to/clang-format-tidy>`
 
 Optional Softwares
 ******************

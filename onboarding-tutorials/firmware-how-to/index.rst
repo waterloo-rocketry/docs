@@ -5,5 +5,5 @@ Firmware How-To
    :maxdepth: 2
    :caption: Tutorial
 
-   clang-format.rst
+   clang-format-tidy.rst
    stm32-freertos.rst

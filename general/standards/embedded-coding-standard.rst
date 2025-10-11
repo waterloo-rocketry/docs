@@ -41,7 +41,7 @@ For firmware libraries:
 	
 Formatting
 ===============
-Use the :doc:`team-wide clang-format </onboarding-tutorials/firmware-how-to/clang-format>`
+Use the :doc:`team-wide clang-format </onboarding-tutorials/firmware-how-to/clang-format-tidy>`
 
 Embedded Coding Standard
 ***************************
