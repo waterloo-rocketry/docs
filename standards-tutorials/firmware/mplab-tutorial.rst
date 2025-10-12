@@ -1,5 +1,6 @@
-Firmware Tutorial
-=================
+*****************************
+MPLAB & PIC Firmware Tutorial
+*****************************
 
 Prerequisites
 -------------
