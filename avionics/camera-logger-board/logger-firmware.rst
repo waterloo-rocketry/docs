@@ -1,6 +1,6 @@
-*********************************************************************
-Motor Control Board Fail-Safe MCU Firmware Design Specification [WIP]
-*********************************************************************
+************************************************
+Logger Board Firmware Design Specification [WIP]
+************************************************
 
 .. warning::
     This is just a template, this is NOT a completed design doc, delete this line when the firmware specification is complete
@@ -18,9 +18,7 @@ Reference Documents
 List of reference documents (e.g. link to hardware Datasheets), example:
 
 * `PIC18F26K83(MCU) Datasheet <https://ww1.microchip.com/downloads/en/DeviceDoc/40001943A.pdf>`_
-* `IFM PT5402(Pressure Transducer) Datasheet <https://www.ifm.com/ca/en/product/PT5402#documents>`_
-
-Note if the firmware involves data storage or transmission(e.g. Logger SD card log, telemetry packet format), then a separate rst need to be created in the same directory, to describe data format(see :doc:`Logger Data Specification<../../avionics/logger-board/data-format>` for example)
+* :doc:`Logger Data Format Specification<logger-data-format>`
 
 Initialization
 ==============
