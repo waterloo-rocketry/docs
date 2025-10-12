@@ -39,7 +39,7 @@ Board Type IDs
      - :doc:`COTS GPS Receiver Board</avionics/gps-board/index>`
      - 0x08
    * - SRAD_GNSS
-     - :doc:`SRAD GNSS Receiver Board</avionics/srad-gnss-receiver/index>`
+     - SRAD GNSS Receiver Board
      - 0x09
    * - ALTIMETER
      - :doc:`SRAD Altimeter</avionics/srad-altimeter/index>`
