@@ -41,7 +41,6 @@ Waterloo Rocketry Documentation Site
    electrical-gse/rlcs-v3/index.rst
    electrical-gse/rlcs-v4/index.rst
    electrical-gse/daq/index.rst
-   electrical-gse/gspd/index.rst
    electrical-gse/auto-antenna-tower/index.rst
 
 .. toctree::
