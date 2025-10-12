@@ -1,6 +1,6 @@
-[submodule "firmware-library/rocketlib"]
-	path = firmware-library/rocketlib
-	url = https://github.com/waterloo-rocketry/rocketlib.git
 [submodule "firmware-library/canlib/canlib"]
 	path = firmware-library/canlib/canlib
 	url = https://github.com/waterloo-rocketry/canlib.git
+[submodule "firmware-library/rocketlib/rocketlib"]
+	path = firmware-library/rocketlib/rocketlib
+	url = https://github.com/waterloo-rocketry/rocketlib.git
