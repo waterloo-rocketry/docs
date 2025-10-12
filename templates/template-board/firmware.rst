@@ -20,7 +20,7 @@ List of reference documents (e.g. link to hardware Datasheets), example:
 * `PIC18F26K83(MCU) Datasheet <https://ww1.microchip.com/downloads/en/DeviceDoc/40001943A.pdf>`_
 * `IFM PT5402(Pressure Transducer) Datasheet <https://www.ifm.com/ca/en/product/PT5402#documents>`_
 
-Note if the firmware involves data storage or transmission(e.g. Logger SD card log, telemetry packet format), then a separate rst need to be created in the same directory, to describe data format(see :doc:`Logger Data Specification<../../avionics/logger-board/data-format>` for example)
+Note if the firmware involves data storage or transmission(e.g. Logger SD card log, telemetry packet format), then a separate rst need to be created in the same directory, to describe data format(see :doc:`Logger Data Specification<../../avionics/camera-logger-board/logger-data-format>` for example)
 
 Initialization
 ==============

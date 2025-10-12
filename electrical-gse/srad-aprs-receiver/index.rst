@@ -1,2 +1,0 @@
-SRAD APRS Receiver
-==================

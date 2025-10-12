@@ -18,16 +18,16 @@ Board Type IDs
      - :doc:`Injector Sensor Hub Board</avionics/injector-sensor-hub/index>`
      - 0x01
    * - CANARD_MOTOR
-     - :doc:`Canard Motor Control Board</controls/motor-control-board/index>`
+     - Canard Motor Control Board
      - 0x02
    * - CAMERA
-     - :doc:`Flight Camera Board</avionics/camera-board/index>`
+     - :doc:`Flight Camera Board</avionics/camera-logger-board/index>`
      - 0x03
    * - POWER
      - :doc:`Power Board</avionics/rocket-power-board/index>`
      - 0x04
    * - LOGGER
-     - CAN Logger Board
+     - `Logger Board</avionics/camera-logger-board/index>`
      - 0x05
    * - PROCESSOR
      - :doc:`Canard Processor Board</controls/processor-board/index>`
@@ -39,7 +39,7 @@ Board Type IDs
      - :doc:`COTS GPS Receiver Board</avionics/gps-board/index>`
      - 0x08
    * - SRAD_GNSS
-     - :doc:`SRAD GNSS Receiver Board</avionics/srad-gnss-receiver/index>`
+     - SRAD GNSS Receiver Board
      - 0x09
    * - ALTIMETER
      - :doc:`SRAD Altimeter</avionics/srad-altimeter/index>`

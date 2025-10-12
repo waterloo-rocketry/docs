@@ -1,2 +1,0 @@
-GSPD Converter Board
-====================

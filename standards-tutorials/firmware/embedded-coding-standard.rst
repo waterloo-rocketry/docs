@@ -1,8 +1,9 @@
+***********************************
 Embedded (Firmware) Coding Standard
-######################################
+***********************************
 
 Coding Style
-*************
+============
 
 Use snake case for variable and function name (snake_case)
 100 character max per line
@@ -41,10 +42,11 @@ For firmware libraries:
 	
 Formatting
 ===============
-Use the :doc:`team-wide clang-format </onboarding-tutorials/firmware-how-to/clang-format-tidy>`
+Use the :doc:`team-wide clang-format <clang-format-tidy>`
 
 Embedded Coding Standard
-***************************
+========================
+
 All firmware projects should adopt the `BARR Embedded C Coding Standard <https://barrgroup.com/embedded-systems/books/embedded-c-coding-standard>`_.
 Pdf `download <https://barrgroup.com/sites/default/files/barr_c_coding_standard_2018.pdf>`_
 
