@@ -31,7 +31,6 @@ Waterloo Rocketry Documentation Site
    avionics/gps-board/index.rst
    avionics/live-telemetry/index.rst
    avionics/remote-arming/index.rst
-   avionics/srad-gnss-receiver/index.rst
    avionics/injector-sensor-hub/index.rst
    avionics/rocket-power-board/index.rst
    avionics/srad-altimeter/index.rst
@@ -45,8 +44,6 @@ Waterloo Rocketry Documentation Site
    electrical-gse/daq/index.rst
    electrical-gse/gspd/index.rst
    electrical-gse/auto-antenna-tower/index.rst
-   electrical-gse/opstop/index.rst
-   electrical-gse/srad-aprs-receiver/index.rst
 
 .. toctree::
    :maxdepth: 2
@@ -77,13 +74,6 @@ Waterloo Rocketry Documentation Site
    software/minerva/index.rst
    software/omnibus/index.rst
    software/parsley/index.rst
-
-.. toctree::
-   :maxdepth: 2
-   :caption: Payload
-
-   payload/motor-board/index.rst
-   payload/sensor-board/index.rst
 
 .. toctree::
    :maxdepth: 2
