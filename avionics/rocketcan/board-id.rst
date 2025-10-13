@@ -27,7 +27,7 @@ Board Type IDs
      - :doc:`Power Board</avionics/rocket-power-board/index>`
      - 0x04
    * - LOGGER
-     - `Logger Board</avionics/camera-logger-board/index>`
+     - :doc:`CAN Logger Board</avionics/camera-logger-board/index>`
      - 0x05
    * - PROCESSOR
      - :doc:`Canard Processor Board</controls/processor-board/index>`
