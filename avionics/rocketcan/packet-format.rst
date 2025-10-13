@@ -334,9 +334,41 @@ STATE_EST_DATA (0x01A)
 | **STATE_EST_ID:** State ID, see `state_est_id`_
 | **DATA:** State data (IEEE 754 floating point)
 
-LEDS_ON (0x01B)
+STREAM_STATUS (0x01B)
+=====================
++--------+---------+------------+----------+
+| Byte 0-1         | Byte 2-4   | Byte 5-7 |
++========+=========+============+==========+
+| 2 byte timestamp | TOTAL_SIZE | TX_SIZE  |
++--------+---------+------------+----------+
+
+| **TOTAL_SIZE:** Total transfer size in bytes
+| **TX_SIZE:** Transfered size in bytes
+
+STREAM_DATA (0x01C)
+===================
++--------+---------+--------+----------+
+| Byte 0-1         | Byte 2 | Byte 3-9 |
++========+=========+========+==========+
+| 2 byte timestamp | SEQ_ID | DATA     |
++--------+---------+--------+----------+
+
+| **SEQ_ID:** Sequence ID
+| **DATA:** Data payload
+
+STREAM_RETRY (0x01D)
+====================
++--------+---------+--------+
+| Byte 0-1         | Byte 2 |
++========+=========+========+
+| 2 byte timestamp | SEQ_ID |
++--------+---------+--------+
+
+| **SEQ_ID:** Sequence ID of data packet need to be resend
+
+LEDS_ON (0x01E)
 ===============
-LEDS_OFF (0x01C)
+LEDS_OFF (0x01F)
 ================
 Enums Definition
 ****************
@@ -407,8 +439,8 @@ Actuator ID for Actuator Command and Status Messages
    * - CANARD_ANGLE
      - Canard Angle Command (from Processor board to Motor Control board)
      - 0x11
-   * - PAYLOAD_MOTOR_ENABLE
-     - Payload Servo Motor Power Control
+   * - CAMERA_CAPTURE
+     - No Description
      - 0x12
    * - PAYLOAD_LOGGING_ENABLE
      - Payload Sensor Board Logging Enable Control
