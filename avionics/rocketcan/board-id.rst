@@ -47,6 +47,9 @@ Board Type IDs
    * - ARMING
      - :doc:`Remote Arming Board</avionics/remote-arming/index>`
      - 0x0B
+   * - PHESEUS
+     - Pheseus board(Propulsion board)
+     - 0x0C
    * - PAY_SENSOR
      - Payload Sensor Board
      - 0x40

@@ -144,20 +144,7 @@ Altimeter Arm Status
 | **DROGUE_V:** Drogue Pyro Voltage
 | **MAIN_V:** Main Pyro Voltage
 
-SENSOR_TEMP (0x00B)
-===================
-Temperature Sensor
-
-+--------+---------+----------------+----------+
-| Byte 0-1         | Byte 2         | Byte 3-6 |
-+========+=========+================+==========+
-| 2 byte timestamp | TEMP_SENSOR_ID | TEMP     |
-+--------+---------+----------------+----------+
-
-| **TEMP_SENSOR_ID:** Tempterature sensor ID
-| **TEMP:** Temperature
-
-SENSOR_ALTITUDE (0x00C)
+SENSOR_ALTITUDE (0x00B)
 =======================
 Altimeter altitude sensor message(exclude GPS with have a specific message)
 
@@ -170,7 +157,7 @@ Altimeter altitude sensor message(exclude GPS with have a specific message)
 | **ALT:** Altitude in ft
 | **APOGEE:** Apogee detection status, see `apogee_state`_
 
-SENSOR_IMU_X (0x00D)
+SENSOR_IMU_X (0x00C)
 ====================
 +--------+---------+--------+--------------+------------------+
 | Byte 0-1         | Byte 2 | Byte 3-4     | Byte 5-6         |
@@ -182,7 +169,7 @@ SENSOR_IMU_X (0x00D)
 | **LINEAR_ACCEL:** Linear Acceleration on X axis
 | **ANGULAR_VELOCITY:** Angular Velocity around X axis
 
-SENSOR_IMU_Y (0x00E)
+SENSOR_IMU_Y (0x00D)
 ====================
 +--------+---------+--------+--------------+------------------+
 | Byte 0-1         | Byte 2 | Byte 3-4     | Byte 5-6         |
@@ -194,7 +181,7 @@ SENSOR_IMU_Y (0x00E)
 | **LINEAR_ACCEL:** Linear Acceleration on Y axis
 | **ANGULAR_VELOCITY:** Angular Velocity around Y axis
 
-SENSOR_IMU_Z (0x00F)
+SENSOR_IMU_Z (0x00E)
 ====================
 +--------+---------+--------+--------------+------------------+
 | Byte 0-1         | Byte 2 | Byte 3-4     | Byte 5-6         |
@@ -206,7 +193,7 @@ SENSOR_IMU_Z (0x00F)
 | **LINEAR_ACCEL:** Linear Acceleration on Z axis
 | **ANGULAR_VELOCITY:** Angular Velocity around Z axis
 
-SENSOR_MAG_X (0x010)
+SENSOR_MAG_X (0x00F)
 ====================
 +--------+---------+--------+----------+
 | Byte 0-1         | Byte 2 | Byte 3-4 |
@@ -217,7 +204,7 @@ SENSOR_MAG_X (0x010)
 | **IMU_ID:** IMU Unique Indentifier, see `imu_id`_
 | **MAG:** magnetometer X value
 
-SENSOR_MAG_Y (0x011)
+SENSOR_MAG_Y (0x010)
 ====================
 +--------+---------+--------+----------+
 | Byte 0-1         | Byte 2 | Byte 3-4 |
@@ -228,7 +215,7 @@ SENSOR_MAG_Y (0x011)
 | **IMU_ID:** IMU Unique Indentifier, see `imu_id`_
 | **MAG:** magnetometer Y value
 
-SENSOR_MAG_Z (0x012)
+SENSOR_MAG_Z (0x011)
 ====================
 +--------+---------+--------+----------+
 | Byte 0-1         | Byte 2 | Byte 3-4 |
@@ -239,7 +226,7 @@ SENSOR_MAG_Z (0x012)
 | **IMU_ID:** IMU Unique Indentifier, see `imu_id`_
 | **MAG:** magnetometer Z value
 
-SENSOR_BARO (0x013)
+SENSOR_BARO (0x012)
 ===================
 +--------+---------+--------+----------+----------+
 | Byte 0-1         | Byte 2 | Byte 3-5 | Byte 6-7 |
@@ -251,7 +238,7 @@ SENSOR_BARO (0x013)
 | **PRESSURE:** barometer pressure reading, raw value
 | **TEMP:** barometer temperature reading, raw value
 
-SENSOR_ANALOG (0x014)
+SENSOR_ANALOG (0x013)
 =====================
 +--------+---------+-----------+----------+
 | Byte 0-1         | Byte 2    | Byte 3-4 |
@@ -262,7 +249,7 @@ SENSOR_ANALOG (0x014)
 | **SENSOR_ID:** Sensor ID, see `analog_sensor_id`_
 | **VALUE:** Analog sensor value
 
-GPS_TIMESTAMP (0x015)
+GPS_TIMESTAMP (0x014)
 =====================
 +--------+---------+-----------+-------------+-------------+--------------+
 | Byte 0-1         | Byte 2    | Byte 3      | Byte 4      | Byte 5       |
@@ -275,7 +262,7 @@ GPS_TIMESTAMP (0x015)
 | **UTC_SECONDS:** Seconds
 | **UTC_DSECONDS:** Decisecond
 
-GPS_LATITUDE (0x016)
+GPS_LATITUDE (0x015)
 ====================
 +--------+---------+---------+---------+------------+--------+
 | Byte 0-1         | Byte 2  | Byte 3  | Byte 4-5   | Byte 6 |
@@ -288,7 +275,7 @@ GPS_LATITUDE (0x016)
 | **DMINUTES_H:** No description
 | **DIR_NS:** North/South
 
-GPS_LONGITUDE (0x017)
+GPS_LONGITUDE (0x016)
 =====================
 +--------+---------+---------+---------+------------+--------+
 | Byte 0-1         | Byte 2  | Byte 3  | Byte 4-5   | Byte 6 |
@@ -301,7 +288,7 @@ GPS_LONGITUDE (0x017)
 | **DMINUTES_H:** No description
 | **DIR_EW:** East/West
 
-GPS_ALTITUDE (0x018)
+GPS_ALTITUDE (0x017)
 ====================
 +--------+---------+----------+--------+
 | Byte 0-1         | Byte 2-5 | Byte 6 |
@@ -312,7 +299,7 @@ GPS_ALTITUDE (0x018)
 | **ALT:** Altitude in ft
 | **DALT:** No description
 
-GPS_INFO (0x019)
+GPS_INFO (0x018)
 ================
 +--------+---------+---------+---------+
 | Byte 0-1         | Byte 2  | Byte 3  |
@@ -323,7 +310,7 @@ GPS_INFO (0x019)
 | **NUM_SAT:** Number of satellite
 | **QUALITY:** Quality
 
-STATE_EST_DATA (0x01A)
+STATE_EST_DATA (0x019)
 ======================
 +--------+---------+--------------+----------+
 | Byte 0-1         | Byte 2       | Byte 3-6 |
@@ -334,7 +321,7 @@ STATE_EST_DATA (0x01A)
 | **STATE_EST_ID:** State ID, see `state_est_id`_
 | **DATA:** State data (IEEE 754 floating point)
 
-STREAM_STATUS (0x01B)
+STREAM_STATUS (0x01A)
 =====================
 +--------+---------+------------+----------+
 | Byte 0-1         | Byte 2-4   | Byte 5-7 |
@@ -345,10 +332,10 @@ STREAM_STATUS (0x01B)
 | **TOTAL_SIZE:** Total transfer size in bytes
 | **TX_SIZE:** Transfered size in bytes
 
-STREAM_DATA (0x01C)
+STREAM_DATA (0x01B)
 ===================
 +--------+---------+--------+----------+
-| Byte 0-1         | Byte 2 | Byte 3-9 |
+| Byte 0-1         | Byte 2 | Byte 3-7 |
 +========+=========+========+==========+
 | 2 byte timestamp | SEQ_ID | DATA     |
 +--------+---------+--------+----------+
@@ -356,7 +343,7 @@ STREAM_DATA (0x01C)
 | **SEQ_ID:** Sequence ID
 | **DATA:** Data payload
 
-STREAM_RETRY (0x01D)
+STREAM_RETRY (0x01C)
 ====================
 +--------+---------+--------+
 | Byte 0-1         | Byte 2 |
@@ -366,9 +353,9 @@ STREAM_RETRY (0x01D)
 
 | **SEQ_ID:** Sequence ID of data packet need to be resend
 
-LEDS_ON (0x01E)
+LEDS_ON (0x01D)
 ===============
-LEDS_OFF (0x01F)
+LEDS_OFF (0x01E)
 ================
 Enums Definition
 ****************
@@ -445,6 +432,18 @@ Actuator ID for Actuator Command and Status Messages
    * - PAYLOAD_LOGGING_ENABLE
      - Payload Sensor Board Logging Enable Control
      - 0x13
+   * - THESEUS_ACTUATOR_1
+     - Theseus board actuator channel 1
+     - 0x14
+   * - THESEUS_ACTUATOR_2
+     - Theseus board actuator channel 2
+     - 0x15
+   * - RLCS_RELAY_POWER
+     - RLCS Relay Board Power Relay
+     - 0x16
+   * - RLCS_RELAY_SELECT
+     - RLCS Relay Board Select Relay(Limit switch state feedback)
+     - 0x17
 
 actuator_state
 ==============
@@ -591,78 +590,105 @@ Sensor ID for Sensor Messages
    * - LOCAL_CURR
      - Local voltage rail (e.g. 3.3V) current in mA
      - 0x0B
-   * - PT_CHANNEL_0
-     - Pressure Transducer Channel 0, J3 on Injector Sensor Hub
-     - 0x0C
    * - PT_CHANNEL_1
-     - Pressure Transducer Channel 1, J4 on Injector Sensor Hub
-     - 0x0D
+     - Pressure Transducer Channel 1, J3 on Injector Sensor Hub
+     - 0x0C
    * - PT_CHANNEL_2
-     - Pressure Transducer Channel 2, J6 on Injector Sensor Hub
-     - 0x0E
+     - Pressure Transducer Channel 2, J4 on Injector Sensor Hub
+     - 0x0D
    * - PT_CHANNEL_3
-     - Pressure Transducer Channel 3, J8 on Injector Sensor Hub
-     - 0x0F
+     - Pressure Transducer Channel 3, J6 on Injector Sensor Hub
+     - 0x0E
    * - PT_CHANNEL_4
-     - Pressure Transducer Channel 4, J10 on Injector Sensor Hub
+     - Pressure Transducer Channel 4, J8 on Injector Sensor Hub
+     - 0x0F
+   * - PT_CHANNEL_5
+     - Pressure Transducer Channel 5, J10 on Injector Sensor Hub
      - 0x10
-   * - HALL_CHANNEL_0
-     - Hall-Effect Sensor Channel 0, J7 on Injector Sensor Hub
+   * - HALL_CHANNEL_1
+     - Hall-Effect Sensor Channel 1, J7 on Injector Sensor Hub
      - 0x11
+   * - HALL_CHANNEL_2
+     - Hall-Effect Sensor Channel 2, J5 on Injector Sensor Hub
+     - 0x12
+   * - HALL_CHANNEL_3
+     - Hall-Effect Sensor Channel 3, J9 on Injector Sensor Hub
+     - 0x13
    * - BARO_PRESSURE
      - Barometer pressure measurement
-     - 0x12
+     - 0x14
    * - BARO_TEMP
      - Barometer temperature measurement
-     - 0x13
+     - 0x15
    * - RA_BATT_VOLT_1
      - No Description
-     - 0x14
+     - 0x16
    * - RA_BATT_VOLT_2
      - No Description
-     - 0x15
+     - 0x17
    * - RA_BATT_CURR_1
      - No Description
-     - 0x16
+     - 0x18
    * - RA_BATT_CURR_2
      - No Description
-     - 0x17
+     - 0x19
    * - RA_MAG_VOLT_1
      - No Description
-     - 0x18
+     - 0x1A
    * - RA_MAG_VOLT_2
      - No Description
-     - 0x19
+     - 0x1B
    * - FPS
      - Camera framerate
-     - 0x1A
+     - 0x1C
    * - CANARD_ENCODER_1
      - No Description
-     - 0x1B
+     - 0x1D
    * - CANARD_ENCODER_2
      - No Description
-     - 0x1C
+     - 0x1E
    * - PROC_FLIGHT_PHASE_STATUS
      - No Description
-     - 0x1D
+     - 0x1F
    * - PAYLOAD_LIM_1
      - Payload Motor Board Limit Switch 1
-     - 0x1E
+     - 0x20
    * - PAYLOAD_LIM_2
      - Payload Motor Board Limit Switch 2
-     - 0x1F
+     - 0x21
    * - PAYLOAD_SERVO_DIRECTION
      - Payload Servo Direction
-     - 0x20
+     - 0x22
    * - PAYLOAD_INFRARED
      - Payload Infrared Sensor Reading
-     - 0x21
-   * - HALL_CHANNEL_1
-     - Hall-Effect Sensor Channel 1, J5 on Injector Sensor Hub
-     - 0x22
-   * - HALL_CHANNEL_2
-     - Hall-Effect Sensor Channel 2, J9 on Injector Sensor Hub
      - 0x23
+   * - THESEUS_TEMP_1
+     - Theseus board temperature channel 1
+     - 0x24
+   * - THESEUS_TEMP_2
+     - Theseus board temperature channel 2
+     - 0x25
+   * - THESEUS_TEMP_3
+     - Theseus board temperature channel 3
+     - 0x26
+   * - RLCS_RELAY_OUTPUT_VOLT_A
+     - RLCS Relay Board channel A output voltage
+     - 0x27
+   * - RLCS_RELAY_OUTPUT_VOLT_B
+     - RLCS Relay Board channel B output voltage
+     - 0x28
+   * - RLCS_RELAY_OUTPUT_CURR_A
+     - RLCS Relay Board channel A output current
+     - 0x29
+   * - RLCS_RELAY_OUTPUT_CURR_B
+     - RLCS Relay Board channel B output current
+     - 0x2A
+   * - RLCS_RELAY_LIM_VOLT_A
+     - RLCS Relay Board limit switch A voltage
+     - 0x2B
+   * - RLCS_RELAY_LIM_VOLT_B
+     - RLCS Relay Board limit switch B voltage
+     - 0x2C
 
 state_est_id
 ============
