@@ -6,8 +6,8 @@ Remote Launch Control System (RLCS) V4
    :maxdepth: 2
    :caption: Components
 
-   towerside.rst
-   clientside.rst
+   towerside/index.rst
+   clientside/index.rst
 
 RLCS V4 is the 4th generation of Waterloo Rocketry's Remote Launch Control System.
 
