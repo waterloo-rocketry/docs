@@ -57,10 +57,10 @@ Board Type IDs
      - Payload Motor Control Board
      - 0x41
    * - RLCS_GLS
-     - :doc:`RLCS v4 Ground Launch Sequencer</electrical-gse/rlcs-v4/ground-launch-sequencer-board>`
+     - :doc:`RLCS v4 Ground Launch Sequencer</electrical-gse/rlcs-v4/gls-board/index>`
      - 0x80
    * - RLCS_RELAY
-     - :doc:`RLCS v4 Relay Board (Valve and Ignition)</electrical-gse/rlcs-v4/towerside-relay-board>`
+     - :doc:`RLCS v4 Relay Board (Valve and Ignition)</electrical-gse/rlcs-v4/relay-board/index>`
      - 0x81
    * - DAQ
      - :doc:`DAQ(Data Acquisition System) CAN Support</electrical-gse/daq/index>`

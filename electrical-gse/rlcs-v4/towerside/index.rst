@@ -6,10 +6,10 @@ RLCS V4 Towerside
    :maxdepth: 2
    :caption: Boards
 
-   ground-launch-sequencer-board.rst
-   towerside-relay-board.rst
+   ../gls-board/index.rst
+   ../relay-board/index.rst
 
-The towerside is the remote part of the RLCS system, It handles receiving commands from network and controls motorized valves/tank heating/ignition, and for rocket launch ops use case, communicate to electrical disconnect. The system has a single :doc:`Ground Launch Sequencer Board</electrical-gse/rlcs-v4/ground-launch-sequencer-board>` and multiple :doc:`Relay boards</electrical-gse/rlcs-v4/towerside-relay-board>`, which all the boards are connected through CAN, the ground launch sequencer board handles communication between ethernet and Relay Boards(via CAN), the Relay Boards controls power output based on received CAN command.
+The towerside is the remote part of the RLCS system, It handles receiving commands from network and controls motorized valves/tank heating/ignition, and for rocket launch ops use case, communicate to electrical disconnect. The system has a single :doc:`Ground Launch Sequencer Board</electrical-gse/rlcs-v4/gls-board/index>` and multiple :doc:`Relay boards</electrical-gse/rlcs-v4/relay-board/index>`, which all the boards are connected through CAN, the ground launch sequencer board handles communication between ethernet and Relay Boards(via CAN), the Relay Boards controls power output based on received CAN command.
 
 Refer to :doc:`RLCS v4</electrical-gse/rlcs-v4/index>` page for internal electrical connection diagram.
 

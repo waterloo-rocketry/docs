@@ -6,7 +6,7 @@ RLCS V4 Clientside
    :maxdepth: 2
    :caption: Boards
 
-   clientside-board.rst
+   ../clientside-board/index.rst
 
 .. image:: clientside-box.png
    :align: center
