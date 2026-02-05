@@ -6,11 +6,11 @@ Packet Format
 Message Packet Format Definition
 ********************************
 
-UNDEFINED (0x000)
+UNDEFINED (0x00)
 =================
 Undefined message, do not use
 
-GENERAL_BOARD_STATUS (0x001)
+GENERAL_BOARD_STATUS (0x01)
 ============================
 Board status broadcast
 
@@ -23,7 +23,7 @@ Board status broadcast
 | **GENERAL_ERROR_BITFIELD:** General error code bitfield, see `general_board_status`_
 | **BOARD_ERROR_BITFIELD:** Board specific error code bitfield, see `board_specific_status`_
 
-RESET_CMD (0x002)
+RESET_CMD (0x02)
 =================
 Command to reset boards
 
@@ -36,7 +36,7 @@ Command to reset boards
 | **BOARD_TYPE_ID:** Board Type ID of board to reset, set to 0 to reset all boards on bus
 | **BOARD_INST_ID:** Board Inst ID of board to reset, set to 0 to reset all board of specific type
 
-DEBUG_RAW (0x003)
+DEBUG_RAW (0x03)
 =================
 6-bytes of raw data
 
@@ -48,7 +48,7 @@ DEBUG_RAW (0x003)
 
 | **RAW_DATA:** Raw data, 6 bytes
 
-CONFIG_SET (0x004)
+CONFIG_SET (0x04)
 ==================
 Set board specific configuration
 
@@ -63,7 +63,7 @@ Set board specific configuration
 | **CONFIG_ID:** Configuration ID, Board Specific
 | **CONFIG_VALUE:** Configuration Value, Board and Config ID specific
 
-CONFIG_STATUS (0x005)
+CONFIG_STATUS (0x05)
 =====================
 Broadcast board specific configuration, for verify CONFIG_SET success
 
@@ -76,180 +76,103 @@ Broadcast board specific configuration, for verify CONFIG_SET success
 | **CONFIG_ID:** Configuration ID, Board Specific
 | **CONFIG_VALUE:** Configuration Value, Board and Config ID specific
 
-ACTUATOR_CMD (0x006)
+ACTUATOR_CMD (0x06)
 ====================
 Set actuator commanded state
 
-+--------+---------+-------------+--------------------+
-| Byte 0-1         | Byte 2      | Byte 3             |
-+========+=========+=============+====================+
-| 2 byte timestamp | ACTUATOR_ID | ACTUATOR_CMD_STATE |
-+--------+---------+-------------+--------------------+
++-------------+--------+---------+--------------------+
+| Metadata    | Byte 0-1         | Byte 2             |
++=============+========+=========+====================+
+| ACTUATOR_ID | 2 byte timestamp | ACTUATOR_CMD_STATE |
++-------------+--------+---------+--------------------+
 
 | **ACTUATOR_ID:** Acturator ID, see `actuator_id`_
 | **ACTUATOR_CMD_STATE:** Actuator Commanded State, see `actuator_state`_
 
-ACTUATOR_ANALOG_CMD (0x007)
-===========================
-Analog Actuator Command
-
-+--------+---------+-------------+---------------------------+
-| Byte 0-1         | Byte 2      | Byte 3-4                  |
-+========+=========+=============+===========================+
-| 2 byte timestamp | ACTUATOR_ID | ACTUATOR_ANALOG_CMD_STATE |
-+--------+---------+-------------+---------------------------+
-
-| **ACTUATOR_ID:** Acturator ID, see `actuator_id`_
-| **ACTUATOR_ANALOG_CMD_STATE:** Actuator Analog Commanded State (16 bit analog, Definition Board/Actuator specific)
-
-ACTUATOR_STATUS (0x008)
+ACTUATOR_STATUS (0x07)
 =======================
 Actuator Status Message
 
-+--------+---------+-------------+---------------------+--------------------+
-| Byte 0-1         | Byte 2      | Byte 3              | Byte 4             |
-+========+=========+=============+=====================+====================+
-| 2 byte timestamp | ACTUATOR_ID | ACTUATOR_CURR_STATE | ACTUATOR_CMD_STATE |
-+--------+---------+-------------+---------------------+--------------------+
++-------------+--------+---------+---------------------+--------------------+
+| Metadata    | Byte 0-1         | Byte 2              | Byte 3             |
++=============+========+=========+=====================+====================+
+| ACTUATOR_ID | 2 byte timestamp | ACTUATOR_CURR_STATE | ACTUATOR_CMD_STATE |
++-------------+--------+---------+---------------------+--------------------+
 
 | **ACTUATOR_ID:** Acturator ID, see `actuator_id`_
 | **ACTUATOR_CURR_STATE:** Actuator Current State, see `actuator_state`_
 | **ACTUATOR_CMD_STATE:** Actuator Commanded State, see `actuator_state`_
 
-ALT_ARM_CMD (0x009)
+ALT_ARM_CMD (0x08)
 ===================
 Command to arm altimeter
 
-+--------+---------+--------+---------------+
-| Byte 0-1         | Byte 2 | Byte 3        |
-+========+=========+========+===============+
-| 2 byte timestamp | ALT_ID | ALT_ARM_STATE |
-+--------+---------+--------+---------------+
++----------+--------+---------+---------------+
+| Metadata | Byte 0-1         | Byte 2        |
++==========+========+=========+===============+
+| ALT_ID   | 2 byte timestamp | ALT_ARM_STATE |
++----------+--------+---------+---------------+
 
 | **ALT_ID:** Altimeter ID, see `altimeter_id`_
 | **ALT_ARM_STATE:** Altimeter set arm state, see `alt_arm_state`_
 
-ALT_ARM_STATUS (0x00A)
+ALT_ARM_STATUS (0x09)
 ======================
 Altimeter Arm Status
 
-+--------+---------+--------+---------------+----------+----------+
-| Byte 0-1         | Byte 2 | Byte 3        | Byte 4-5 | Byte 6-7 |
-+========+=========+========+===============+==========+==========+
-| 2 byte timestamp | ALT_ID | ALT_ARM_STATE | DROGUE_V | MAIN_V   |
-+--------+---------+--------+---------------+----------+----------+
++----------+--------+---------+---------------+----------+----------+
+| Metadata | Byte 0-1         | Byte 2        | Byte 3-4 | Byte 5-6 |
++==========+========+=========+===============+==========+==========+
+| ALT_ID   | 2 byte timestamp | ALT_ARM_STATE | DROGUE_V | MAIN_V   |
++----------+--------+---------+---------------+----------+----------+
 
 | **ALT_ID:** Altimeter ID, see `altimeter_id`_
 | **ALT_ARM_STATE:** Altimeter current arm state, see `alt_arm_state`_
 | **DROGUE_V:** Drogue Pyro Voltage
 | **MAIN_V:** Main Pyro Voltage
 
-SENSOR_ALTITUDE (0x00B)
+SENSOR_ANALOG16 (0x0A)
 =======================
-Altimeter altitude sensor message(exclude GPS with have a specific message)
+16-bits analog sensor
 
-+--------+---------+----------+--------+
-| Byte 0-1         | Byte 2-5 | Byte 6 |
-+========+=========+==========+========+
-| 2 byte timestamp | ALT      | APOGEE |
-+--------+---------+----------+--------+
-
-| **ALT:** Altitude in ft
-| **APOGEE:** Apogee detection status, see `apogee_state`_
-
-SENSOR_IMU_X (0x00C)
-====================
-+--------+---------+--------+--------------+------------------+
-| Byte 0-1         | Byte 2 | Byte 3-4     | Byte 5-6         |
-+========+=========+========+==============+==================+
-| 2 byte timestamp | IMU_ID | LINEAR_ACCEL | ANGULAR_VELOCITY |
-+--------+---------+--------+--------------+------------------+
-
-| **IMU_ID:** IMU Unique Indentifier, see `imu_id`_
-| **LINEAR_ACCEL:** Linear Acceleration on X axis
-| **ANGULAR_VELOCITY:** Angular Velocity around X axis
-
-SENSOR_IMU_Y (0x00D)
-====================
-+--------+---------+--------+--------------+------------------+
-| Byte 0-1         | Byte 2 | Byte 3-4     | Byte 5-6         |
-+========+=========+========+==============+==================+
-| 2 byte timestamp | IMU_ID | LINEAR_ACCEL | ANGULAR_VELOCITY |
-+--------+---------+--------+--------------+------------------+
-
-| **IMU_ID:** IMU Unique Indentifier, see `imu_id`_
-| **LINEAR_ACCEL:** Linear Acceleration on Y axis
-| **ANGULAR_VELOCITY:** Angular Velocity around Y axis
-
-SENSOR_IMU_Z (0x00E)
-====================
-+--------+---------+--------+--------------+------------------+
-| Byte 0-1         | Byte 2 | Byte 3-4     | Byte 5-6         |
-+========+=========+========+==============+==================+
-| 2 byte timestamp | IMU_ID | LINEAR_ACCEL | ANGULAR_VELOCITY |
-+--------+---------+--------+--------------+------------------+
-
-| **IMU_ID:** IMU Unique Indentifier, see `imu_id`_
-| **LINEAR_ACCEL:** Linear Acceleration on Z axis
-| **ANGULAR_VELOCITY:** Angular Velocity around Z axis
-
-SENSOR_MAG_X (0x00F)
-====================
-+--------+---------+--------+----------+
-| Byte 0-1         | Byte 2 | Byte 3-4 |
-+========+=========+========+==========+
-| 2 byte timestamp | IMU_ID | MAG      |
-+--------+---------+--------+----------+
-
-| **IMU_ID:** IMU Unique Indentifier, see `imu_id`_
-| **MAG:** magnetometer X value
-
-SENSOR_MAG_Y (0x010)
-====================
-+--------+---------+--------+----------+
-| Byte 0-1         | Byte 2 | Byte 3-4 |
-+========+=========+========+==========+
-| 2 byte timestamp | IMU_ID | MAG      |
-+--------+---------+--------+----------+
-
-| **IMU_ID:** IMU Unique Indentifier, see `imu_id`_
-| **MAG:** magnetometer Y value
-
-SENSOR_MAG_Z (0x011)
-====================
-+--------+---------+--------+----------+
-| Byte 0-1         | Byte 2 | Byte 3-4 |
-+========+=========+========+==========+
-| 2 byte timestamp | IMU_ID | MAG      |
-+--------+---------+--------+----------+
-
-| **IMU_ID:** IMU Unique Indentifier, see `imu_id`_
-| **MAG:** magnetometer Z value
-
-SENSOR_BARO (0x012)
-===================
-+--------+---------+--------+----------+----------+
-| Byte 0-1         | Byte 2 | Byte 3-5 | Byte 6-7 |
-+========+=========+========+==========+==========+
-| 2 byte timestamp | IMU_ID | PRESSURE | TEMP     |
-+--------+---------+--------+----------+----------+
-
-| **IMU_ID:** IMU Unique Indentifier, see `imu_id`_
-| **PRESSURE:** barometer pressure reading, raw value
-| **TEMP:** barometer temperature reading, raw value
-
-SENSOR_ANALOG (0x013)
-=====================
-+--------+---------+-----------+----------+
-| Byte 0-1         | Byte 2    | Byte 3-4 |
-+========+=========+===========+==========+
-| 2 byte timestamp | SENSOR_ID | VALUE    |
-+--------+---------+-----------+----------+
++-----------+--------+---------+----------+
+| Metadata  | Byte 0-1         | Byte 2-3 |
++===========+========+=========+==========+
+| SENSOR_ID | 2 byte timestamp | VALUE    |
++-----------+--------+---------+----------+
 
 | **SENSOR_ID:** Sensor ID, see `analog_sensor_id`_
 | **VALUE:** Analog sensor value
 
-GPS_TIMESTAMP (0x014)
+SENSOR_ANALOG32 (0x0B)
+=======================
+32-bits analog sensor
+
++-----------+--------+---------+----------+
+| Metadata  | Byte 0-1         | Byte 2-5 |
++===========+========+=========+==========+
+| SENSOR_ID | 2 byte timestamp | VALUE    |
++-----------+--------+---------+----------+
+
+| **SENSOR_ID:** Sensor ID, see `analog_sensor_id`_
+| **VALUE:** Analog sensor value
+
+SENSOR_DEM_ANALOG16 (0x0C)
+===========================
+3-Dimensional 16-bit analog sensor value message
+
++---------------+--------+---------+----------+----------+----------+
+| Metadata      | Byte 0-1         | Byte 2-3 | Byte 4-5 | Byte 6-7 |
++===============+========+=========+==========+==========+==========+
+| DEM_SENSOR_ID | 2 byte timestamp | VALUE_X  | VALUE_Y  | VALUE_Z  |
++---------------+--------+---------+----------+----------+----------+
+
+| **DEM_SENSOR_ID:** 3-Dimensional sensor ID, see `dem_sensor_id`_
+| **VALUE_X:** Analog sensor value X
+| **VALUE_Y:** Analog sensor value Y
+| **VALUE_Z:** Analog sensor value Z
+
+GPS_TIMESTAMP (0x0D)
 =====================
 +--------+---------+-----------+-------------+-------------+--------------+
 | Byte 0-1         | Byte 2    | Byte 3      | Byte 4      | Byte 5       |
@@ -262,7 +185,7 @@ GPS_TIMESTAMP (0x014)
 | **UTC_SECONDS:** Seconds
 | **UTC_DSECONDS:** Decisecond
 
-GPS_LATITUDE (0x015)
+GPS_LATITUDE (0x0E)
 ====================
 +--------+---------+---------+---------+------------+--------+
 | Byte 0-1         | Byte 2  | Byte 3  | Byte 4-5   | Byte 6 |
@@ -275,7 +198,7 @@ GPS_LATITUDE (0x015)
 | **DMINUTES_H:** No description
 | **DIR_NS:** North/South
 
-GPS_LONGITUDE (0x016)
+GPS_LONGITUDE (0x0F)
 =====================
 +--------+---------+---------+---------+------------+--------+
 | Byte 0-1         | Byte 2  | Byte 3  | Byte 4-5   | Byte 6 |
@@ -288,7 +211,7 @@ GPS_LONGITUDE (0x016)
 | **DMINUTES_H:** No description
 | **DIR_EW:** East/West
 
-GPS_ALTITUDE (0x017)
+GPS_ALTITUDE (0x10)
 ====================
 +--------+---------+----------+--------+
 | Byte 0-1         | Byte 2-5 | Byte 6 |
@@ -299,7 +222,7 @@ GPS_ALTITUDE (0x017)
 | **ALT:** Altitude in ft
 | **DALT:** No description
 
-GPS_INFO (0x018)
+GPS_INFO (0x11)
 ================
 +--------+---------+---------+---------+
 | Byte 0-1         | Byte 2  | Byte 3  |
@@ -310,18 +233,7 @@ GPS_INFO (0x018)
 | **NUM_SAT:** Number of satellite
 | **QUALITY:** Quality
 
-STATE_EST_DATA (0x019)
-======================
-+--------+---------+--------------+----------+
-| Byte 0-1         | Byte 2       | Byte 3-6 |
-+========+=========+==============+==========+
-| 2 byte timestamp | STATE_EST_ID | DATA     |
-+--------+---------+--------------+----------+
-
-| **STATE_EST_ID:** State ID, see `state_est_id`_
-| **DATA:** State data (IEEE 754 floating point)
-
-STREAM_STATUS (0x01A)
+STREAM_STATUS (0x12)
 =====================
 +--------+---------+------------+----------+
 | Byte 0-1         | Byte 2-4   | Byte 5-7 |
@@ -332,30 +244,22 @@ STREAM_STATUS (0x01A)
 | **TOTAL_SIZE:** Total transfer size in bytes
 | **TX_SIZE:** Transfered size in bytes
 
-STREAM_DATA (0x01B)
+STREAM_DATA (0x13)
 ===================
-+--------+---------+--------+----------+
-| Byte 0-1         | Byte 2 | Byte 3-7 |
-+========+=========+========+==========+
-| 2 byte timestamp | SEQ_ID | DATA     |
-+--------+---------+--------+----------+
++----------+--------+---------+----------+
+| Metadata | Byte 0-1         | Byte 2-7 |
++==========+========+=========+==========+
+| SEQ_ID   | 2 byte timestamp | DATA     |
++----------+--------+---------+----------+
 
 | **SEQ_ID:** Sequence ID
 | **DATA:** Data payload
 
-STREAM_RETRY (0x01C)
+STREAM_RETRY (0x14)
 ====================
-+--------+---------+--------+
-| Byte 0-1         | Byte 2 |
-+========+=========+========+
-| 2 byte timestamp | SEQ_ID |
-+--------+---------+--------+
-
-| **SEQ_ID:** Sequence ID of data packet need to be resend
-
-LEDS_ON (0x01D)
+LEDS_ON (0x15)
 ===============
-LEDS_OFF (0x01E)
+LEDS_OFF (0x16)
 ================
 Enums Definition
 ****************
@@ -393,57 +297,45 @@ Actuator ID for Actuator Command and Status Messages
    * - 12V_RAIL_ROCKET
      - No Description
      - 0x06
-   * - 12V_RAIL_PAYLOAD
-     - No Description
-     - 0x07
    * - TELEMETRY
      - No Description
+     - 0x07
+   * - CAMERA_SIDE_LOOKING
+     - No Description
      - 0x08
-   * - CAMERA_CANARD_A
+   * - CAMERA_DOWN_LOOKING
      - No Description
      - 0x09
-   * - CAMERA_CANARD_B
-     - No Description
-     - 0x0A
    * - CAMERA_RECOVERY
      - No Description
-     - 0x0B
-   * - CAMERA_PAYLOAD
-     - No Description
-     - 0x0C
+     - 0x0A
    * - PROC_ESTIMATOR_INIT
      - Actuator command to start processor board state estimation
-     - 0x0D
+     - 0x0B
    * - SRAD_ALT_ESTIMATOR_INIT
      - Actuator command to start SRAD Altimeter state estimation
-     - 0x0E
+     - 0x0C
    * - SRAD_ALT_GPS_RESET
      - Actuator command to reset GPS Receiver on SRAD Altimeter
-     - 0x0F
-   * - CANARD_ENABLE
-     - Power on Canard motor control board servo
-     - 0x10
-   * - CANARD_ANGLE
-     - Canard Angle Command (from Processor board to Motor Control board)
-     - 0x11
+     - 0x0D
    * - CAMERA_CAPTURE
      - No Description
-     - 0x12
+     - 0x0E
    * - PAYLOAD_LOGGING_ENABLE
      - Payload Sensor Board Logging Enable Control
-     - 0x13
+     - 0x0F
    * - THESEUS_ACTUATOR_1
      - Theseus board actuator channel 1
-     - 0x14
+     - 0x10
    * - THESEUS_ACTUATOR_2
      - Theseus board actuator channel 2
-     - 0x15
+     - 0x11
    * - RLCS_RELAY_POWER
      - RLCS Relay Board Power Relay
-     - 0x16
+     - 0x12
    * - RLCS_RELAY_SELECT
      - RLCS Relay Board Select Relay(Limit switch state feedback)
-     - 0x17
+     - 0x13
 
 actuator_state
 ==============
@@ -482,21 +374,15 @@ Altimeter ID for uniquely indentify each altimeter
    * - Enum Name
      - Description
      - ID
-   * - ROCKET_RAVEN
-     - Raven4 Altimeter on Rocket (COTS)
+   * - RAVEN
+     - Raven4 Altimeter
      - 0x00
-   * - ROCKET_STRATOLOGGER
-     - StratoLoggerCF Altimeter on Rocket (COTS)
+   * - STRATOLOGGER
+     - StratoLoggerCF
      - 0x01
-   * - ROCKET_SRAD
-     - SRAD Altimeter on Rocket
+   * - SRAD
+     - SRAD Altimeter
      - 0x02
-   * - PAYLOAD_RAVEN
-     - Raven4 Altimeter on Payload (COTS)
-     - 0x03
-   * - PAYLOAD_STRATOLOGGER
-     - StratoLoggerCF Altimeter on Payload (COTS)
-     - 0x04
 
 alt_arm_state
 =============
@@ -516,31 +402,6 @@ Altimiter Arm State
    * - ARMED
      - Armed
      - 0x01
-
-imu_id
-======
-
-IMU Unique Indentifier
-
-.. list-table:: imu_id Enum Values
-   :widths: 25 60 15
-   :header-rows: 1
-
-   * - Enum Name
-     - Description
-     - ID
-   * - PROC_ALTIMU10
-     - Polulo AltIMU-10 Connected to Processor Board
-     - 0x00
-   * - PROC_MTI630
-     - Movella MTI-630 Connected to Processor Board
-     - 0x01
-   * - PROC_LSM6DSO32
-     - ST LSM6DSO32 Soldered on Processor Board
-     - 0x02
-   * - SRAD_ALT_ALTIMU10
-     - Polulo AltIMU-10 Connected to SRAD Altimeter
-     - 0x03
 
 analog_sensor_id
 ================
@@ -578,191 +439,211 @@ Sensor ID for Sensor Messages
    * - BATT_CURR
      - Battery Current in mA
      - 0x07
-   * - MOTOR_CURR
-     - Motor current in mA
-     - 0x08
    * - RADIO_CURR
      - Radio current in mA
-     - 0x09
+     - 0x08
    * - GPS_CURR
      - GPS Receiver current in mA
-     - 0x0A
+     - 0x09
    * - LOCAL_CURR
      - Local voltage rail (e.g. 3.3V) current in mA
-     - 0x0B
+     - 0x0A
    * - PT_CHANNEL_1
      - Pressure Transducer Channel 1, J3 on Injector Sensor Hub
-     - 0x0C
+     - 0x0B
    * - PT_CHANNEL_2
      - Pressure Transducer Channel 2, J4 on Injector Sensor Hub
-     - 0x0D
+     - 0x0C
    * - PT_CHANNEL_3
      - Pressure Transducer Channel 3, J6 on Injector Sensor Hub
-     - 0x0E
+     - 0x0D
    * - PT_CHANNEL_4
      - Pressure Transducer Channel 4, J8 on Injector Sensor Hub
-     - 0x0F
+     - 0x0E
    * - PT_CHANNEL_5
      - Pressure Transducer Channel 5, J10 on Injector Sensor Hub
-     - 0x10
+     - 0x0F
    * - HALL_CHANNEL_1
      - Hall-Effect Sensor Channel 1, J7 on Injector Sensor Hub
-     - 0x11
+     - 0x10
    * - HALL_CHANNEL_2
      - Hall-Effect Sensor Channel 2, J5 on Injector Sensor Hub
-     - 0x12
+     - 0x11
    * - HALL_CHANNEL_3
      - Hall-Effect Sensor Channel 3, J9 on Injector Sensor Hub
-     - 0x13
-   * - BARO_PRESSURE
-     - Barometer pressure measurement
-     - 0x14
-   * - BARO_TEMP
-     - Barometer temperature measurement
-     - 0x15
+     - 0x12
    * - RA_BATT_VOLT_1
      - No Description
-     - 0x16
+     - 0x13
    * - RA_BATT_VOLT_2
      - No Description
-     - 0x17
+     - 0x14
    * - RA_BATT_CURR_1
      - No Description
-     - 0x18
+     - 0x15
    * - RA_BATT_CURR_2
      - No Description
-     - 0x19
+     - 0x16
    * - RA_MAG_VOLT_1
      - No Description
-     - 0x1A
+     - 0x17
    * - RA_MAG_VOLT_2
      - No Description
-     - 0x1B
+     - 0x18
    * - FPS
      - Camera framerate
-     - 0x1C
-   * - CANARD_ENCODER_1
-     - No Description
-     - 0x1D
-   * - CANARD_ENCODER_2
-     - No Description
-     - 0x1E
-   * - PROC_FLIGHT_PHASE_STATUS
-     - No Description
-     - 0x1F
+     - 0x19
    * - PAYLOAD_LIM_1
      - Payload Motor Board Limit Switch 1
-     - 0x20
+     - 0x1A
    * - PAYLOAD_LIM_2
      - Payload Motor Board Limit Switch 2
-     - 0x21
+     - 0x1B
    * - PAYLOAD_SERVO_DIRECTION
      - Payload Servo Direction
-     - 0x22
+     - 0x1C
    * - PAYLOAD_INFRARED
      - Payload Infrared Sensor Reading
-     - 0x23
+     - 0x1D
    * - THESEUS_TEMP_1
      - Theseus board temperature channel 1
-     - 0x24
+     - 0x1E
    * - THESEUS_TEMP_2
      - Theseus board temperature channel 2
-     - 0x25
+     - 0x1F
    * - THESEUS_TEMP_3
      - Theseus board temperature channel 3
-     - 0x26
+     - 0x20
    * - RLCS_RELAY_OUTPUT_VOLT_A
      - RLCS Relay Board channel A output voltage
-     - 0x27
+     - 0x21
    * - RLCS_RELAY_OUTPUT_VOLT_B
      - RLCS Relay Board channel B output voltage
-     - 0x28
+     - 0x22
    * - RLCS_RELAY_OUTPUT_CURR_A
      - RLCS Relay Board channel A output current
-     - 0x29
+     - 0x23
    * - RLCS_RELAY_OUTPUT_CURR_B
      - RLCS Relay Board channel B output current
-     - 0x2A
+     - 0x24
    * - RLCS_RELAY_LIM_VOLT_A
      - RLCS Relay Board limit switch A voltage
-     - 0x2B
+     - 0x25
    * - RLCS_RELAY_LIM_VOLT_B
      - RLCS Relay Board limit switch B voltage
+     - 0x26
+   * - LOG_WRITTEN_SIZE
+     - Number of bytes written to log file(reset to 0 when a new file is created)
+     - 0x27
+   * - SD_LOG_FILE_NAME
+     - SD Card log file name(the number part only)
+     - 0x28
+   * - SD_USED
+     - SD Card used space size, in MiB
+     - 0x29
+   * - SD_FREE
+     - SD Card free space size, in MiB
+     - 0x2A
+   * - FLASH_LOG_FILE_NAME
+     - Flash log file name(the number part only)
+     - 0x2B
+   * - FLASH_USED
+     - Flash used space size, in MiB
      - 0x2C
+   * - FLASH_FREE
+     - FLash free space size, in MiB
+     - 0x2D
+   * - CANARD_CTRL_CMD_ANGLE
+     - No Description
+     - 0x2E
+   * - CANARD_CTRL_COEFF_LIFT
+     - No Description
+     - 0x2F
+   * - CANARD_MS5611_BARO
+     - No Description
+     - 0x30
+   * - CANARD_MS5611_TEMP
+     - No Description
+     - 0x31
+   * - CANARD_MTI630_BARO_0
+     - No Description
+     - 0x32
+   * - CANARD_MTI630_BARO_1
+     - No Description
+     - 0x33
+   * - CANARD_MTI630_EST_ALT
+     - No Description
+     - 0x34
+   * - CANARD_ADXRS649_GYRO
+     - No Description
+     - 0x35
+   * - CANARD_SERVO_ANGLE
+     - No Description
+     - 0x36
+   * - CANARD_SERVO_CURR
+     - No Description
+     - 0x37
+   * - CANARD_SERVO_TEMP
+     - No Description
+     - 0x38
 
-state_est_id
-============
+dem_sensor_id
+=============
 
-State Estimation data field indentifier
+3-Dimensional SENSOR_ID
 
-.. list-table:: state_est_id Enum Values
+.. list-table:: dem_sensor_id Enum Values
    :widths: 25 60 15
    :header-rows: 1
 
    * - Enum Name
      - Description
      - ID
-   * - ATT_Q0
-     - No Description
+   * - CANARD_NAV_ORIENTATION_QUAT_QX_QY_QZ
+     - Canard Navigation Orientation QX, QY, QZ
      - 0x00
-   * - ATT_Q1
-     - No Description
+   * - CANARD_NAV_ORIENTATION_QUAT_QW_ALT_VARNORM
+     - Canard Navigation Orientation QW, Altitude, Variance Norm
      - 0x01
-   * - ATT_Q2
+   * - CANARD_NAV_ANGLE_VEL
      - No Description
      - 0x02
-   * - ATT_Q3
+   * - CANARD_NAV_VEL
      - No Description
      - 0x03
-   * - RATE_WX
+   * - CANARD_LSM6DSV32X_ACCEL
      - No Description
      - 0x04
-   * - RATE_WY
+   * - CANARD_LSM6DSV32X_GYRO
      - No Description
      - 0x05
-   * - RATE_WZ
+   * - CANARD_LSM303AGR_ACCEL
      - No Description
      - 0x06
-   * - VEL_VX
+   * - CANARD_LSM303AGR_MAG
      - No Description
      - 0x07
-   * - VEL_VY
+   * - CANARD_MTI630_ACCEL
      - No Description
      - 0x08
-   * - VEL_VZ
+   * - CANARD_MTI630_GYRO
      - No Description
      - 0x09
-   * - ALT
+   * - CANARD_MTI630_MAG
      - No Description
      - 0x0A
-   * - COEFF_CL
+   * - CANARD_MTI630_EST_ORIENTATION
      - No Description
      - 0x0B
-   * - CANARD_ANGLE
+   * - CANARD_MTI630_EST_ANGLE_VEL
      - No Description
      - 0x0C
-
-apogee_state
-============
-
-Apogee detection state
-
-.. list-table:: apogee_state Enum Values
-   :widths: 25 60 15
-   :header-rows: 1
-
-   * - Enum Name
-     - Description
-     - ID
-   * - UNKNOWN
+   * - CANARD_MTI630_EST_VEL
      - No Description
-     - 0x00
-   * - NOT_REACHED
+     - 0x0D
+   * - CANARD_ADXL380_ACCEL
      - No Description
-     - 0x01
-   * - REACHED
-     - No Description
-     - 0x02
+     - 0x0E
 
 Bitfields Definition
 *********************
