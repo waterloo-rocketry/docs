@@ -309,33 +309,36 @@ Actuator ID for Actuator Command and Status Messages
    * - CAMERA_RECOVERY
      - No Description
      - 0x0A
-   * - PROC_ESTIMATOR_INIT
-     - Actuator command to start processor board state estimation
+   * - CANARD_PAD_FILTER
+     - Switch Canard to Pad Filter when commanded ACT_STATE_ON
      - 0x0B
+   * - CANARD_LOW_POWER_MODE
+     - Canard Low-Power Mode (In Low-Power mode when ACT_STATE_ON, vice versa)
+     - 0x0C
    * - SRAD_ALT_ESTIMATOR_INIT
      - Actuator command to start SRAD Altimeter state estimation
-     - 0x0C
+     - 0x0D
    * - SRAD_ALT_GPS_RESET
      - Actuator command to reset GPS Receiver on SRAD Altimeter
-     - 0x0D
+     - 0x0E
    * - CAMERA_CAPTURE
      - No Description
-     - 0x0E
+     - 0x0F
    * - PAYLOAD_LOGGING_ENABLE
      - Payload Sensor Board Logging Enable Control
-     - 0x0F
+     - 0x10
    * - THESEUS_ACTUATOR_1
      - Theseus board actuator channel 1
-     - 0x10
+     - 0x11
    * - THESEUS_ACTUATOR_2
      - Theseus board actuator channel 2
-     - 0x11
+     - 0x12
    * - RLCS_RELAY_POWER
      - RLCS Relay Board Power Relay
-     - 0x12
+     - 0x13
    * - RLCS_RELAY_SELECT
      - RLCS Relay Board Select Relay(Limit switch state feedback)
-     - 0x13
+     - 0x14
 
 actuator_state
 ==============
@@ -554,37 +557,37 @@ Sensor ID for Sensor Messages
      - FLash free space size, in MiB
      - 0x2D
    * - CANARD_CTRL_CMD_ANGLE
-     - No Description
+     - Canard Controller Commanded Angle
      - 0x2E
    * - CANARD_CTRL_COEFF_LIFT
-     - No Description
+     - Canard Controller Coefficient of Lift
      - 0x2F
    * - CANARD_MS5611_BARO
-     - No Description
+     - Canard MS5611 Barometer pressure reading
      - 0x30
    * - CANARD_MS5611_TEMP
-     - No Description
+     - Canard MS5611 Barometer temperature reading
      - 0x31
    * - CANARD_MTI630_BARO_0
-     - No Description
+     - Canard MTI-630 Movella barometer reading 0
      - 0x32
    * - CANARD_MTI630_BARO_1
-     - No Description
+     - Canard MTI-630 Movella barometer reading 1
      - 0x33
    * - CANARD_MTI630_EST_ALT
-     - No Description
+     - Canard MTI-630 Movella Estimation altitude
      - 0x34
    * - CANARD_ADXRS649_GYRO
-     - No Description
+     - Canard ADXRS649 1-Axis Gyroscope angular velocity reading
      - 0x35
    * - CANARD_SERVO_ANGLE
-     - No Description
+     - Canard Servo encoder angle reading
      - 0x36
    * - CANARD_SERVO_CURR
-     - No Description
+     - Canard Servo current reading (in mA)
      - 0x37
    * - CANARD_SERVO_TEMP
-     - No Description
+     - Canard Servo temperature reading (in Celcius)
      - 0x38
 
 dem_sensor_id
@@ -606,43 +609,43 @@ dem_sensor_id
      - Canard Navigation Orientation QW, Altitude, Variance Norm
      - 0x01
    * - CANARD_NAV_ANGLE_VEL
-     - No Description
+     - Canard Navigation Angular Velocity
      - 0x02
    * - CANARD_NAV_VEL
-     - No Description
+     - Canard Navigation Velocity
      - 0x03
    * - CANARD_LSM6DSV32X_ACCEL
-     - No Description
+     - Canard LSM6DSV32X 32G IMU Acceleration
      - 0x04
    * - CANARD_LSM6DSV32X_GYRO
-     - No Description
+     - Canard LSM6DSV32X 32G IMU Angular Velocity
      - 0x05
    * - CANARD_LSM303AGR_ACCEL
-     - No Description
+     - Canard LSM303AGR Compass Acceleration
      - 0x06
    * - CANARD_LSM303AGR_MAG
-     - No Description
+     - Canard LSM303AGR Magnetometer Reading
      - 0x07
    * - CANARD_MTI630_ACCEL
-     - No Description
+     - Canard MTI-630 Movella Acceleration
      - 0x08
    * - CANARD_MTI630_GYRO
-     - No Description
+     - Canard MTI-630 Movella Angular Velocity
      - 0x09
    * - CANARD_MTI630_MAG
-     - No Description
+     - Canard MTI-630 Movella Magnetometer Reading
      - 0x0A
    * - CANARD_MTI630_EST_ORIENTATION
-     - No Description
+     - Canard MTI-630 Movella Estimation Orientation (Euler)
      - 0x0B
    * - CANARD_MTI630_EST_ANGLE_VEL
-     - No Description
+     - Canard MTI-630 Movella Estimation Angular Velocity
      - 0x0C
    * - CANARD_MTI630_EST_VEL
-     - No Description
+     - Canard MTI-630 Movella Estimation Velocity
      - 0x0D
    * - CANARD_ADXL380_ACCEL
-     - No Description
+     - Canard ADXL380 Accelerometer Acceleration
      - 0x0E
 
 Bitfields Definition
