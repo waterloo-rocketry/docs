@@ -63,7 +63,7 @@ extensions = [
 
 breathe_projects_source = {
     "canlib" : ( "firmware-library/canlib/canlib", ["can.h", "message_types.h", "message/msg_actuator.h", "message/msg_common.h", "message/msg_general.h", "message/msg_gps.h", "message/msg_recovery.h", "message/msg_sensor.h", "message/msg_stream.h", "pic18f26k83/pic18f26k83_can.h", "util/can_rcv_buffer.h", "util/can_tx_buffer.h", "util/safe_ring_buffer.h", "util/timing_util.h"] ),
-    "rocketlib" : ( "firmware-library/rocketlib/rocketlib", ["include/common.h", "include/crc8.h", "include/electrical.h", "include/i2c.h", "include/low_pass_filter.h", "include/pwm.h", "include/timer.h"])
+    "rocketlib" : ( "firmware-library/rocketlib/rocketlib", ["include/common.h", "include/crc8.h", "include/electrical.h", "include/i2c.h", "include/littlefs_sd_shim.h ", "include/low_pass_filter.h", "include/mbr.h", "include/pwm.h", "include/timer.h"])
 }
 
 breathe_show_include = False
