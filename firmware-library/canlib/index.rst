@@ -7,6 +7,16 @@ canlib
 
    reference.rst
 
+Introduction
+============
+
+Canlib is Waterloo Rocketry's firmware library for CAN communication.
+
+Links
+=====
+
+* `GitHub Repository <https://github.com/waterloo-rocketry/canlib>`_
+
 Code Coverage Report
 ====================
 
