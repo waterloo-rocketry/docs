@@ -35,7 +35,8 @@ html_theme_options = {
     'sticky_navigation': True,
     'navigation_depth': 4,
     'includehidden': True,
-    'titles_only': False
+    'titles_only': False,
+    'body_max_width': 'none'
 }
 
 html_context = {
@@ -44,6 +45,10 @@ html_context = {
   'github_repo': 'docs',
   'github_version': 'main/',
 }
+
+html_css_files = [
+  'custom.css'
+]
 
 # Latex Configuration
 latex_elements = {
