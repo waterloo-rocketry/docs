@@ -6,6 +6,7 @@ canlib
    :maxdepth: 1
 
    reference.rst
+   development.rst
 
 Introduction
 ============
@@ -16,10 +17,3 @@ Links
 =====
 
 * `GitHub Repository <https://github.com/waterloo-rocketry/canlib>`_
-
-Code Coverage Report
-====================
-
-.. raw:: html
-
-   <iframe src="https://csclub.uwaterloo.ca/~j9xu/canlib-coverage-report/" height="800px" width="100%"/>
