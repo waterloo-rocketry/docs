@@ -53,6 +53,8 @@ Waterloo Rocketry Documentation Site
    :caption: Controls
 
    controls/canards-firmware/index.rst
+   controls/canards-electrical/index.rst
+   controls/canards-mechanical/index.rst
 
 .. toctree::
    :maxdepth: 2

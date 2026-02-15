@@ -27,7 +27,7 @@ Board Type IDs
      - :doc:`CAN Logger Board</avionics/camera-logger-board/index>`
      - 0x04
    * - CANARD
-     - :doc:`Canard Board</controls/processor-board/index>`
+     - :doc:`Canard Board</controls/canards-electrical/index>`
      - 0x05
    * - TELEMETRY
      - :doc:`Live Telemetry Board</avionics/live-telemetry/index>`
