@@ -39,16 +39,6 @@ Goals
 2. **Improve development processes** (clearer requirements and FMEA usage, easier unit testing, etc.).
 3. **Improve modules** from last year where possible (e.g., timing optimization).
 
-Requirements
-============
-
-We loosely follow a DO-178C–style hierarchy. Team-wide requirements inform
-`2026 Rocket Requirements <https://docs.google.com/spreadsheets/d/1t7zfE7QHRDbFQc56IHl4r6ZE58SATR9Tcd604797iHM/edit?usp=sharing>`_,
-which in turn derive the
-`2026 Controls Requirements <https://docs.google.com/spreadsheets/d/1JLKeAksTf0xKj0QCYFTEEwu3voSvOGnbUyV6GcdOs_8/edit#gid=0>`_
-and the
-`2026 Controls Firmware Requirements <https://docs.google.com/spreadsheets/d/1B3ySHuVDmd2GWt3BVV5CLqYwFB5VyxrsIBiqm5Tm4xc/edit#gid=1762808058>`_.
-
 Scope
 =====
 
