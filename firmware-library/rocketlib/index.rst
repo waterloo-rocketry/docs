@@ -6,6 +6,7 @@ rocketlib
    :maxdepth: 1
 
    reference.rst
+   development.rst
 
 Introduction
 ============
@@ -16,10 +17,3 @@ Links
 =====
 
 * `GitHub Repository <https://github.com/waterloo-rocketry/rocketlib>`_
-
-Code Coverage Report
-====================
-
-.. raw:: html
-
-   <iframe src="https://csclub.uwaterloo.ca/~j9xu/rocketlib-coverage-report/" height="800px" width="100%"/>
