@@ -1,0 +1,18 @@
+AK45-10 (Servo)
+===============
+
+Assignee: Michael
+
+- Low-level driver for the Cubemars AK45-10.
+- Likely use *position loop* or *position-velocity loop* mode.
+- Position is 32-bit integer; speed and acceleration are 16-bit integers.
+
+Links
+-----
+- `Upper Computer & datasheet downloads <https://www.cubemars.com/technical-support-and-software-download.html>`_
+
+Notes
+-----
+- Run identification & encoder verification in the vendor tool (no load), then write parameters.
+- Driver LEDs: Blue=power, Green=operation, Red=fault. On power, green & red briefly light (~2 s).
+- Example error codes: 1=over-temp, 2=overcurrent, 3=overvoltage, 5=encoder fault.
