@@ -5,7 +5,6 @@ canlib
 .. toctree::
    :maxdepth: 1
 
-   reference.rst
    development.rst
    ref-driver.rst
    ref-serialize.rst

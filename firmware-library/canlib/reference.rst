@@ -1,3 +1,0 @@
-canlib function reference
-=========================
-
