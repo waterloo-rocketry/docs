@@ -7,6 +7,8 @@ canlib
 
    reference.rst
    development.rst
+   ref-driver.rst
+   ref-serialize.rst
 
 Introduction
 ============
