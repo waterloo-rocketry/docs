@@ -6,8 +6,10 @@ canlib
    :maxdepth: 1
 
    dev-dashboard.rst
-   ref-driver.rst
+   ref-common.rst
    ref-serialize.rst
+   ref-util.rst
+   ref-driver.rst
 
 Introduction
 ============
