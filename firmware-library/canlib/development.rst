@@ -17,4 +17,12 @@ Code Coverage Report
 
 .. raw:: html
 
-   <iframe src="https://csclub.uwaterloo.ca/~j9xu/canlib-coverage-report/" height="800px" width="100%"/>
+   <iframe src="https://csclub.uwaterloo.ca/~j9xu/canlib-coverage-report/" height="600px" width="100%" loading="lazy"></iframe>
+
+
+Nightly Regression Report
+=========================
+
+.. raw:: html
+
+   <iframe src="https://csclub.uwaterloo.ca/~j9xu/canlib-nightly.html" height="600px" width="100%" loading="lazy"></iframe>
