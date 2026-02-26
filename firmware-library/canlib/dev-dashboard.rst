@@ -1,6 +1,6 @@
-******************
-Canlib Development
-******************
+****************************
+Canlib Development Dashboard
+****************************
 
 Lines of Code Statistics
 ========================
