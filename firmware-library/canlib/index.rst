@@ -5,15 +5,57 @@ canlib
 .. toctree::
    :maxdepth: 1
 
-   reference.rst
-   development.rst
+   dev-dashboard.rst
+   ref-common.rst
+   ref-serialize.rst
+   ref-util.rst
+   ref-driver.rst
+   howto-configure-stm32-can.rst
 
 Introduction
 ============
 
 Canlib is Waterloo Rocketry's firmware library for CAN communication.
 
+Roles and Responsibilities
+==========================
+
+.. list-table:: Roles and Responsibilities
+   :header-rows: 1
+   :widths: 30 40 30
+
+   * - **Role**
+     - **Responsibilities**
+     - **Names**
+   * - Message Serialization Function Developer
+     - Writes Code
+     - `Jason Xu <https://github.com/JasonBrave>`_
+   * - PIC18 CAN Controller Driver Developer
+     -
+	   - Writes Code
+	   - Test on physical hardware
+     - `Jason Xu <https://github.com/JasonBrave>`_
+   * - STM32 CAN Controller Driver Developer
+     -
+	   - Writes Code
+	   - Test on physical hardware
+     - `Jason Xu <https://github.com/JasonBrave>`_
+   * - Utility Function Developer
+     - Writes Code
+     - `Jason Xu <https://github.com/JasonBrave>`_
+   * - Message + Utility Function Tester
+     - Writes Unit Test
+     - `Jason Xu <https://github.com/JasonBrave>`_
+
+Release Schedule
+================
+
+A major release is released each time CAN packet format is updated, and a minor release is for bugfix only with compatiable function interface with last major release.
+
+
 Links
 =====
 
+* :doc:`CAN Packet Format</avionics/rocketcan/packet-format>`
+* :doc:`How to write and run unit test</firmware-library/rocketlib/howto-unit-test>`
 * `GitHub Repository <https://github.com/waterloo-rocketry/canlib>`_
