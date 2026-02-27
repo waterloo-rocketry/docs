@@ -7,6 +7,8 @@ rocketlib
 
    dev-dashboard.rst
    reference.rst
+   littlefs.rst
+   flash.rst
    howto-littlefs.rst
    howto-unit-test.rst
 
