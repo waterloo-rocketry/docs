@@ -10,6 +10,7 @@ canlib
    ref-serialize.rst
    ref-util.rst
    ref-driver.rst
+   howto-configure-stm32-can.rst
 
 Introduction
 ============
@@ -54,4 +55,5 @@ Links
 =====
 
 * :doc:`CAN Packet Format</avionics/rocketcan/packet-format>`
+* :doc:`How to write and run unit test</firmware-library/rocketlib/howto-unit-test>`
 * `GitHub Repository <https://github.com/waterloo-rocketry/canlib>`_

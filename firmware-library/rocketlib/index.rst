@@ -7,6 +7,8 @@ rocketlib
 
    dev-dashboard.rst
    reference.rst
+   howto-littlefs.rst
+   howto-unit-test.rst
 
 Introduction
 ============
