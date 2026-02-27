@@ -28,22 +28,24 @@ Roles and Responsibilities
      - **Responsibilities**
      - **Names**
    * - Message Serialization Function Developer
-     - - Writes Code
-     - - `Jason Xu <https://github.com/JasonBrave>`_
+     - Writes Code
+     - `Jason Xu <https://github.com/JasonBrave>`_
    * - PIC18 CAN Controller Driver Developer
-     - - Writes Code
-	 - - Test on physical hardware
-     - - `Jason Xu <https://github.com/JasonBrave>`_
+     -
+	   - Writes Code
+	   - Test on physical hardware
+     - `Jason Xu <https://github.com/JasonBrave>`_
    * - STM32 CAN Controller Driver Developer
-     - - Writes Code
-	 - - Test on physical hardware
-     - - `Jason Xu <https://github.com/JasonBrave>`_
+     -
+	   - Writes Code
+	   - Test on physical hardware
+     - `Jason Xu <https://github.com/JasonBrave>`_
    * - Utility Function Developer
-     - - Writes Code
-     - - `Jason Xu <https://github.com/JasonBrave>`_
+     - Writes Code
+     - `Jason Xu <https://github.com/JasonBrave>`_
    * - Message + Utility Function Tester
-     - - Writes Unit Test
-     - - `Jason Xu <https://github.com/JasonBrave>`_
+     - Writes Unit Test
+     - `Jason Xu <https://github.com/JasonBrave>`_
 
 Release Schedule
 ================
