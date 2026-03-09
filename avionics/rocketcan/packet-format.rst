@@ -14,14 +14,13 @@ GENERAL_BOARD_STATUS (0x01)
 ============================
 Board status broadcast
 
-+--------+---------+------------------------+----------------------+
-| Byte 0-1         | Byte 2-5               | Byte 6-7             |
-+========+=========+========================+======================+
-| 2 byte timestamp | GENERAL_ERROR_BITFIELD | BOARD_ERROR_BITFIELD |
-+--------+---------+------------------------+----------------------+
++--------+---------+----------------------+
+| Byte 0-1         | Byte 2-5             |
++========+=========+======================+
+| 2 byte timestamp | BOARD_ERROR_BITFIELD |
++--------+---------+----------------------+
 
-| **GENERAL_ERROR_BITFIELD:** General error code bitfield, see `general_board_status`_
-| **BOARD_ERROR_BITFIELD:** Board specific error code bitfield, see `board_specific_status`_
+| **BOARD_ERROR_BITFIELD:** Board error code bitfield, see `board_error_bitfield`_
 
 RESET_CMD (0x02)
 =================
@@ -93,15 +92,15 @@ ACTUATOR_STATUS (0x07)
 =======================
 Actuator Status Message
 
-+-------------+--------+---------+---------------------+--------------------+
-| Metadata    | Byte 0-1         | Byte 2              | Byte 3             |
-+=============+========+=========+=====================+====================+
-| ACTUATOR_ID | 2 byte timestamp | ACTUATOR_CURR_STATE | ACTUATOR_CMD_STATE |
-+-------------+--------+---------+---------------------+--------------------+
++-------------+--------+---------+--------------------+---------------------+
+| Metadata    | Byte 0-1         | Byte 2             | Byte 3              |
++=============+========+=========+====================+=====================+
+| ACTUATOR_ID | 2 byte timestamp | ACTUATOR_CMD_STATE | ACTUATOR_CURR_STATE |
++-------------+--------+---------+--------------------+---------------------+
 
 | **ACTUATOR_ID:** Acturator ID, see `actuator_id`_
-| **ACTUATOR_CURR_STATE:** Actuator Current State, see `actuator_state`_
 | **ACTUATOR_CMD_STATE:** Actuator Commanded State, see `actuator_state`_
+| **ACTUATOR_CURR_STATE:** Actuator Current State, see `actuator_state`_
 
 ALT_ARM_CMD (0x08)
 ===================
@@ -157,8 +156,22 @@ SENSOR_ANALOG32 (0x0B)
 | **SENSOR_ID:** Sensor ID, see `analog_sensor_id`_
 | **VALUE:** Analog sensor value
 
-SENSOR_DEM_ANALOG16 (0x0C)
-===========================
+SENSOR_2D_ANALOG24 (0x0C)
+==========================
+2-Dimensional 24-bit analog sensor value message
+
++---------------+--------+---------+----------+----------+
+| Metadata      | Byte 0-1         | Byte 2-4 | Byte 5-7 |
++===============+========+=========+==========+==========+
+| DEM_SENSOR_ID | 2 byte timestamp | VALUE_X  | VALUE_Y  |
++---------------+--------+---------+----------+----------+
+
+| **DEM_SENSOR_ID:** Dimensional sensor ID, see `dem_sensor_id`_
+| **VALUE_X:** Analog sensor value X
+| **VALUE_Y:** Analog sensor value Y
+
+SENSOR_3D_ANALOG16 (0x0D)
+==========================
 3-Dimensional 16-bit analog sensor value message
 
 +---------------+--------+---------+----------+----------+----------+
@@ -167,12 +180,12 @@ SENSOR_DEM_ANALOG16 (0x0C)
 | DEM_SENSOR_ID | 2 byte timestamp | VALUE_X  | VALUE_Y  | VALUE_Z  |
 +---------------+--------+---------+----------+----------+----------+
 
-| **DEM_SENSOR_ID:** 3-Dimensional sensor ID, see `dem_sensor_id`_
+| **DEM_SENSOR_ID:** Dimensional sensor ID, see `dem_sensor_id`_
 | **VALUE_X:** Analog sensor value X
 | **VALUE_Y:** Analog sensor value Y
 | **VALUE_Z:** Analog sensor value Z
 
-GPS_TIMESTAMP (0x0D)
+GPS_TIMESTAMP (0x0E)
 =====================
 +--------+---------+-----------+-------------+-------------+--------------+
 | Byte 0-1         | Byte 2    | Byte 3      | Byte 4      | Byte 5       |
@@ -185,7 +198,7 @@ GPS_TIMESTAMP (0x0D)
 | **UTC_SECONDS:** Seconds
 | **UTC_DSECONDS:** Decisecond
 
-GPS_LATITUDE (0x0E)
+GPS_LATITUDE (0x0F)
 ====================
 +--------+---------+---------+---------+------------+--------+
 | Byte 0-1         | Byte 2  | Byte 3  | Byte 4-5   | Byte 6 |
@@ -198,7 +211,7 @@ GPS_LATITUDE (0x0E)
 | **DMINUTES_H:** No description
 | **DIR_NS:** North/South
 
-GPS_LONGITUDE (0x0F)
+GPS_LONGITUDE (0x10)
 =====================
 +--------+---------+---------+---------+------------+--------+
 | Byte 0-1         | Byte 2  | Byte 3  | Byte 4-5   | Byte 6 |
@@ -211,7 +224,7 @@ GPS_LONGITUDE (0x0F)
 | **DMINUTES_H:** No description
 | **DIR_EW:** East/West
 
-GPS_ALTITUDE (0x10)
+GPS_ALTITUDE (0x11)
 ====================
 +--------+---------+----------+--------+
 | Byte 0-1         | Byte 2-5 | Byte 6 |
@@ -222,7 +235,7 @@ GPS_ALTITUDE (0x10)
 | **ALT:** Altitude in ft
 | **DALT:** No description
 
-GPS_INFO (0x11)
+GPS_INFO (0x12)
 ================
 +--------+---------+---------+---------+
 | Byte 0-1         | Byte 2  | Byte 3  |
@@ -233,7 +246,7 @@ GPS_INFO (0x11)
 | **NUM_SAT:** Number of satellite
 | **QUALITY:** Quality
 
-STREAM_STATUS (0x12)
+STREAM_STATUS (0x13)
 =====================
 +--------+---------+------------+----------+
 | Byte 0-1         | Byte 2-4   | Byte 5-7 |
@@ -244,7 +257,7 @@ STREAM_STATUS (0x12)
 | **TOTAL_SIZE:** Total transfer size in bytes
 | **TX_SIZE:** Transfered size in bytes
 
-STREAM_DATA (0x13)
+STREAM_DATA (0x14)
 ===================
 +----------+--------+---------+----------+
 | Metadata | Byte 0-1         | Byte 2-7 |
@@ -255,11 +268,11 @@ STREAM_DATA (0x13)
 | **SEQ_ID:** Sequence ID
 | **DATA:** Data payload
 
-STREAM_RETRY (0x14)
+STREAM_RETRY (0x15)
 ====================
-LEDS_ON (0x15)
+LEDS_ON (0x16)
 ===============
-LEDS_OFF (0x16)
+LEDS_OFF (0x17)
 ================
 Enums Definition
 ****************
@@ -593,7 +606,7 @@ Sensor ID for Sensor Messages
 dem_sensor_id
 =============
 
-3-Dimensional SENSOR_ID
+Dimensional SENSOR_ID
 
 .. list-table:: dem_sensor_id Enum Values
    :widths: 25 60 15
@@ -651,12 +664,12 @@ dem_sensor_id
 Bitfields Definition
 *********************
 
-general_board_status
+board_error_bitfield
 ====================
 
-General board status bitfield
+Board error bitfield
 
-.. list-table:: general_board_status Bitfield bits
+.. list-table:: board_error_bitfield Bitfield bits
    :widths: 25 60 15
    :header-rows: 1
 
@@ -702,26 +715,13 @@ General board status bitfield
    * - WATCHDOG_TIMEOUT
      - No Description
      - 0x0C
-
-board_specific_status
-=====================
-
-Board specific status bitfield
-
-.. list-table:: board_specific_status Bitfield bits
-   :widths: 25 60 15
-   :header-rows: 1
-
-   * - Bitfield Name
-     - Description
-     - Offset
    * - 12V_EFUSE_FAULT
      - No Description
-     - 0x00
+     - 0x0D
    * - 5V_EFUSE_FAULT
      - No Description
-     - 0x01
+     - 0x0E
    * - PT_OUT_OF_RANGE
      - No Description
-     - 0x02
+     - 0x0F
 
