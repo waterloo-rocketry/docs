@@ -25,6 +25,7 @@ Install dependency on Debian/Ubuntu
    sudo apt install libfuse-dev
 
 Clone and build littlefs-FUSE
+
 .. code-block::
 
    git clone --depth=1 https://github.com/littlefs-project/littlefs-fuse.git
