@@ -57,5 +57,5 @@ Links
 =====
 
 * :doc:`CAN Packet Format</avionics/rocketcan/packet-format>`
-* :doc:`How to write and run unit test</firmware-library/rocketlib/howto-unit-test>`
+* :doc:`How to write and run unit test</firmware-library/rocketlib/howto-develop>`
 * `GitHub Repository <https://github.com/waterloo-rocketry/canlib>`_

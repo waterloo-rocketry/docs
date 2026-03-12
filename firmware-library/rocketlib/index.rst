@@ -10,7 +10,7 @@ rocketlib
    littlefs.rst
    flash.rst
    howto-littlefs.rst
-   howto-unit-test.rst
+   howto-develop.rst
 
 Introduction
 ============
