@@ -160,13 +160,13 @@ SENSOR_2D_ANALOG24 (0x0C)
 ==========================
 2-Dimensional 24-bit analog sensor value message
 
-+---------------+--------+---------+----------+----------+
-| Metadata      | Byte 0-1         | Byte 2-4 | Byte 5-7 |
-+===============+========+=========+==========+==========+
-| DEM_SENSOR_ID | 2 byte timestamp | VALUE_X  | VALUE_Y  |
-+---------------+--------+---------+----------+----------+
++-----------+--------+---------+----------+----------+
+| Metadata  | Byte 0-1         | Byte 2-4 | Byte 5-7 |
++===========+========+=========+==========+==========+
+| SENSOR_ID | 2 byte timestamp | VALUE_X  | VALUE_Y  |
++-----------+--------+---------+----------+----------+
 
-| **DEM_SENSOR_ID:** Dimensional sensor ID, see `dem_sensor_id`_
+| **SENSOR_ID:** 2 Dimensional sensor ID, see `dem_2d_sensor_id`_
 | **VALUE_X:** Analog sensor value X
 | **VALUE_Y:** Analog sensor value Y
 
@@ -174,13 +174,13 @@ SENSOR_3D_ANALOG16 (0x0D)
 ==========================
 3-Dimensional 16-bit analog sensor value message
 
-+---------------+--------+---------+----------+----------+----------+
-| Metadata      | Byte 0-1         | Byte 2-3 | Byte 4-5 | Byte 6-7 |
-+===============+========+=========+==========+==========+==========+
-| DEM_SENSOR_ID | 2 byte timestamp | VALUE_X  | VALUE_Y  | VALUE_Z  |
-+---------------+--------+---------+----------+----------+----------+
++-----------+--------+---------+----------+----------+----------+
+| Metadata  | Byte 0-1         | Byte 2-3 | Byte 4-5 | Byte 6-7 |
++===========+========+=========+==========+==========+==========+
+| SENSOR_ID | 2 byte timestamp | VALUE_X  | VALUE_Y  | VALUE_Z  |
++-----------+--------+---------+----------+----------+----------+
 
-| **DEM_SENSOR_ID:** Dimensional sensor ID, see `dem_sensor_id`_
+| **SENSOR_ID:** 3 Dimensional sensor ID, see `dem_3d_sensor_id`_
 | **VALUE_X:** Analog sensor value X
 | **VALUE_Y:** Analog sensor value Y
 | **VALUE_Z:** Analog sensor value Z
@@ -304,29 +304,29 @@ Actuator ID for Actuator Command and Status Messages
    * - 5V_RAIL_ROCKET
      - No Description
      - 0x04
-   * - 5V_RAIL_PAYLOAD
-     - No Description
-     - 0x05
    * - 12V_RAIL_ROCKET
      - No Description
-     - 0x06
+     - 0x05
    * - TELEMETRY
      - No Description
-     - 0x07
+     - 0x06
    * - CAMERA_SIDE_LOOKING
      - No Description
-     - 0x08
+     - 0x07
    * - CAMERA_DOWN_LOOKING
      - No Description
-     - 0x09
+     - 0x08
    * - CAMERA_RECOVERY
      - No Description
-     - 0x0A
+     - 0x09
    * - CANARD_PAD_FILTER
      - Switch Canard to Pad Filter when commanded ACT_STATE_ON
+     - 0x0A
+   * - CANARD_5V_OUTPUT
+     - Enable Canard Board's 5V output to payload
      - 0x0B
-   * - CANARD_LOW_POWER_MODE
-     - Canard Low-Power Mode (In Low-Power mode when ACT_STATE_ON, vice versa)
+   * - CANARD_LIPO_ON
+     - Enable Canard board draw power from LiPo
      - 0x0C
    * - SRAD_ALT_ESTIMATOR_INIT
      - Actuator command to start SRAD Altimeter state estimation
@@ -352,6 +352,12 @@ Actuator ID for Actuator Command and Status Messages
    * - RLCS_RELAY_SELECT
      - RLCS Relay Board Select Relay(Limit switch state feedback)
      - 0x14
+   * - PAYLOAD_LASER
+     - Payload Laser
+     - 0x15
+   * - PAYLOAD_PZT_ARM
+     - Payload PZT phase biasing arming
+     - 0x16
 
 actuator_state
 ==============
@@ -575,40 +581,53 @@ Sensor ID for Sensor Messages
    * - CANARD_CTRL_COEFF_LIFT
      - Canard Controller Coefficient of Lift
      - 0x2F
-   * - CANARD_MS5611_BARO
-     - Canard MS5611 Barometer pressure reading
-     - 0x30
-   * - CANARD_MS5611_TEMP
-     - Canard MS5611 Barometer temperature reading
-     - 0x31
    * - CANARD_MTI630_BARO_0
      - Canard MTI-630 Movella barometer reading 0
-     - 0x32
+     - 0x30
    * - CANARD_MTI630_BARO_1
      - Canard MTI-630 Movella barometer reading 1
-     - 0x33
+     - 0x31
    * - CANARD_MTI630_EST_ALT
      - Canard MTI-630 Movella Estimation altitude
-     - 0x34
+     - 0x32
    * - CANARD_ADXRS649_GYRO
      - Canard ADXRS649 1-Axis Gyroscope angular velocity reading
-     - 0x35
+     - 0x33
    * - CANARD_SERVO_ANGLE
      - Canard Servo encoder angle reading
-     - 0x36
+     - 0x34
    * - CANARD_SERVO_CURR
      - Canard Servo current reading (in mA)
-     - 0x37
+     - 0x35
    * - CANARD_SERVO_TEMP
      - Canard Servo temperature reading (in Celcius)
-     - 0x38
+     - 0x36
+   * - PAYLOAD_SENSOR_CURR_READING
+     - Payload Sensor Current Reading
+     - 0x37
 
-dem_sensor_id
-=============
+dem_2d_sensor_id
+================
 
-Dimensional SENSOR_ID
+2 Dimensional Sensor ID
 
-.. list-table:: dem_sensor_id Enum Values
+.. list-table:: dem_2d_sensor_id Enum Values
+   :widths: 25 60 15
+   :header-rows: 1
+
+   * - Enum Name
+     - Description
+     - ID
+   * - CANARD_MS5611_BARO_TEMP
+     - Canard MS5611 Barometer Pressure(X) and Temperature(Y) reading
+     - 0x00
+
+dem_3d_sensor_id
+================
+
+3 Dimensional Sensor ID
+
+.. list-table:: dem_3d_sensor_id Enum Values
    :widths: 25 60 15
    :header-rows: 1
 
@@ -619,7 +638,7 @@ Dimensional SENSOR_ID
      - Canard Navigation Orientation QX, QY, QZ
      - 0x00
    * - CANARD_NAV_ORIENTATION_QUAT_QW_ALT_VARNORM
-     - Canard Navigation Orientation QW, Altitude, Variance Norm
+     - Canard Navigation Orientation QW(X), Altitude(Y), Variance Norm(Z)
      - 0x01
    * - CANARD_NAV_ANGLE_VEL
      - Canard Navigation Angular Velocity
