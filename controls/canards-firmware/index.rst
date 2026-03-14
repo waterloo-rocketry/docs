@@ -6,7 +6,6 @@ Canards Firmware
    :maxdepth: 2
 
    development.rst
-   modules/index
 
 Prerequisite / Corequisite Reading
 ==================================
