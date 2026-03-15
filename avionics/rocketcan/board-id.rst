@@ -73,11 +73,11 @@ Common Instance IDs
    * - GROUND
      - Boards on ground
      - 0x01
-   * - NOSECONE
+   * - NOSECONE_RECELEC
      - Boards on Nosecone RecElec Sled
      - 0x02
    * - CONTROL_SECTION
-     - Boards in control/canards section
+     - Boards in Control/Canards Section
      - 0x03
 
 Flight Camera Board
