@@ -73,12 +73,9 @@ Common Instance IDs
    * - GROUND
      - Boards on ground
      - 0x01
-   * - NOSECONE_RECELEC
-     - Boards on Nosecone RecElec Sled
+   * - ROCKET
+     - Boards on rocket
      - 0x02
-   * - CONTROL_SECTION
-     - Boards in Control/Canards Section
-     - 0x03
 
 Flight Camera Board
 ===================
@@ -92,13 +89,13 @@ Flight Camera Board
      - ID
    * - SIDE_LOOKING
      - Side Looking Camera
-     - 0x04
+     - 0x03
    * - DOWN_LOOKING
      - Down Looking Camera
-     - 0x05
+     - 0x04
    * - RECOVERY
      - Recovery Looking Camera
-     - 0x06
+     - 0x05
 
 Remote Arming Board
 ===================
@@ -112,7 +109,7 @@ Remote Arming Board
      - ID
    * - RA_RAVEN
      - Remote Arming for Raven
-     - 0x07
+     - 0x06
    * - RA_STRATOLOGGER
      - Remote Arming for Stratologger
-     - 0x08
+     - 0x07
