@@ -71,14 +71,11 @@ Common Instance IDs
      - Any board
      - 0x00
    * - GROUND
-     - Board on ground
+     - Boards on ground
      - 0x01
    * - ROCKET
-     - Board on rocket
+     - Boards on rocket
      - 0x02
-   * - PAYLOAD
-     - Board in payload
-     - 0x03
 
 Flight Camera Board
 ===================
@@ -92,13 +89,13 @@ Flight Camera Board
      - ID
    * - SIDE_LOOKING
      - Side Looking Camera
-     - 0x04
+     - 0x03
    * - DOWN_LOOKING
      - Down Looking Camera
-     - 0x05
+     - 0x04
    * - RECOVERY
      - Recovery Looking Camera
-     - 0x06
+     - 0x05
 
 Remote Arming Board
 ===================
@@ -112,7 +109,7 @@ Remote Arming Board
      - ID
    * - RA_RAVEN
      - Remote Arming for Raven
-     - 0x07
+     - 0x06
    * - RA_STRATOLOGGER
      - Remote Arming for Stratologger
-     - 0x08
+     - 0x07
