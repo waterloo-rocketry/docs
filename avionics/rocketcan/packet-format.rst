@@ -14,14 +14,13 @@ GENERAL_BOARD_STATUS (0x01)
 ============================
 Board status broadcast
 
-+--------+---------+------------------------+----------------------+
-| Byte 0-1         | Byte 2-5               | Byte 6-7             |
-+========+=========+========================+======================+
-| 2 byte timestamp | GENERAL_ERROR_BITFIELD | BOARD_ERROR_BITFIELD |
-+--------+---------+------------------------+----------------------+
++--------+---------+----------------------+
+| Byte 0-1         | Byte 2-5             |
++========+=========+======================+
+| 2 byte timestamp | BOARD_ERROR_BITFIELD |
++--------+---------+----------------------+
 
-| **GENERAL_ERROR_BITFIELD:** General error code bitfield, see `general_board_status`_
-| **BOARD_ERROR_BITFIELD:** Board specific error code bitfield, see `board_specific_status`_
+| **BOARD_ERROR_BITFIELD:** Board error code bitfield, see `board_error_bitfield`_
 
 RESET_CMD (0x02)
 =================
@@ -93,15 +92,15 @@ ACTUATOR_STATUS (0x07)
 =======================
 Actuator Status Message
 
-+-------------+--------+---------+---------------------+--------------------+
-| Metadata    | Byte 0-1         | Byte 2              | Byte 3             |
-+=============+========+=========+=====================+====================+
-| ACTUATOR_ID | 2 byte timestamp | ACTUATOR_CURR_STATE | ACTUATOR_CMD_STATE |
-+-------------+--------+---------+---------------------+--------------------+
++-------------+--------+---------+--------------------+---------------------+
+| Metadata    | Byte 0-1         | Byte 2             | Byte 3              |
++=============+========+=========+====================+=====================+
+| ACTUATOR_ID | 2 byte timestamp | ACTUATOR_CMD_STATE | ACTUATOR_CURR_STATE |
++-------------+--------+---------+--------------------+---------------------+
 
 | **ACTUATOR_ID:** Acturator ID, see `actuator_id`_
-| **ACTUATOR_CURR_STATE:** Actuator Current State, see `actuator_state`_
 | **ACTUATOR_CMD_STATE:** Actuator Commanded State, see `actuator_state`_
+| **ACTUATOR_CURR_STATE:** Actuator Current State, see `actuator_state`_
 
 ALT_ARM_CMD (0x08)
 ===================
@@ -157,22 +156,36 @@ SENSOR_ANALOG32 (0x0B)
 | **SENSOR_ID:** Sensor ID, see `analog_sensor_id`_
 | **VALUE:** Analog sensor value
 
-SENSOR_DEM_ANALOG16 (0x0C)
-===========================
+SENSOR_2D_ANALOG24 (0x0C)
+==========================
+2-Dimensional 24-bit analog sensor value message
+
++-----------+--------+---------+----------+----------+
+| Metadata  | Byte 0-1         | Byte 2-4 | Byte 5-7 |
++===========+========+=========+==========+==========+
+| SENSOR_ID | 2 byte timestamp | VALUE_X  | VALUE_Y  |
++-----------+--------+---------+----------+----------+
+
+| **SENSOR_ID:** 2 Dimensional sensor ID, see `dem_2d_sensor_id`_
+| **VALUE_X:** Analog sensor value X
+| **VALUE_Y:** Analog sensor value Y
+
+SENSOR_3D_ANALOG16 (0x0D)
+==========================
 3-Dimensional 16-bit analog sensor value message
 
-+---------------+--------+---------+----------+----------+----------+
-| Metadata      | Byte 0-1         | Byte 2-3 | Byte 4-5 | Byte 6-7 |
-+===============+========+=========+==========+==========+==========+
-| DEM_SENSOR_ID | 2 byte timestamp | VALUE_X  | VALUE_Y  | VALUE_Z  |
-+---------------+--------+---------+----------+----------+----------+
++-----------+--------+---------+----------+----------+----------+
+| Metadata  | Byte 0-1         | Byte 2-3 | Byte 4-5 | Byte 6-7 |
++===========+========+=========+==========+==========+==========+
+| SENSOR_ID | 2 byte timestamp | VALUE_X  | VALUE_Y  | VALUE_Z  |
++-----------+--------+---------+----------+----------+----------+
 
-| **DEM_SENSOR_ID:** 3-Dimensional sensor ID, see `dem_sensor_id`_
+| **SENSOR_ID:** 3 Dimensional sensor ID, see `dem_3d_sensor_id`_
 | **VALUE_X:** Analog sensor value X
 | **VALUE_Y:** Analog sensor value Y
 | **VALUE_Z:** Analog sensor value Z
 
-GPS_TIMESTAMP (0x0D)
+GPS_TIMESTAMP (0x0E)
 =====================
 +--------+---------+-----------+-------------+-------------+--------------+
 | Byte 0-1         | Byte 2    | Byte 3      | Byte 4      | Byte 5       |
@@ -185,7 +198,7 @@ GPS_TIMESTAMP (0x0D)
 | **UTC_SECONDS:** Seconds
 | **UTC_DSECONDS:** Decisecond
 
-GPS_LATITUDE (0x0E)
+GPS_LATITUDE (0x0F)
 ====================
 +--------+---------+---------+---------+------------+--------+
 | Byte 0-1         | Byte 2  | Byte 3  | Byte 4-5   | Byte 6 |
@@ -198,7 +211,7 @@ GPS_LATITUDE (0x0E)
 | **DMINUTES_H:** No description
 | **DIR_NS:** North/South
 
-GPS_LONGITUDE (0x0F)
+GPS_LONGITUDE (0x10)
 =====================
 +--------+---------+---------+---------+------------+--------+
 | Byte 0-1         | Byte 2  | Byte 3  | Byte 4-5   | Byte 6 |
@@ -211,7 +224,7 @@ GPS_LONGITUDE (0x0F)
 | **DMINUTES_H:** No description
 | **DIR_EW:** East/West
 
-GPS_ALTITUDE (0x10)
+GPS_ALTITUDE (0x11)
 ====================
 +--------+---------+----------+--------+
 | Byte 0-1         | Byte 2-5 | Byte 6 |
@@ -222,7 +235,7 @@ GPS_ALTITUDE (0x10)
 | **ALT:** Altitude in ft
 | **DALT:** No description
 
-GPS_INFO (0x11)
+GPS_INFO (0x12)
 ================
 +--------+---------+---------+---------+
 | Byte 0-1         | Byte 2  | Byte 3  |
@@ -233,7 +246,7 @@ GPS_INFO (0x11)
 | **NUM_SAT:** Number of satellite
 | **QUALITY:** Quality
 
-STREAM_STATUS (0x12)
+STREAM_STATUS (0x13)
 =====================
 +--------+---------+------------+----------+
 | Byte 0-1         | Byte 2-4   | Byte 5-7 |
@@ -244,7 +257,7 @@ STREAM_STATUS (0x12)
 | **TOTAL_SIZE:** Total transfer size in bytes
 | **TX_SIZE:** Transfered size in bytes
 
-STREAM_DATA (0x13)
+STREAM_DATA (0x14)
 ===================
 +----------+--------+---------+----------+
 | Metadata | Byte 0-1         | Byte 2-7 |
@@ -255,11 +268,11 @@ STREAM_DATA (0x13)
 | **SEQ_ID:** Sequence ID
 | **DATA:** Data payload
 
-STREAM_RETRY (0x14)
+STREAM_RETRY (0x15)
 ====================
-LEDS_ON (0x15)
+LEDS_ON (0x16)
 ===============
-LEDS_OFF (0x16)
+LEDS_OFF (0x17)
 ================
 Enums Definition
 ****************
@@ -291,29 +304,29 @@ Actuator ID for Actuator Command and Status Messages
    * - 5V_RAIL_ROCKET
      - No Description
      - 0x04
-   * - 5V_RAIL_PAYLOAD
-     - No Description
-     - 0x05
    * - 12V_RAIL_ROCKET
      - No Description
-     - 0x06
+     - 0x05
    * - TELEMETRY
      - No Description
-     - 0x07
+     - 0x06
    * - CAMERA_SIDE_LOOKING
      - No Description
-     - 0x08
+     - 0x07
    * - CAMERA_DOWN_LOOKING
      - No Description
-     - 0x09
+     - 0x08
    * - CAMERA_RECOVERY
      - No Description
-     - 0x0A
+     - 0x09
    * - CANARD_PAD_FILTER
      - Switch Canard to Pad Filter when commanded ACT_STATE_ON
+     - 0x0A
+   * - CANARD_5V_OUTPUT
+     - Enable Canard Board's 5V output to payload
      - 0x0B
-   * - CANARD_LOW_POWER_MODE
-     - Canard Low-Power Mode (In Low-Power mode when ACT_STATE_ON, vice versa)
+   * - CANARD_LIPO_ON
+     - Enable Canard board draw power from LiPo
      - 0x0C
    * - SRAD_ALT_ESTIMATOR_INIT
      - Actuator command to start SRAD Altimeter state estimation
@@ -327,11 +340,11 @@ Actuator ID for Actuator Command and Status Messages
    * - PAYLOAD_LOGGING_ENABLE
      - Payload Sensor Board Logging Enable Control
      - 0x10
-   * - THESEUS_ACTUATOR_1
-     - Theseus board actuator channel 1
+   * - INJECTOR_BOARD_ACTUATOR_1
+     - Injector board actuator channel 1
      - 0x11
-   * - THESEUS_ACTUATOR_2
-     - Theseus board actuator channel 2
+   * - INJECTOR_BOARD_ACTUATOR_2
+     - Injector board actuator channel 2
      - 0x12
    * - RLCS_RELAY_POWER
      - RLCS Relay Board Power Relay
@@ -339,6 +352,12 @@ Actuator ID for Actuator Command and Status Messages
    * - RLCS_RELAY_SELECT
      - RLCS Relay Board Select Relay(Limit switch state feedback)
      - 0x14
+   * - PAYLOAD_LASER
+     - Payload Laser
+     - 0x15
+   * - PAYLOAD_PZT_ARM
+     - Payload PZT phase biasing arming
+     - 0x16
 
 actuator_state
 ==============
@@ -452,150 +471,187 @@ Sensor ID for Sensor Messages
      - Local voltage rail (e.g. 3.3V) current in mA
      - 0x0A
    * - PT_CHANNEL_1
-     - Pressure Transducer Channel 1, J3 on Injector Sensor Hub
+     - Pressure Transducer Channel 1
      - 0x0B
    * - PT_CHANNEL_2
-     - Pressure Transducer Channel 2, J4 on Injector Sensor Hub
+     - Pressure Transducer Channel 2
      - 0x0C
    * - PT_CHANNEL_3
-     - Pressure Transducer Channel 3, J6 on Injector Sensor Hub
+     - Pressure Transducer Channel 3
      - 0x0D
    * - PT_CHANNEL_4
-     - Pressure Transducer Channel 4, J8 on Injector Sensor Hub
+     - Pressure Transducer Channel 4
      - 0x0E
    * - PT_CHANNEL_5
-     - Pressure Transducer Channel 5, J10 on Injector Sensor Hub
+     - Pressure Transducer Channel 5
      - 0x0F
-   * - HALL_CHANNEL_1
-     - Hall-Effect Sensor Channel 1, J7 on Injector Sensor Hub
+   * - PT_CHANNEL_6
+     - Pressure Transducer Channel 6
      - 0x10
-   * - HALL_CHANNEL_2
-     - Hall-Effect Sensor Channel 2, J5 on Injector Sensor Hub
+   * - PT_CHANNEL_7
+     - Pressure Transducer Channel 7
      - 0x11
-   * - HALL_CHANNEL_3
-     - Hall-Effect Sensor Channel 3, J9 on Injector Sensor Hub
+   * - PT_CHANNEL_8
+     - Pressure Transducer Channel 8
      - 0x12
+   * - PT_CHANNEL_9
+     - Pressure Transducer Channel 9
+     - 0x13
+   * - PT_CHANNEL_10
+     - Pressure Transducer Channel 10
+     - 0x14
+   * - HALL_CHANNEL_1
+     - Hall-Effect Sensor Channel 1
+     - 0x15
+   * - HALL_CHANNEL_2
+     - Hall-Effect Sensor Channel 2
+     - 0x16
+   * - HALL_CHANNEL_3
+     - Hall-Effect Sensor Channel 3
+     - 0x17
    * - RA_BATT_VOLT_1
      - No Description
-     - 0x13
+     - 0x18
    * - RA_BATT_VOLT_2
      - No Description
-     - 0x14
+     - 0x19
    * - RA_BATT_CURR_1
      - No Description
-     - 0x15
+     - 0x1A
    * - RA_BATT_CURR_2
      - No Description
-     - 0x16
+     - 0x1B
    * - RA_MAG_VOLT_1
      - No Description
-     - 0x17
+     - 0x1C
    * - RA_MAG_VOLT_2
      - No Description
-     - 0x18
+     - 0x1D
    * - FPS
      - Camera framerate
-     - 0x19
+     - 0x1E
    * - PAYLOAD_LIM_1
      - Payload Motor Board Limit Switch 1
-     - 0x1A
+     - 0x1F
    * - PAYLOAD_LIM_2
      - Payload Motor Board Limit Switch 2
-     - 0x1B
+     - 0x20
    * - PAYLOAD_SERVO_DIRECTION
      - Payload Servo Direction
-     - 0x1C
+     - 0x21
    * - PAYLOAD_INFRARED
      - Payload Infrared Sensor Reading
-     - 0x1D
-   * - THESEUS_TEMP_1
-     - Theseus board temperature channel 1
-     - 0x1E
-   * - THESEUS_TEMP_2
-     - Theseus board temperature channel 2
-     - 0x1F
-   * - THESEUS_TEMP_3
-     - Theseus board temperature channel 3
-     - 0x20
+     - 0x22
+   * - INJECTOR_BOARD_TEMP_1
+     - Injector board temperature channel 1
+     - 0x23
+   * - INJECTOR_BOARD_TEMP_2
+     - Injector board temperature channel 2
+     - 0x24
+   * - INJECTOR_BOARD_TEMP_3
+     - Injector board temperature channel 3
+     - 0x25
    * - RLCS_RELAY_OUTPUT_VOLT_A
      - RLCS Relay Board channel A output voltage
-     - 0x21
+     - 0x26
    * - RLCS_RELAY_OUTPUT_VOLT_B
      - RLCS Relay Board channel B output voltage
-     - 0x22
+     - 0x27
    * - RLCS_RELAY_OUTPUT_CURR_A
      - RLCS Relay Board channel A output current
-     - 0x23
+     - 0x28
    * - RLCS_RELAY_OUTPUT_CURR_B
      - RLCS Relay Board channel B output current
-     - 0x24
+     - 0x29
    * - RLCS_RELAY_LIM_VOLT_A
      - RLCS Relay Board limit switch A voltage
-     - 0x25
+     - 0x2A
    * - RLCS_RELAY_LIM_VOLT_B
      - RLCS Relay Board limit switch B voltage
-     - 0x26
+     - 0x2B
    * - LOG_WRITTEN_SIZE
      - Number of bytes written to log file(reset to 0 when a new file is created)
-     - 0x27
+     - 0x2C
    * - SD_LOG_FILE_NAME
      - SD Card log file name(the number part only)
-     - 0x28
+     - 0x2D
    * - SD_USED
      - SD Card used space size, in MiB
-     - 0x29
+     - 0x2E
    * - SD_FREE
      - SD Card free space size, in MiB
-     - 0x2A
+     - 0x2F
    * - FLASH_LOG_FILE_NAME
      - Flash log file name(the number part only)
-     - 0x2B
+     - 0x30
    * - FLASH_USED
      - Flash used space size, in MiB
-     - 0x2C
+     - 0x31
    * - FLASH_FREE
      - FLash free space size, in MiB
-     - 0x2D
+     - 0x32
    * - CANARD_CTRL_CMD_ANGLE
      - Canard Controller Commanded Angle
-     - 0x2E
+     - 0x33
    * - CANARD_CTRL_COEFF_LIFT
      - Canard Controller Coefficient of Lift
-     - 0x2F
-   * - CANARD_MS5611_BARO
-     - Canard MS5611 Barometer pressure reading
-     - 0x30
-   * - CANARD_MS5611_TEMP
-     - Canard MS5611 Barometer temperature reading
-     - 0x31
+     - 0x34
    * - CANARD_MTI630_BARO_0
      - Canard MTI-630 Movella barometer reading 0
-     - 0x32
+     - 0x35
    * - CANARD_MTI630_BARO_1
      - Canard MTI-630 Movella barometer reading 1
-     - 0x33
+     - 0x36
    * - CANARD_MTI630_EST_ALT
      - Canard MTI-630 Movella Estimation altitude
-     - 0x34
+     - 0x37
    * - CANARD_ADXRS649_GYRO
      - Canard ADXRS649 1-Axis Gyroscope angular velocity reading
-     - 0x35
+     - 0x38
    * - CANARD_SERVO_ANGLE
      - Canard Servo encoder angle reading
-     - 0x36
+     - 0x39
    * - CANARD_SERVO_CURR
      - Canard Servo current reading (in mA)
-     - 0x37
+     - 0x3A
    * - CANARD_SERVO_TEMP
      - Canard Servo temperature reading (in Celcius)
-     - 0x38
+     - 0x3B
+   * - PAYLOAD_SENSOR_CURR_READING
+     - Payload Sensor Current Reading
+     - 0x3C
 
-dem_sensor_id
-=============
+dem_2d_sensor_id
+================
 
-3-Dimensional SENSOR_ID
+2 Dimensional Sensor ID
 
-.. list-table:: dem_sensor_id Enum Values
+.. list-table:: dem_2d_sensor_id Enum Values
+   :widths: 25 60 15
+   :header-rows: 1
+
+   * - Enum Name
+     - Description
+     - ID
+   * - CANARD_NAV_VEL_ANGLE_VEL_X
+     - Canard Navigation Velocity(X) and Angular Velocity(Y) on X-axis
+     - 0x00
+   * - CANARD_NAV_VEL_ANGLE_VEL_Y
+     - Canard Navigation Velocity(X) and Angular Velocity(Y) on Y-axis
+     - 0x01
+   * - CANARD_NAV_VEL_ANGLE_VEL_Z
+     - Canard Navigation Velocity(X) and Angular Velocity(Y) on Z-axis
+     - 0x02
+   * - CANARD_MS5611_BARO_TEMP
+     - Canard MS5611 Barometer Pressure(X) and Temperature(Y) reading
+     - 0x03
+
+dem_3d_sensor_id
+================
+
+3 Dimensional Sensor ID
+
+.. list-table:: dem_3d_sensor_id Enum Values
    :widths: 25 60 15
    :header-rows: 1
 
@@ -606,57 +662,51 @@ dem_sensor_id
      - Canard Navigation Orientation QX, QY, QZ
      - 0x00
    * - CANARD_NAV_ORIENTATION_QUAT_QW_ALT_VARNORM
-     - Canard Navigation Orientation QW, Altitude, Variance Norm
+     - Canard Navigation Orientation QW(X), Altitude(Y), Variance Norm(Z)
      - 0x01
-   * - CANARD_NAV_ANGLE_VEL
-     - Canard Navigation Angular Velocity
-     - 0x02
-   * - CANARD_NAV_VEL
-     - Canard Navigation Velocity
-     - 0x03
    * - CANARD_LSM6DSV32X_ACCEL
      - Canard LSM6DSV32X 32G IMU Acceleration
-     - 0x04
+     - 0x02
    * - CANARD_LSM6DSV32X_GYRO
      - Canard LSM6DSV32X 32G IMU Angular Velocity
-     - 0x05
+     - 0x03
    * - CANARD_LSM303AGR_ACCEL
      - Canard LSM303AGR Compass Acceleration
-     - 0x06
+     - 0x04
    * - CANARD_LSM303AGR_MAG
      - Canard LSM303AGR Magnetometer Reading
-     - 0x07
+     - 0x05
    * - CANARD_MTI630_ACCEL
      - Canard MTI-630 Movella Acceleration
-     - 0x08
+     - 0x06
    * - CANARD_MTI630_GYRO
      - Canard MTI-630 Movella Angular Velocity
-     - 0x09
+     - 0x07
    * - CANARD_MTI630_MAG
      - Canard MTI-630 Movella Magnetometer Reading
-     - 0x0A
+     - 0x08
    * - CANARD_MTI630_EST_ORIENTATION
      - Canard MTI-630 Movella Estimation Orientation (Euler)
-     - 0x0B
+     - 0x09
    * - CANARD_MTI630_EST_ANGLE_VEL
      - Canard MTI-630 Movella Estimation Angular Velocity
-     - 0x0C
+     - 0x0A
    * - CANARD_MTI630_EST_VEL
      - Canard MTI-630 Movella Estimation Velocity
-     - 0x0D
+     - 0x0B
    * - CANARD_ADXL380_ACCEL
      - Canard ADXL380 Accelerometer Acceleration
-     - 0x0E
+     - 0x0C
 
 Bitfields Definition
 *********************
 
-general_board_status
+board_error_bitfield
 ====================
 
-General board status bitfield
+Board error bitfield
 
-.. list-table:: general_board_status Bitfield bits
+.. list-table:: board_error_bitfield Bitfield bits
    :widths: 25 60 15
    :header-rows: 1
 
@@ -702,26 +752,13 @@ General board status bitfield
    * - WATCHDOG_TIMEOUT
      - No Description
      - 0x0C
-
-board_specific_status
-=====================
-
-Board specific status bitfield
-
-.. list-table:: board_specific_status Bitfield bits
-   :widths: 25 60 15
-   :header-rows: 1
-
-   * - Bitfield Name
-     - Description
-     - Offset
    * - 12V_EFUSE_FAULT
      - No Description
-     - 0x00
+     - 0x0D
    * - 5V_EFUSE_FAULT
      - No Description
-     - 0x01
+     - 0x0E
    * - PT_OUT_OF_RANGE
      - No Description
-     - 0x02
+     - 0x0F
 
