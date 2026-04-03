@@ -57,7 +57,8 @@ latex_elements = {
 
 extensions = [
     'sphinx.ext.graphviz',
-    'breathe'
+    'breathe',
+    'sphinxcontrib.mermaid'
     # other extensions
 ]
 
