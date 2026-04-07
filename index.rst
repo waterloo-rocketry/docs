@@ -24,6 +24,7 @@ Waterloo Rocketry Documentation Site
    avionics/injector-sensor-hub/index.rst
    avionics/rocket-power-board/index.rst
    avionics/srad-altimeter/index.rst
+   avionics/usb-debug/index.rst
 
 .. toctree::
    :maxdepth: 2
@@ -33,13 +34,6 @@ Waterloo Rocketry Documentation Site
    electrical-gse/rlcs-v4/index.rst
    electrical-gse/daq/index.rst
    electrical-gse/auto-antenna-tower/index.rst
-
-.. toctree::
-   :maxdepth: 2
-   :caption: Electrical Tools
-
-   electrical-tools/usb-debug/index.rst
-   electrical-tools/hilt/index.rst
 
 .. toctree::
    :maxdepth: 2
