@@ -90,7 +90,9 @@ The status code must reflect the outcome of the function's execution.
 
 Accordingly, callers should not ignore status codes returned by functions. Status codes should be read and handled appropriately.
 
-Example:
+Examples: 
+
+Use the OR bitwise operator if you just want to know if there is any error.
 
 .. code-block:: c
 
@@ -106,4 +108,23 @@ Example:
         // Celebrate success
     } else {
         // Something failed!
+    }
+
+For error handling of sequential tasks: 
+
+.. code-block:: c
+
+    w_status_t status = W_SUCCESS;
+
+    // fatal error example
+    status = func_call();
+    if(status != W_SUCCESS){  // we can have different handling per error code
+    log_error();
+    return status;
+    }
+
+    // non fatal error example
+    status = another_func_call();
+    if(status != W_SUCCESS){ // we can have different handling per error code
+    log_error();
     }
