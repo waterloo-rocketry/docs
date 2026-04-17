@@ -92,7 +92,6 @@ Accordingly, callers should not ignore status codes returned by functions. Statu
 
 Examples: 
 
-Use the OR bitwise operator if you just want to know if there is any error.
 
 .. code-block:: c
 
