@@ -27,7 +27,12 @@ To install Sphinx, run the following command:
 pip install sphinx
 pip install sphinx_rtd_theme
 ```
-You may also have to install the extensions listed in [conf.py](./conf.py) using `pip`.
+You may also have to install the extensions listed in [conf.py](./conf.py):
+```bash
+pip install sphinx.ext.graphviz
+pip install breathe
+pip install sphinxcontrib.mermaid
+```
 
 ## Step 4: Build the Documentation
 To generate HTML documentation, use the make html command:
