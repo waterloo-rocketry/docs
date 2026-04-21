@@ -6,6 +6,7 @@ This guide will help you set up a Sphinx environment for generating project docu
 
 ## Prerequisites
 - Python: Ensure Python (3.6 or higher) is installed. 
+- Doxygen must be installed.
 
 ## Step 1: Clone the Repository
 Clone the repository to your local machine:
@@ -26,6 +27,7 @@ To install Sphinx, run the following command:
 pip install sphinx
 pip install sphinx_rtd_theme
 ```
+You may also have to install the extensions listed in [conf.py](./conf.py) using `pip`.
 
 ## Step 4: Build the Documentation
 To generate HTML documentation, use the make html command:
