@@ -7,23 +7,29 @@ Windows
 
 We will use littlefs-FUSE inside WSL to mount the LittleFS filesystem.
 
+See `here <https://learn.microsoft.com/en-us/windows/wsl/install>`_ for instructions on installing WSL. 
+
 Rebuild WSL with USB mass storage device support
 ------------------------------------------------
 Unfortunately WSL does not have a USB mass storage device driver by default so we'll have to rebuild the WSL kernel with this feature enabled.
-Follow `this guide <https://www.tomshardware.com/how-to/access-linux-ext4-partitions-in-windows>`_, to do so, including installing ``usbipd``.
+Follow `this guide <https://www.tomshardware.com/how-to/access-linux-ext4-partitions-in-windows>`_ to do so, including installing ``usbipd``.
 This can take a while!
 
 Some notes:
 
+* You shouldn't actually need ``sudo`` for many of the commands in the linked tutorial, including steps 9-11, 17, and 19.
 * Make sure the source directory where you clone, configure, and build the kernel is in a WSL rather than a mounted Windows directory
   to avoid errors caused by the Windows filesystem's case-insensitivity.
-* When enabling `USB Mass Storage support` using ``sudo make menuconfig``, you may find it depends on some other features
+* When enabling `USB Mass Storage support` using ``make menuconfig``, you may find it depends on some other features
   to also be included as built-in. You can press ``H`` with `USB Mass Storage support` selected to view these dependencies and
   press ``/`` to find where to enable them. 
 
 Attach USB device using usbipd
 ----------------------------------
-Once your SD card is plugged in using a USB adapter, first share the device by running the following with admin privileges:
+If you haven't already, install usbipd using `these instructions <https://github.com/dorssel/usbipd-win/blob/master/README.md>`_.
+
+Once your SD card is plugged in using a USB adapter, first share the device by running the following inside Windows
+(not WSL) with admin privileges:
 
 .. code-block::
 
@@ -41,7 +47,7 @@ Then attach the device (doesn't require admin):
 
 Attaching a device doesn't survive reboots or unplugging and replugging.
 
-Now in WSL you should see the SD card mounted under something like ``/mnt/sde`` (or ``sdd``, etc.).
+Now back in WSL you should see the SD card mounted under something like ``/mnt/sdd`` (or ``sde``, etc.).
 
 littlefs-FUSE install and usage
 -------------------------------
