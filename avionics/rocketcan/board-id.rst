@@ -97,6 +97,29 @@ Flight Camera Board
      - Recovery Looking Camera
      - 0x05
 
+Live Telemetry Board
+====================
+
+.. list-table:: Live Telemetry Board Instances
+   :widths: 25 60 15
+   :header-rows: 1
+
+   * - Enum Name
+     - Board Instance Name
+     - ID
+   * - GROUND_1
+     - Ground side 1
+     - 0x06
+   * - GROUND_2
+     - Ground side 2
+     - 0x07
+   * - GROUND_3
+     - Ground side 3
+     - 0x08
+   * - GROUND_4
+     - Ground side 4
+     - 0x09
+
 Remote Arming Board
 ===================
 
@@ -109,7 +132,7 @@ Remote Arming Board
      - ID
    * - RA_RAVEN
      - Remote Arming for Raven
-     - 0x06
+     - 0x0A
    * - RA_STRATOLOGGER
      - Remote Arming for Stratologger
-     - 0x07
+     - 0x0B
