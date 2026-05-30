@@ -270,9 +270,33 @@ STREAM_DATA (0x14)
 
 STREAM_RETRY (0x15)
 ====================
-LEDS_ON (0x16)
+TELEMETRY_INFO (0x16)
+======================
++------------+--------+---------+--------+--------+
+| Metadata   | Byte 0-1         | Byte 2 | Byte 3 |
++============+========+=========+========+========+
+| CHANNEL_ID | 2 byte timestamp | LQI    | RSSI   |
++------------+--------+---------+--------+--------+
+
+| **CHANNEL_ID:** Channel ID(Use LTT board instance ID)
+| **LQI:** Link Quality Indicator
+| **RSSI:** Received Signal Strength Indicator
+
+CANARD_FIRMWARE_ERROR (0x17)
+=============================
++-----------+--------+---------+------------+----------+
+| Metadata  | Byte 0-1         | Byte 2-5   | Byte 6   |
++===========+========+=========+============+==========+
+| MODULE_ID | 2 byte timestamp | ERROR_CODE | SEVERITY |
++-----------+--------+---------+------------+----------+
+
+| **MODULE_ID:** Module ID
+| **ERROR_CODE:** Error Code Bitfield
+| **SEVERITY:** Severity
+
+LEDS_ON (0x18)
 ===============
-LEDS_OFF (0x17)
+LEDS_OFF (0x19)
 ================
 Enums Definition
 ****************
@@ -295,69 +319,87 @@ Actuator ID for Actuator Command and Status Messages
    * - FUEL_INJECTOR_VALVE
      - Oxidizer Injector Valve, for hall-effect sensor state feedback
      - 0x01
+   * - IGNITION
+     - Ignition Puck
+     - 0x02
    * - ROCKET_CHARGE_ENABLE
      - Rocket Ground-side Charging Enable
-     - 0x02
+     - 0x03
    * - PAYLOAD_CHARGE_ENABLE
      - Payload Ground-side Charging Enable
-     - 0x03
+     - 0x04
    * - 5V_RAIL_ROCKET
      - No Description
-     - 0x04
+     - 0x05
    * - 12V_RAIL_ROCKET
      - No Description
-     - 0x05
+     - 0x06
    * - TELEMETRY
      - No Description
-     - 0x06
-   * - CAMERA_SIDE_LOOKING
-     - No Description
      - 0x07
-   * - CAMERA_DOWN_LOOKING
+   * - CAMERA_SIDE_LOOKING_POWER
      - No Description
      - 0x08
-   * - CAMERA_RECOVERY
+   * - CAMERA_DOWN_LOOKING_POWER
      - No Description
      - 0x09
+   * - CAMERA_RECOVERY_POWER
+     - No Description
+     - 0x0A
+   * - CAMERA_SIDE_LOOKING_RECORD
+     - No Description
+     - 0x0B
+   * - CAMERA_DOWN_LOOKING_RECORD
+     - No Description
+     - 0x0C
+   * - CAMERA_RECOVERY_RECORD
+     - No Description
+     - 0x0D
    * - CANARD_PAD_FILTER
      - Switch Canard to Pad Filter when commanded ACT_STATE_ON
-     - 0x0A
+     - 0x0E
    * - CANARD_5V_OUTPUT
      - Enable Canard Board's 5V output to payload
-     - 0x0B
+     - 0x0F
    * - CANARD_LIPO_ON
      - Enable Canard board draw power from LiPo
-     - 0x0C
+     - 0x10
    * - SRAD_ALT_ESTIMATOR_INIT
      - Actuator command to start SRAD Altimeter state estimation
-     - 0x0D
+     - 0x11
    * - SRAD_ALT_GPS_RESET
      - Actuator command to reset GPS Receiver on SRAD Altimeter
-     - 0x0E
+     - 0x12
    * - CAMERA_CAPTURE
      - No Description
-     - 0x0F
+     - 0x13
    * - PAYLOAD_LOGGING_ENABLE
      - Payload Sensor Board Logging Enable Control
-     - 0x10
+     - 0x14
    * - INJECTOR_BOARD_ACTUATOR_1
      - Injector board actuator channel 1
-     - 0x11
+     - 0x15
    * - INJECTOR_BOARD_ACTUATOR_2
      - Injector board actuator channel 2
-     - 0x12
+     - 0x16
    * - RLCS_RELAY_POWER
      - RLCS Relay Board Power Relay
-     - 0x13
+     - 0x17
    * - RLCS_RELAY_SELECT
      - RLCS Relay Board Select Relay(Limit switch state feedback)
-     - 0x14
+     - 0x18
    * - PAYLOAD_LASER
      - Payload Laser
-     - 0x15
+     - 0x19
    * - PAYLOAD_PZT_ARM
      - Payload PZT phase biasing arming
-     - 0x16
+     - 0x1A
+   * - LOGGER_FLASH_ERASE
+     - Erase logger board flash
+     - 0x1B
+   * - CANARD_FLASH_ERASE
+     - Erase canard board flash
+     - 0x1C
 
 actuator_state
 ==============
@@ -467,159 +509,165 @@ Sensor ID for Sensor Messages
    * - GPS_CURR
      - GPS Receiver current in mA
      - 0x09
+   * - CAMERA_CURR
+     - Camera current in mA
+     - 0x0A
    * - LOCAL_CURR
      - Local voltage rail (e.g. 3.3V) current in mA
-     - 0x0A
+     - 0x0B
    * - PT_CHANNEL_1
      - Pressure Transducer Channel 1
-     - 0x0B
+     - 0x0C
    * - PT_CHANNEL_2
      - Pressure Transducer Channel 2
-     - 0x0C
+     - 0x0D
    * - PT_CHANNEL_3
      - Pressure Transducer Channel 3
-     - 0x0D
+     - 0x0E
    * - PT_CHANNEL_4
      - Pressure Transducer Channel 4
-     - 0x0E
+     - 0x0F
    * - PT_CHANNEL_5
      - Pressure Transducer Channel 5
-     - 0x0F
+     - 0x10
    * - PT_CHANNEL_6
      - Pressure Transducer Channel 6
-     - 0x10
+     - 0x11
    * - PT_CHANNEL_7
      - Pressure Transducer Channel 7
-     - 0x11
+     - 0x12
    * - PT_CHANNEL_8
      - Pressure Transducer Channel 8
-     - 0x12
+     - 0x13
    * - PT_CHANNEL_9
      - Pressure Transducer Channel 9
-     - 0x13
+     - 0x14
    * - PT_CHANNEL_10
      - Pressure Transducer Channel 10
-     - 0x14
+     - 0x15
    * - HALL_CHANNEL_1
      - Hall-Effect Sensor Channel 1
-     - 0x15
+     - 0x16
    * - HALL_CHANNEL_2
      - Hall-Effect Sensor Channel 2
-     - 0x16
+     - 0x17
    * - HALL_CHANNEL_3
      - Hall-Effect Sensor Channel 3
-     - 0x17
+     - 0x18
    * - RA_BATT_VOLT_1
      - No Description
-     - 0x18
+     - 0x19
    * - RA_BATT_VOLT_2
      - No Description
-     - 0x19
+     - 0x1A
    * - RA_BATT_CURR_1
      - No Description
-     - 0x1A
+     - 0x1B
    * - RA_BATT_CURR_2
      - No Description
-     - 0x1B
+     - 0x1C
    * - RA_MAG_VOLT_1
      - No Description
-     - 0x1C
+     - 0x1D
    * - RA_MAG_VOLT_2
      - No Description
-     - 0x1D
+     - 0x1E
    * - FPS
      - Camera framerate
-     - 0x1E
+     - 0x1F
    * - PAYLOAD_LIM_1
      - Payload Motor Board Limit Switch 1
-     - 0x1F
+     - 0x20
    * - PAYLOAD_LIM_2
      - Payload Motor Board Limit Switch 2
-     - 0x20
+     - 0x21
    * - PAYLOAD_SERVO_DIRECTION
      - Payload Servo Direction
-     - 0x21
+     - 0x22
    * - PAYLOAD_INFRARED
      - Payload Infrared Sensor Reading
-     - 0x22
+     - 0x23
    * - INJECTOR_BOARD_TEMP_1
      - Injector board temperature channel 1
-     - 0x23
+     - 0x24
    * - INJECTOR_BOARD_TEMP_2
      - Injector board temperature channel 2
-     - 0x24
+     - 0x25
    * - INJECTOR_BOARD_TEMP_3
      - Injector board temperature channel 3
-     - 0x25
+     - 0x26
    * - RLCS_RELAY_OUTPUT_VOLT_A
      - RLCS Relay Board channel A output voltage
-     - 0x26
+     - 0x27
    * - RLCS_RELAY_OUTPUT_VOLT_B
      - RLCS Relay Board channel B output voltage
-     - 0x27
+     - 0x28
    * - RLCS_RELAY_OUTPUT_CURR_A
      - RLCS Relay Board channel A output current
-     - 0x28
+     - 0x29
    * - RLCS_RELAY_OUTPUT_CURR_B
      - RLCS Relay Board channel B output current
-     - 0x29
+     - 0x2A
    * - RLCS_RELAY_LIM_VOLT_A
      - RLCS Relay Board limit switch A voltage
-     - 0x2A
+     - 0x2B
    * - RLCS_RELAY_LIM_VOLT_B
      - RLCS Relay Board limit switch B voltage
-     - 0x2B
+     - 0x2C
    * - LOG_WRITTEN_SIZE
      - Number of bytes written to log file(reset to 0 when a new file is created)
-     - 0x2C
+     - 0x2D
    * - SD_LOG_FILE_NAME
      - SD Card log file name(the number part only)
-     - 0x2D
+     - 0x2E
    * - SD_USED
      - SD Card used space size, in MiB
-     - 0x2E
+     - 0x2F
    * - SD_FREE
      - SD Card free space size, in MiB
-     - 0x2F
+     - 0x30
    * - FLASH_LOG_FILE_NAME
      - Flash log file name(the number part only)
-     - 0x30
+     - 0x31
    * - FLASH_USED
      - Flash used space size, in MiB
-     - 0x31
+     - 0x32
    * - FLASH_FREE
      - FLash free space size, in MiB
-     - 0x32
+     - 0x33
    * - CANARD_CTRL_CMD_ANGLE
      - Canard Controller Commanded Angle
-     - 0x33
+     - 0x34
    * - CANARD_CTRL_COEFF_LIFT
      - Canard Controller Coefficient of Lift
-     - 0x34
+     - 0x35
    * - CANARD_MTI630_BARO_0
      - Canard MTI-630 Movella barometer reading 0
-     - 0x35
+     - 0x36
    * - CANARD_MTI630_BARO_1
      - Canard MTI-630 Movella barometer reading 1
-     - 0x36
+     - 0x37
    * - CANARD_MTI630_EST_ALT
      - Canard MTI-630 Movella Estimation altitude
-     - 0x37
+     - 0x38
    * - CANARD_ADXRS649_GYRO
      - Canard ADXRS649 1-Axis Gyroscope angular velocity reading
-     - 0x38
+     - 0x39
    * - CANARD_SERVO_ANGLE
      - Canard Servo encoder angle reading
-     - 0x39
+     - 0x3A
    * - CANARD_SERVO_CURR
      - Canard Servo current reading (in mA)
-     - 0x3A
+     - 0x3B
    * - CANARD_SERVO_TEMP
      - Canard Servo temperature reading (in Celcius)
-     - 0x3B
+     - 0x3C
    * - PAYLOAD_SENSOR_CURR_READING
      - Payload Sensor Current Reading
-     - 0x3C
+     - 0x3D
+   * - ALTITUDE
+     - Altitude in ft
+     - 0x3E
 
 dem_2d_sensor_id
 ================
@@ -670,11 +718,11 @@ dem_3d_sensor_id
    * - CANARD_LSM6DSV32X_GYRO
      - Canard LSM6DSV32X 32G IMU Angular Velocity
      - 0x03
-   * - CANARD_LSM303AGR_ACCEL
-     - Canard LSM303AGR Compass Acceleration
+   * - CANARD_IIS2MDC_ACCEL
+     - Canard IIS2MDC Compass Acceleration
      - 0x04
-   * - CANARD_LSM303AGR_MAG
-     - Canard LSM303AGR Magnetometer Reading
+   * - CANARD_IIS2MDC_MAG
+     - Canard IIS2MDC Magnetometer Reading
      - 0x05
    * - CANARD_MTI630_ACCEL
      - Canard MTI-630 Movella Acceleration
@@ -761,4 +809,7 @@ Board error bitfield
    * - PT_OUT_OF_RANGE
      - No Description
      - 0x0F
+   * - CANARD_MODULE_FAILURE
+     - Canard firmware application module error
+     - 0x10
 
