@@ -502,7 +502,7 @@ Sensor ID for Sensor Messages
    * - BATT_VOLT
      - Battery Voltage in mV
      - 0x06
-   * - ALT_BATT_VOLT
+   * - ALTERNATE_BATT_VOLT
      - Secondary Battery Voltage in mV
      - 0x07
    * - BATT_CURR
