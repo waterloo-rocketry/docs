@@ -282,7 +282,9 @@ TELEMETRY_INFO (0x16)
 | **LQI:** Link Quality Indicator
 | **RSSI:** Received Signal Strength Indicator
 
-CANARD_FIRMWARE_ERROR (0x17)
+TELEMETRY_STATE_SWITCH (0x17)
+==============================
+CANARD_FIRMWARE_ERROR (0x18)
 =============================
 +-----------+--------+---------+------------+----------+
 | Metadata  | Byte 0-1         | Byte 2-5   | Byte 6   |
@@ -294,9 +296,9 @@ CANARD_FIRMWARE_ERROR (0x17)
 | **ERROR_CODE:** Error Code Bitfield
 | **SEVERITY:** Severity
 
-LEDS_ON (0x18)
+LEDS_ON (0x19)
 ===============
-LEDS_OFF (0x19)
+LEDS_OFF (0x20)
 ================
 Enums Definition
 ****************
@@ -500,174 +502,177 @@ Sensor ID for Sensor Messages
    * - BATT_VOLT
      - Battery Voltage in mV
      - 0x06
+   * - ALT_BATT_VOLT
+     - Secondary Battery Voltage in mV
+     - 0x07
    * - BATT_CURR
      - Battery Current in mA
-     - 0x07
+     - 0x08
    * - RADIO_CURR
      - Radio current in mA
-     - 0x08
+     - 0x09
    * - GPS_CURR
      - GPS Receiver current in mA
-     - 0x09
+     - 0x0A
    * - CAMERA_CURR
      - Camera current in mA
-     - 0x0A
+     - 0x0B
    * - LOCAL_CURR
      - Local voltage rail (e.g. 3.3V) current in mA
-     - 0x0B
+     - 0x0C
    * - PT_CHANNEL_1
      - Pressure Transducer Channel 1
-     - 0x0C
+     - 0x0D
    * - PT_CHANNEL_2
      - Pressure Transducer Channel 2
-     - 0x0D
+     - 0x0E
    * - PT_CHANNEL_3
      - Pressure Transducer Channel 3
-     - 0x0E
+     - 0x0F
    * - PT_CHANNEL_4
      - Pressure Transducer Channel 4
-     - 0x0F
+     - 0x10
    * - PT_CHANNEL_5
      - Pressure Transducer Channel 5
-     - 0x10
+     - 0x11
    * - PT_CHANNEL_6
      - Pressure Transducer Channel 6
-     - 0x11
+     - 0x12
    * - PT_CHANNEL_7
      - Pressure Transducer Channel 7
-     - 0x12
+     - 0x13
    * - PT_CHANNEL_8
      - Pressure Transducer Channel 8
-     - 0x13
+     - 0x14
    * - PT_CHANNEL_9
      - Pressure Transducer Channel 9
-     - 0x14
+     - 0x15
    * - PT_CHANNEL_10
      - Pressure Transducer Channel 10
-     - 0x15
+     - 0x16
    * - HALL_CHANNEL_1
      - Hall-Effect Sensor Channel 1
-     - 0x16
+     - 0x17
    * - HALL_CHANNEL_2
      - Hall-Effect Sensor Channel 2
-     - 0x17
+     - 0x18
    * - HALL_CHANNEL_3
      - Hall-Effect Sensor Channel 3
-     - 0x18
+     - 0x19
    * - RA_BATT_VOLT_1
      - No Description
-     - 0x19
+     - 0x1A
    * - RA_BATT_VOLT_2
      - No Description
-     - 0x1A
+     - 0x1B
    * - RA_BATT_CURR_1
      - No Description
-     - 0x1B
+     - 0x1C
    * - RA_BATT_CURR_2
      - No Description
-     - 0x1C
+     - 0x1D
    * - RA_MAG_VOLT_1
      - No Description
-     - 0x1D
+     - 0x1E
    * - RA_MAG_VOLT_2
      - No Description
-     - 0x1E
+     - 0x1F
    * - FPS
      - Camera framerate
-     - 0x1F
+     - 0x20
    * - PAYLOAD_LIM_1
      - Payload Motor Board Limit Switch 1
-     - 0x20
+     - 0x21
    * - PAYLOAD_LIM_2
      - Payload Motor Board Limit Switch 2
-     - 0x21
+     - 0x22
    * - PAYLOAD_SERVO_DIRECTION
      - Payload Servo Direction
-     - 0x22
+     - 0x23
    * - PAYLOAD_INFRARED
      - Payload Infrared Sensor Reading
-     - 0x23
+     - 0x24
    * - INJECTOR_BOARD_TEMP_1
      - Injector board temperature channel 1
-     - 0x24
+     - 0x25
    * - INJECTOR_BOARD_TEMP_2
      - Injector board temperature channel 2
-     - 0x25
+     - 0x26
    * - INJECTOR_BOARD_TEMP_3
      - Injector board temperature channel 3
-     - 0x26
+     - 0x27
    * - RLCS_RELAY_OUTPUT_VOLT_A
      - RLCS Relay Board channel A output voltage
-     - 0x27
+     - 0x28
    * - RLCS_RELAY_OUTPUT_VOLT_B
      - RLCS Relay Board channel B output voltage
-     - 0x28
+     - 0x29
    * - RLCS_RELAY_OUTPUT_CURR_A
      - RLCS Relay Board channel A output current
-     - 0x29
+     - 0x2A
    * - RLCS_RELAY_OUTPUT_CURR_B
      - RLCS Relay Board channel B output current
-     - 0x2A
+     - 0x2B
    * - RLCS_RELAY_LIM_VOLT_A
      - RLCS Relay Board limit switch A voltage
-     - 0x2B
+     - 0x2C
    * - RLCS_RELAY_LIM_VOLT_B
      - RLCS Relay Board limit switch B voltage
-     - 0x2C
+     - 0x2D
    * - LOG_WRITTEN_SIZE
      - Number of bytes written to log file(reset to 0 when a new file is created)
-     - 0x2D
+     - 0x2E
    * - SD_LOG_FILE_NAME
      - SD Card log file name(the number part only)
-     - 0x2E
+     - 0x2F
    * - SD_USED
      - SD Card used space size, in MiB
-     - 0x2F
+     - 0x30
    * - SD_FREE
      - SD Card free space size, in MiB
-     - 0x30
+     - 0x31
    * - FLASH_LOG_FILE_NAME
      - Flash log file name(the number part only)
-     - 0x31
+     - 0x32
    * - FLASH_USED
      - Flash used space size, in MiB
-     - 0x32
+     - 0x33
    * - FLASH_FREE
      - FLash free space size, in MiB
-     - 0x33
+     - 0x34
    * - CANARD_CTRL_CMD_ANGLE
      - Canard Controller Commanded Angle
-     - 0x34
+     - 0x35
    * - CANARD_CTRL_COEFF_LIFT
      - Canard Controller Coefficient of Lift
-     - 0x35
+     - 0x36
    * - CANARD_MTI630_BARO_0
      - Canard MTI-630 Movella barometer reading 0
-     - 0x36
+     - 0x37
    * - CANARD_MTI630_BARO_1
      - Canard MTI-630 Movella barometer reading 1
-     - 0x37
+     - 0x38
    * - CANARD_MTI630_EST_ALT
      - Canard MTI-630 Movella Estimation altitude
-     - 0x38
+     - 0x39
    * - CANARD_ADXRS649_GYRO
      - Canard ADXRS649 1-Axis Gyroscope angular velocity reading
-     - 0x39
+     - 0x3A
    * - CANARD_SERVO_ANGLE
      - Canard Servo encoder angle reading
-     - 0x3A
+     - 0x3B
    * - CANARD_SERVO_CURR
      - Canard Servo current reading (in mA)
-     - 0x3B
+     - 0x3C
    * - CANARD_SERVO_TEMP
      - Canard Servo temperature reading (in Celcius)
-     - 0x3C
+     - 0x3D
    * - PAYLOAD_SENSOR_CURR_READING
      - Payload Sensor Current Reading
-     - 0x3D
+     - 0x3E
    * - ALTITUDE
      - Altitude in ft
-     - 0x3E
+     - 0x3F
 
 dem_2d_sensor_id
 ================
