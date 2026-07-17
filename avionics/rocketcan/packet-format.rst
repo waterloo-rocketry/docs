@@ -292,9 +292,9 @@ CANARD_FIRMWARE_ERROR (0x18)
 | MODULE_ID | 2 byte timestamp | ERROR_CODE | SEVERITY |
 +-----------+--------+---------+------------+----------+
 
-| **MODULE_ID:** Module ID
-| **ERROR_CODE:** Error Code Bitfield
-| **SEVERITY:** Severity
+| **MODULE_ID:** Module ID, see `canards_module_id`_
+| **ERROR_CODE:** Error Code Bitfield, see `canards_module_error_bitfield`_
+| **SEVERITY:** Severity, see `canards_health_severity`_
 
 LEDS_ON (0x19)
 ===============
@@ -759,6 +759,131 @@ dem_3d_sensor_id
    * - CANARD_ADXL380_ACCEL
      - Canard ADXL380 Accelerometer Acceleration
      - 0x0C
+   * - PAYLOAD_ACCEL_0
+     - Payload Accelerometer 0
+     - 0x0D
+   * - PAYLOAD_ACCEL_1
+     - Payload Accelerometer 1
+     - 0x0E
+   * - PAYLOAD_ACCEL_2
+     - Payload Accelerometer 2
+     - 0x0F
+   * - PAYLOAD_ACCEL_3
+     - Payload Accelerometer 3
+     - 0x10
+   * - PAYLOAD_ACCEL_4
+     - Payload Accelerometer 4
+     - 0x11
+   * - PAYLOAD_ACCEL_5
+     - Payload Accelerometer 5
+     - 0x12
+   * - PAYLOAD_ACCEL_6
+     - Payload Accelerometer 6
+     - 0x13
+   * - PAYLOAD_ACCEL_7
+     - Payload Accelerometer 7
+     - 0x14
+
+canards_health_severity
+=======================
+
+Canards Health Severity
+
+.. list-table:: canards_health_severity Enum Values
+   :widths: 25 60 15
+   :header-rows: 1
+
+   * - Enum Name
+     - Description
+     - ID
+   * - HEALTH_OK
+     - No issues
+     - 0x00
+   * - HEALTH_ERROR
+     - Something is wrong, but can still fly safely
+     - 0x01
+   * - HEALTH_FATAL
+     - Unrecoverable failure, unsafe flight
+     - 0x02
+
+canards_module_id
+=================
+
+Canards Module ID
+
+.. list-table:: canards_module_id Enum Values
+   :widths: 25 60 15
+   :header-rows: 1
+
+   * - Enum Name
+     - Description
+     - ID
+   * - ADC
+     - No Description
+     - 0x00
+   * - ADXL380
+     - No Description
+     - 0x01
+   * - ADXRS649
+     - No Description
+     - 0x02
+   * - AK45
+     - No Description
+     - 0x03
+   * - CAN_HANDLER
+     - No Description
+     - 0x04
+   * - CONTROLLER
+     - No Description
+     - 0x05
+   * - FLIGHT_PHASE
+     - No Description
+     - 0x06
+   * - FSM
+     - No Description
+     - 0x07
+   * - GPIO
+     - No Description
+     - 0x08
+   * - I2C
+     - No Description
+     - 0x09
+   * - IIS2MDC
+     - No Description
+     - 0x0A
+   * - LOGGER
+     - No Description
+     - 0x0B
+   * - LSM6DSV32X
+     - No Description
+     - 0x0C
+   * - MOVELLA
+     - No Description
+     - 0x0D
+   * - MS5611
+     - No Description
+     - 0x0E
+   * - NAVIGATOR
+     - No Description
+     - 0x0F
+   * - POWER_HANDLER
+     - No Description
+     - 0x10
+   * - SD_CARD
+     - No Description
+     - 0x11
+   * - SENSOR_HANDLER
+     - No Description
+     - 0x12
+   * - TELEMETRY
+     - No Description
+     - 0x13
+   * - TIMER
+     - No Description
+     - 0x14
+   * - UART
+     - No Description
+     - 0x15
 
 Bitfields Definition
 *********************
@@ -835,4 +960,92 @@ Board error bitfield
    * - CHARGE_RAIL_OVER_CURR
      - Charge power rail over current
      - 0x13
+
+canards_module_error_bitfield
+=============================
+
+Canards module_error bitfield
+
+.. list-table:: canards_module_error_bitfield Bitfield bits
+   :widths: 25 60 15
+   :header-rows: 1
+
+   * - Bitfield Name
+     - Description
+     - Offset
+   * - BAT1_FAULT
+     - Battery 1 fault
+     - 0x00
+   * - BAT2_FAULT
+     - Battery 2 fault
+     - 0x01
+   * - DEVICE_FAULT
+     - External device fault
+     - 0x02
+   * - FILE_SYSTEM
+     - SD card or flash storage mount, read, or write operation failed
+     - 0x03
+   * - HARDWARE_FAIL
+     - Hardware interface failed (GPIO, pin config, etc.)
+     - 0x04
+   * - LOW_POWER_MODE_WITH_EXT_5V_ON
+     - Low-power mode active while external 5V is on
+     - 0x05
+   * - COMM_FAILURE
+     - Communication protocol failure (I2C, SPI, UART, etc.)
+     - 0x06
+   * - CRC_FAILED
+     - Integrity check failed
+     - 0x07
+   * - NO_DATA
+     - Expected sensor data packet or control command frame is missing
+     - 0x08
+   * - RX_FAILURE
+     - Error occurred during data reception on physical bus transceivers
+     - 0x09
+   * - TIMEOUT
+     - Operation or sensor handshake exceeded its allocated time window
+     - 0x0A
+   * - TX_FAILURE
+     - Transmit failure
+     - 0x0B
+   * - ERROR_STATE
+     - FSM transitioned into an unhandled, invalid, or corrupted state
+     - 0x0C
+   * - FAILED_CALIBRATION
+     - Calibration routine executed but failed
+     - 0x0D
+   * - NOT_CALIBRATED
+     - Calibration did not execute
+     - 0x0E
+   * - LOOP_TIMING
+     - Control loop period did not meet timing requirements
+     - 0x0F
+   * - NOT_INIT
+     - Module, task, or driver was accessed before being initialized
+     - 0x10
+   * - OS
+     - RTOS feature (queue, semaphore) failed
+     - 0x11
+   * - CODEGEN
+     - Error occurred inside codegen
+     - 0x12
+   * - UNEXPECTED_EVENT
+     - Attempted to trigger an illegal state transition event
+     - 0x13
+   * - INVALID_PARAM
+     - Function argument passed with value outside of legal range
+     - 0x14
+   * - MATH
+     - Floating-point exception, division by zero, or NaN in control algorithms
+     - 0x15
+   * - OUT_OF_BOUNDS
+     - Data is out of range
+     - 0x16
+   * - OVERFLOW
+     - Buffer, queue, or integer arithmetic register overflow
+     - 0x17
+   * - INTERNAL
+     - General software assertion or unhandled catch-all logical exception
+     - 0x18
 
