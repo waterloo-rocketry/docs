@@ -405,6 +405,15 @@ Actuator ID for Actuator Command and Status Messages
    * - CANARD_MOTOR_CALIBRATION
      - Start canard motor calibration routine
      - 0x1D
+   * - LOGGER_SD_CLEAR
+     - Clear logger board SD card
+     - 0x1E
+   * - CANARD_SD_CLEAR
+     - Clear canard board SD card
+     - 0x1F
+   * - PAYLOAD_SD_CLEAR
+     - Clear payload board SD card
+     - 0x20
 
 actuator_state
 ==============
@@ -676,6 +685,9 @@ Sensor ID for Sensor Messages
    * - ALTITUDE
      - Altitude in ft
      - 0x3F
+   * - PAYLOAD_TEMP
+     - Payload temperature
+     - 0x40
 
 dem_2d_sensor_id
 ================
