@@ -26,14 +26,14 @@ RESET_CMD (0x02)
 =================
 Command to reset boards
 
-+--------+---------+---------------+---------------+
-| Byte 0-1         | Byte 2        | Byte 3        |
-+========+=========+===============+===============+
-| 2 byte timestamp | BOARD_TYPE_ID | BOARD_INST_ID |
-+--------+---------+---------------+---------------+
++--------+---------+----------------------+----------------------+
+| Byte 0-1         | Byte 2               | Byte 3               |
++========+=========+======================+======================+
+| 2 byte timestamp | TARGET_BOARD_TYPE_ID | TARGET_BOARD_INST_ID |
++--------+---------+----------------------+----------------------+
 
-| **BOARD_TYPE_ID:** Board Type ID of board to reset, set to 0 to reset all boards on bus
-| **BOARD_INST_ID:** Board Inst ID of board to reset, set to 0 to reset all board of specific type
+| **TARGET_BOARD_TYPE_ID:** Board Type ID of board to reset, set to 0 to reset all boards on bus
+| **TARGET_BOARD_INST_ID:** Board Inst ID of board to reset, set to 0 to reset all board of specific type
 
 DEBUG_RAW (0x03)
 =================
@@ -51,14 +51,14 @@ CONFIG_SET (0x04)
 ==================
 Set board specific configuration
 
-+--------+---------+---------------+---------------+-----------+--------------+
-| Byte 0-1         | Byte 2        | Byte 3        | Byte 4-5  | Byte 6-7     |
-+========+=========+===============+===============+===========+==============+
-| 2 byte timestamp | BOARD_TYPE_ID | BOARD_INST_ID | CONFIG_ID | CONFIG_VALUE |
-+--------+---------+---------------+---------------+-----------+--------------+
++--------+---------+----------------------+----------------------+-----------+--------------+
+| Byte 0-1         | Byte 2               | Byte 3               | Byte 4-5  | Byte 6-7     |
++========+=========+======================+======================+===========+==============+
+| 2 byte timestamp | TARGET_BOARD_TYPE_ID | TARGET_BOARD_INST_ID | CONFIG_ID | CONFIG_VALUE |
++--------+---------+----------------------+----------------------+-----------+--------------+
 
-| **BOARD_TYPE_ID:** Board Type ID of target board, cannot be zero
-| **BOARD_INST_ID:** Board Inst ID of target board, set to 0 to set all board of specific type
+| **TARGET_BOARD_TYPE_ID:** Board Type ID of target board, cannot be zero
+| **TARGET_BOARD_INST_ID:** Board Inst ID of target board, set to 0 to set all board of specific type
 | **CONFIG_ID:** Configuration ID, Board Specific
 | **CONFIG_VALUE:** Configuration Value, Board and Config ID specific
 
@@ -280,7 +280,7 @@ TELEMETRY_INFO (0x16)
 
 | **CHANNEL_ID:** Channel ID(Use LTT board instance ID)
 | **LQI:** Link Quality Indicator
-| **RSSI:** Received Signal Strength Indicator
+| **RSSI:** Received Signal Strength Indicator(2s complement signed)
 
 TELEMETRY_STATE_SWITCH (0x17)
 ==============================
@@ -292,9 +292,9 @@ CANARD_FIRMWARE_ERROR (0x18)
 | MODULE_ID | 2 byte timestamp | ERROR_CODE | SEVERITY |
 +-----------+--------+---------+------------+----------+
 
-| **MODULE_ID:** Module ID
-| **ERROR_CODE:** Error Code Bitfield
-| **SEVERITY:** Severity
+| **MODULE_ID:** Module ID, see `canards_module_id`_
+| **ERROR_CODE:** Error Code Bitfield, see `canards_module_error_bitfield`_
+| **SEVERITY:** Severity, see `canards_health_severity`_
 
 LEDS_ON (0x19)
 ===============
@@ -324,11 +324,11 @@ Actuator ID for Actuator Command and Status Messages
    * - IGNITION
      - Ignition Puck
      - 0x02
-   * - ROCKET_CHARGE_ENABLE
-     - Rocket Ground-side Charging Enable
+   * - ROCKET_UPPER_CHARGE_ENABLE
+     - Rocket Upper Section Ground-side Charging Enable
      - 0x03
-   * - PAYLOAD_CHARGE_ENABLE
-     - Payload Ground-side Charging Enable
+   * - ROCKET_INJECTOR_CHARGE_ENABLE
+     - Rocket Injector Section Ground-side Charging Enable
      - 0x04
    * - 5V_RAIL_ROCKET
      - No Description
@@ -390,8 +390,8 @@ Actuator ID for Actuator Command and Status Messages
    * - RLCS_RELAY_SELECT
      - RLCS Relay Board Select Relay(Limit switch state feedback)
      - 0x18
-   * - PAYLOAD_LASER
-     - Payload Laser
+   * - PAYLOAD_ACCEL_ARM
+     - Payload accelerometer arming
      - 0x19
    * - PAYLOAD_PZT_ARM
      - Payload PZT phase biasing arming
@@ -402,6 +402,18 @@ Actuator ID for Actuator Command and Status Messages
    * - CANARD_FLASH_ERASE
      - Erase canard board flash
      - 0x1C
+   * - CANARD_MOTOR_CALIBRATION
+     - Start canard motor calibration routine
+     - 0x1D
+   * - LOGGER_SD_CLEAR
+     - Clear logger board SD card
+     - 0x1E
+   * - CANARD_SD_CLEAR
+     - Clear canard board SD card
+     - 0x1F
+   * - PAYLOAD_SD_CLEAR
+     - Clear payload board SD card
+     - 0x20
 
 actuator_state
 ==============
@@ -517,8 +529,8 @@ Sensor ID for Sensor Messages
    * - CAMERA_CURR
      - Camera current in mA
      - 0x0B
-   * - LOCAL_CURR
-     - Local voltage rail (e.g. 3.3V) current in mA
+   * - LOCAL_RAIL_CURR
+     - Local power rail (e.g. 3.3V) current in mA
      - 0x0C
    * - PT_CHANNEL_1
      - Pressure Transducer Channel 1
@@ -673,6 +685,9 @@ Sensor ID for Sensor Messages
    * - ALTITUDE
      - Altitude in ft
      - 0x3F
+   * - PAYLOAD_TEMP
+     - Payload temperature
+     - 0x40
 
 dem_2d_sensor_id
 ================
@@ -698,6 +713,12 @@ dem_2d_sensor_id
    * - CANARD_MS5611_BARO_TEMP
      - Canard MS5611 Barometer Pressure(X) and Temperature(Y) reading
      - 0x03
+   * - CANARD_MTI630_EST_ORI_QW_QX
+     - Canard MTI-630 Movella Estimation Orientation (Euler) - QW and QX demension
+     - 0x04
+   * - CANARD_MTI630_EST_ORI_QY_QZ
+     - Canard MTI-630 Movella Estimation Orientation (Euler) - QY and QZ demension
+     - 0x05
 
 dem_3d_sensor_id
 ================
@@ -711,10 +732,10 @@ dem_3d_sensor_id
    * - Enum Name
      - Description
      - ID
-   * - CANARD_NAV_ORIENTATION_QUAT_QX_QY_QZ
+   * - CANARD_NAV_ORI_QX_QY_QZ
      - Canard Navigation Orientation QX, QY, QZ
      - 0x00
-   * - CANARD_NAV_ORIENTATION_QUAT_QW_ALT_VARNORM
+   * - CANARD_NAV_ORI_QW_ALT_VARNORM
      - Canard Navigation Orientation QW(X), Altitude(Y), Variance Norm(Z)
      - 0x01
    * - CANARD_LSM6DSV32X_ACCEL
@@ -738,8 +759,8 @@ dem_3d_sensor_id
    * - CANARD_MTI630_MAG
      - Canard MTI-630 Movella Magnetometer Reading
      - 0x08
-   * - CANARD_MTI630_EST_ORIENTATION
-     - Canard MTI-630 Movella Estimation Orientation (Euler)
+   * - RESERVED_0
+     - Reserved 0
      - 0x09
    * - CANARD_MTI630_EST_ANGLE_VEL
      - Canard MTI-630 Movella Estimation Angular Velocity
@@ -750,6 +771,131 @@ dem_3d_sensor_id
    * - CANARD_ADXL380_ACCEL
      - Canard ADXL380 Accelerometer Acceleration
      - 0x0C
+   * - PAYLOAD_ACCEL_0
+     - Payload Accelerometer 0
+     - 0x0D
+   * - PAYLOAD_ACCEL_1
+     - Payload Accelerometer 1
+     - 0x0E
+   * - PAYLOAD_ACCEL_2
+     - Payload Accelerometer 2
+     - 0x0F
+   * - PAYLOAD_ACCEL_3
+     - Payload Accelerometer 3
+     - 0x10
+   * - PAYLOAD_ACCEL_4
+     - Payload Accelerometer 4
+     - 0x11
+   * - PAYLOAD_ACCEL_5
+     - Payload Accelerometer 5
+     - 0x12
+   * - PAYLOAD_ACCEL_6
+     - Payload Accelerometer 6
+     - 0x13
+   * - PAYLOAD_ACCEL_7
+     - Payload Accelerometer 7
+     - 0x14
+
+canards_health_severity
+=======================
+
+Canards Health Severity
+
+.. list-table:: canards_health_severity Enum Values
+   :widths: 25 60 15
+   :header-rows: 1
+
+   * - Enum Name
+     - Description
+     - ID
+   * - HEALTH_OK
+     - No issues
+     - 0x00
+   * - HEALTH_ERROR
+     - Something is wrong, but can still fly safely
+     - 0x01
+   * - HEALTH_FATAL
+     - Unrecoverable failure, unsafe flight
+     - 0x02
+
+canards_module_id
+=================
+
+Canards Module ID
+
+.. list-table:: canards_module_id Enum Values
+   :widths: 25 60 15
+   :header-rows: 1
+
+   * - Enum Name
+     - Description
+     - ID
+   * - ADC
+     - No Description
+     - 0x00
+   * - ADXL380
+     - No Description
+     - 0x01
+   * - ADXRS649
+     - No Description
+     - 0x02
+   * - AK45
+     - No Description
+     - 0x03
+   * - CAN_HANDLER
+     - No Description
+     - 0x04
+   * - CONTROLLER
+     - No Description
+     - 0x05
+   * - FLIGHT_PHASE
+     - No Description
+     - 0x06
+   * - FSM
+     - No Description
+     - 0x07
+   * - GPIO
+     - No Description
+     - 0x08
+   * - I2C
+     - No Description
+     - 0x09
+   * - IIS2MDC
+     - No Description
+     - 0x0A
+   * - LOGGER
+     - No Description
+     - 0x0B
+   * - LSM6DSV32X
+     - No Description
+     - 0x0C
+   * - MOVELLA
+     - No Description
+     - 0x0D
+   * - MS5611
+     - No Description
+     - 0x0E
+   * - NAVIGATOR
+     - No Description
+     - 0x0F
+   * - POWER_HANDLER
+     - No Description
+     - 0x10
+   * - SD_CARD
+     - No Description
+     - 0x11
+   * - SENSOR_HANDLER
+     - No Description
+     - 0x12
+   * - TELEMETRY
+     - No Description
+     - 0x13
+   * - TIMER
+     - No Description
+     - 0x14
+   * - UART
+     - No Description
+     - 0x15
 
 Bitfields Definition
 *********************
@@ -766,34 +912,34 @@ Board error bitfield
    * - Bitfield Name
      - Description
      - Offset
-   * - 5V_OVER_CURRENT
+   * - 5V_OVER_CURR
      - No Description
      - 0x00
-   * - 5V_OVER_VOLTAGE
+   * - 5V_OVER_VOLT
      - No Description
      - 0x01
-   * - 5V_UNDER_VOLTAGE
+   * - 5V_UNDER_VOLT
      - No Description
      - 0x02
-   * - 12V_OVER_CURRENT
+   * - 12V_OVER_CURR
      - No Description
      - 0x03
-   * - 12V_OVER_VOLTAGE
+   * - 12V_OVER_VOLT
      - No Description
      - 0x04
-   * - 12V_UNDER_VOLTAGE
+   * - 12V_UNDER_VOLT
      - No Description
      - 0x05
-   * - BATT_OVER_CURRENT
+   * - BATT_OVER_CURR
      - No Description
      - 0x06
-   * - BATT_OVER_VOLTAGE
+   * - BATT_OVER_VOLT
      - No Description
      - 0x07
-   * - BATT_UNDER_VOLTAGE
+   * - BATT_UNDER_VOLT
      - No Description
      - 0x08
-   * - MOTOR_OVER_CURRENT
+   * - MOTOR_OVER_CURR
      - No Description
      - 0x09
    * - IO_ERROR
@@ -817,4 +963,101 @@ Board error bitfield
    * - CANARD_MODULE_FAILURE
      - Canard firmware application module error
      - 0x10
+   * - LOCAL_RAIL_OVER_CURR
+     - Local power rail (e.g. 3.3V) over current
+     - 0x11
+   * - CHARGE_RAIL_OVER_VOLT
+     - Charge power rail over voltage
+     - 0x12
+   * - CHARGE_RAIL_OVER_CURR
+     - Charge power rail over current
+     - 0x13
+
+canards_module_error_bitfield
+=============================
+
+Canards module_error bitfield
+
+.. list-table:: canards_module_error_bitfield Bitfield bits
+   :widths: 25 60 15
+   :header-rows: 1
+
+   * - Bitfield Name
+     - Description
+     - Offset
+   * - BAT1_FAULT
+     - Battery 1 fault
+     - 0x00
+   * - BAT2_FAULT
+     - Battery 2 fault
+     - 0x01
+   * - DEVICE_FAULT
+     - External device fault
+     - 0x02
+   * - FILE_SYSTEM
+     - SD card or flash storage mount, read, or write operation failed
+     - 0x03
+   * - HARDWARE_FAIL
+     - Hardware interface failed (GPIO, pin config, etc.)
+     - 0x04
+   * - LOW_POWER_MODE_WITH_EXT_5V_ON
+     - Low-power mode active while external 5V is on
+     - 0x05
+   * - COMM_FAILURE
+     - Communication protocol failure (I2C, SPI, UART, etc.)
+     - 0x06
+   * - CRC_FAILED
+     - Integrity check failed
+     - 0x07
+   * - NO_DATA
+     - Expected sensor data packet or control command frame is missing
+     - 0x08
+   * - RX_FAILURE
+     - Error occurred during data reception on physical bus transceivers
+     - 0x09
+   * - TIMEOUT
+     - Operation or sensor handshake exceeded its allocated time window
+     - 0x0A
+   * - TX_FAILURE
+     - Transmit failure
+     - 0x0B
+   * - ERROR_STATE
+     - FSM transitioned into an unhandled, invalid, or corrupted state
+     - 0x0C
+   * - FAILED_CALIBRATION
+     - Calibration routine executed but failed
+     - 0x0D
+   * - NOT_CALIBRATED
+     - Calibration did not execute
+     - 0x0E
+   * - LOOP_TIMING
+     - Control loop period did not meet timing requirements
+     - 0x0F
+   * - NOT_INIT
+     - Module, task, or driver was accessed before being initialized
+     - 0x10
+   * - OS
+     - RTOS feature (queue, semaphore) failed
+     - 0x11
+   * - CODEGEN
+     - Error occurred inside codegen
+     - 0x12
+   * - UNEXPECTED_EVENT
+     - Attempted to trigger an illegal state transition event
+     - 0x13
+   * - INVALID_PARAM
+     - Function argument passed with value outside of legal range
+     - 0x14
+   * - MATH
+     - Floating-point exception, division by zero, or NaN in control algorithms
+     - 0x15
+   * - OUT_OF_BOUNDS
+     - Data is out of range
+     - 0x16
+   * - OVERFLOW
+     - Buffer, queue, or integer arithmetic register overflow
+     - 0x17
+   * - INTERNAL
+     - General software assertion or unhandled catch-all logical exception
+     - 0x18
 
