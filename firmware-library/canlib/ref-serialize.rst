@@ -11,6 +11,12 @@ msg_actuator.h
 msg_common.h
 ============
 
+.. autodoxygenfile:: msg_canards.h
+   :project: canlib
+
+msg_common.h
+============
+
 .. autodoxygenfile:: msg_common.h
    :project: canlib
 
@@ -42,4 +48,10 @@ msg_stream.h
 ============
 
 .. autodoxygenfile:: msg_stream.h
+   :project: canlib
+
+msg_telemetry.h
+===============
+
+.. autodoxygenfile:: msg_telemetry.h
    :project: canlib
