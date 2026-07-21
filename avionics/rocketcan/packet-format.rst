@@ -688,6 +688,54 @@ Sensor ID for Sensor Messages
    * - PAYLOAD_TEMP
      - Payload temperature
      - 0x40
+   * - TC_0
+     - TC 0
+     - 0x41
+   * - TC_1
+     - TC 1
+     - 0x42
+   * - TC_2
+     - TC 2
+     - 0x43
+   * - TC_3
+     - TC 3
+     - 0x44
+   * - TC_4
+     - TC 4
+     - 0x45
+   * - TC_5
+     - TC 5
+     - 0x46
+   * - TC_6
+     - TC 6
+     - 0x47
+   * - TC_7
+     - TC 7
+     - 0x48
+   * - TC_8
+     - TC 8
+     - 0x49
+   * - TC_9
+     - TC 9
+     - 0x4A
+   * - TC_10
+     - TC 10
+     - 0x4B
+   * - TC_11
+     - TC 11
+     - 0x4C
+   * - TC_12
+     - TC 12
+     - 0x4D
+   * - TC_13
+     - TC 13
+     - 0x4E
+   * - TC_14
+     - TC 14
+     - 0x4F
+   * - TC_15
+     - TC 15
+     - 0x50
 
 dem_2d_sensor_id
 ================
