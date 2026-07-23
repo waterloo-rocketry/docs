@@ -270,6 +270,14 @@ STREAM_DATA (0x14)
 
 STREAM_RETRY (0x15)
 ====================
++----------+--------+---------+
+| Metadata | Byte 0-1         |
++==========+========+=========+
+| SEQ_ID   | 2 byte timestamp |
++----------+--------+---------+
+
+| **SEQ_ID:** Sequence ID of data packet need to be resend
+
 TELEMETRY_INFO (0x16)
 ======================
 +------------+--------+---------+--------+--------+
@@ -284,6 +292,14 @@ TELEMETRY_INFO (0x16)
 
 TELEMETRY_STATE_SWITCH (0x17)
 ==============================
++------------+--------+---------+
+| Metadata   | Byte 0-1         |
++============+========+=========+
+| CHANNEL_ID | 2 byte timestamp |
++------------+--------+---------+
+
+| **CHANNEL_ID:** Channel ID(Use LTT board instance ID)
+
 CANARD_FIRMWARE_ERROR (0x18)
 =============================
 +-----------+--------+---------+------------+----------+
