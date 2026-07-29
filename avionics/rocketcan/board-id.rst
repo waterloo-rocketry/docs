@@ -53,6 +53,9 @@ Board Type IDs
    * - DAQ
      - :doc:`DAQ(Data Acquisition System) CAN Support</electrical-gse/daq/index>`
      - 0x0D
+   * - THERMOCOUPLE
+     - Thermocouple board
+     - 0x0E
 
 Board Instance IDs
 ******************
@@ -136,3 +139,26 @@ Remote Arming Board
    * - RA_STRATOLOGGER
      - Remote Arming for Stratologger
      - 0x0B
+
+Thermocouple board
+==================
+
+.. list-table:: Thermocouple board Instances
+   :widths: 25 60 15
+   :header-rows: 1
+
+   * - Enum Name
+     - Board Instance Name
+     - ID
+   * - TCB_1
+     - TCB 1
+     - 0x0C
+   * - TCB_2
+     - TCB 2
+     - 0x0D
+   * - TCB_3
+     - TCB 3
+     - 0x0E
+   * - TCB_4
+     - TCB 4
+     - 0x0F
