@@ -7,20 +7,16 @@ Lines of Code Statistics
 
 .. image:: https://csclub.uwaterloo.ca/~j9xu/cansw_canards-loc.svg
 
-.. _docstring_standards_embedded_c:
 
 
-Docstring Standards for Embedded C
-=========================================
+Docstring Standards and Code Comments Convention 
+==================================================
 
 Docstrings are mandated for controls firmware development to generate context for development. 
 
 =========================================
-1. Header Function Docstrings
+1. Header and Static Function Docstrings
 =========================================
-
-Header file documentation defines the **interface contract** for external callers. 
-It must specify memory constraints, alignment requirements, hardware dependencies, and exact return states, if applicable. 
 
 Google is your best resource when it comes to what keywords to use. Some common examples are: 
   * **@brief**: A concise sentence describing what the function does.
@@ -29,6 +25,11 @@ Google is your best resource when it comes to what keywords to use. Some common 
   * **@param[in/out]**: Directional parameter descriptions, explicitly stating memory location requirements (e.g., DMA-accessible memory).
   * **@return**: Explicit enumeration of all possible return codes.
   * **@satisfies**: Traceability tags linking implementation to system requirements.
+
+==========================================
+
+Header file documentation defines the **interface contract** for external callers. 
+It must specify memory constraints, alignment requirements, hardware dependencies, and exact return states, if applicable. 
 
 Example Header Docstring:
 
@@ -61,9 +62,7 @@ Example Header Docstring:
     w_status_t raw_logger_SD_read(uint8_t *buffer, uint32_t byte_address, uint32_t num_bytes,
                                   uint32_t timeout);
 
-=========================================
-2. Static Function Docstrings
-=========================================
+==========================================
 
 Docstrings for static functions shall be placed **above** the function definition in the source file. 
 
@@ -84,10 +83,26 @@ Example Static Function Docstring:
         // Implementation 
     }
 
-=========================================
-3. Syntax Rules Summary
-=========================================
+==========================================
+
+General Rule of Thumb for Docstrings
 
 1. **Use standard block comment formatting**: Open with `/**` and prefix subsequent lines with ` * ` (aligned with the asterisk).
 2. **Never use leading hyphens (`-`)**: Hyphens break Doxygen and Sphinx parsers, turning structured tags into plain text.
 3. **Explicitly document memory constraints**: In embedded systems, pointer parameters must state alignment requirements (`32-byte aligned`), memory regions (`non-DTCM`), and null-pointer behavior.
+
+=========================================
+2. In-Code Comments
+=========================================
+
+Avoid having large blocks of comments. The whole point of code comments is to make your implementation readable and easy to understand. 
+
+.. code-block:: c
+
+    // TODO: a task you need to finish later 
+    // NOTE: a note to yourself or others about the code 
+    // WARNING: a warning about a potential issue or pitfall
+    
+    // NOTE: DO NOT USE A TRAILING BACKLASH "\" INSIDE OF COMMENTS. 
+
+Some also use `FIXME` to indicate a known bug that needs fixing, but this is less common. 
