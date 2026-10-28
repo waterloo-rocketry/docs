@@ -18,7 +18,9 @@ Docstrings are mandated for controls firmware development to generate context fo
 1. Header and Static Function Docstrings
 =========================================
 
-Google is your best resource when it comes to what keywords to use. Some common examples are: 
+Google is your best resource when it comes to what keywords to use. You do NOT need to include every single keyword. You only need to use what is relevant to the function. 
+
+Some common examples are: 
   * **@brief**: A concise sentence describing what the function does.
   * **@details**: Architectural notes, hardware behaviors, or driver-level constraints.
   * **@pre**: Preconditions that must be met before calling (e.g., initialization checks, buffer alignment).
