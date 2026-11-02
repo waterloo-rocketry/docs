@@ -26,7 +26,7 @@ Some common examples are:
   * **@pre**: Preconditions that must be met before calling (e.g., initialization checks, buffer alignment).
   * **@param[in/out]**: Directional parameter descriptions, explicitly stating memory location requirements (e.g., DMA-accessible memory).
   * **@return**: Explicit enumeration of all possible return codes.
-  * **@satisfies**: Traceability tags linking implementation to system requirements.
+  * **@implements**: Traceability tags linking implementation to system requirements.
 
 ==========================================
 
@@ -59,7 +59,7 @@ Example Header Docstring:
      *         - W_INVALID_PARAM: Parameters violated alignment or null pointer checks.
      *         - W_IO_TIMEOUT: Operation timed out.
      *
-     * @satisfies REQ_RAW_LOG_012
+     * @implements REQ_RAW_LOG_012
      */
     w_status_t raw_logger_SD_read(uint8_t *buffer, uint32_t byte_address, uint32_t num_bytes,
                                   uint32_t timeout);
