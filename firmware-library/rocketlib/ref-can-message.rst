@@ -1,6 +1,12 @@
-********************************************
-CAN Message Serialization function reference
-********************************************
+******************************
+CAN Message function reference
+******************************
+
+can.h
+=====
+
+.. autodoxygenfile:: can.h
+   :project: rocketlib
 
 msg_actuator.h
 ==============

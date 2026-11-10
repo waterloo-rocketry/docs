@@ -1,6 +1,6 @@
-******************************
-CAN Utility function reference
-******************************
+*****************************
+CAN Buffer function reference
+*****************************
 
 safe_ring_buffer.h
 ==================

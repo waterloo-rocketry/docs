@@ -8,8 +8,8 @@ pic18f26k83_can.h
 .. autodoxygenfile:: pic18f26k83_can.h
    :project: rocketlib
 
-timing_util.h
-=============
+pic18f26k83_can_timing_util.h
+=============================
 
 .. autodoxygenfile:: pic18f26k83_can_timing_util.h
    :project: rocketlib

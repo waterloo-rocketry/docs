@@ -6,9 +6,10 @@ rocketlib
    :maxdepth: 1
 
    ref-common.rst
-   ref-driver.rst
-   ref-serialize.rst
-   ref-util.rst
+   ref-can-driver.rst
+   ref-can-message.rst
+   ref-can-buffer.rst
+   ref-timer-driver.rst
    littlefs.rst
    flash.rst
    howto-littlefs.rst
