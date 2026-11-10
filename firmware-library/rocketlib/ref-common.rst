@@ -6,4 +6,4 @@ can.h
 =====
 
 .. autodoxygenfile:: can.h
-   :project: canlib
+   :project: rocketlib

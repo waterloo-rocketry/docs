@@ -5,12 +5,15 @@ rocketlib
 .. toctree::
    :maxdepth: 1
 
-   dev-dashboard.rst
-   reference.rst
+   ref-common.rst
+   ref-driver.rst
+   ref-serialize.rst
+   ref-util.rst
    littlefs.rst
    flash.rst
    howto-littlefs.rst
    howto-develop.rst
+   howto-configure-stm32-can.rst
 
 Introduction
 ============
@@ -29,12 +32,12 @@ Roles and Responsibilities
      - **Names**
    * - Common Function Developer
      - Writes Code
-     - `Jason Xu <https://github.com/JasonBrave>`_
+     - `Skyler Ma <https://github.com/sky46>`_
    * - PIC18 Peripheral Driver Developer
      -
 	   - Writes Code
 	   - Test on physical hardware
-     - `Jason Xu <https://github.com/JasonBrave>`_
+     - `Skyler Ma <https://github.com/sky46>`_
    * - Filesystem Developer
      - Writes Code
      - `Ximena Li <https://github.com/x-ximena>`_
@@ -43,11 +46,11 @@ Roles and Responsibilities
 	   - Writes Code
 	   - Test on physical hardware
      -
-	   - `Jason Xu <https://github.com/JasonBrave>`_
+	   - `Skyler Ma <https://github.com/sky46>`_
 	   - `Ximena Li <https://github.com/x-ximena>`_
    * - Common Function Tester
      - Writes Unit Test
-     - `Jason Xu <https://github.com/JasonBrave>`_
+     - `Skyler Ma <https://github.com/sky46>`_
    * - RocketTest Flow Developer
      - Writes Code
      - `Jason Xu <https://github.com/JasonBrave>`_

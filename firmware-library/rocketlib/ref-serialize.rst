@@ -6,52 +6,52 @@ msg_actuator.h
 ==============
 
 .. autodoxygenfile:: msg_actuator.h
-   :project: canlib
+   :project: rocketlib
 
 msg_common.h
 ============
 
 .. autodoxygenfile:: msg_canards.h
-   :project: canlib
+   :project: rocketlib
 
 msg_common.h
 ============
 
 .. autodoxygenfile:: msg_common.h
-   :project: canlib
+   :project: rocketlib
 
 msg_general.h
 =============
 
 .. autodoxygenfile:: msg_general.h
-   :project: canlib
+   :project: rocketlib
 
 msg_gps.h
 =========
 
 .. autodoxygenfile:: msg_gps.h
-   :project: canlib
+   :project: rocketlib
 
 msg_recovery.h
 ==============
 
 .. autodoxygenfile:: msg_recovery.h
-   :project: canlib
+   :project: rocketlib
 
 msg_sensor.h
 ============
 
 .. autodoxygenfile:: msg_sensor.h
-   :project: canlib
+   :project: rocketlib
 
 msg_stream.h
 ============
 
 .. autodoxygenfile:: msg_stream.h
-   :project: canlib
+   :project: rocketlib
 
 msg_telemetry.h
 ===============
 
 .. autodoxygenfile:: msg_telemetry.h
-   :project: canlib
+   :project: rocketlib
