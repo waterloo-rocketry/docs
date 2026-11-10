@@ -1,6 +1,6 @@
-********************************************************
-How-To: Develop canlib and rocketlib
-********************************************************
+*************************
+How-To: Develop rocketlib
+*************************
 
 Note Linting and Formatting depends on clang-format and clang-tidy, :doc:`instructions to install those tools</standards-tutorials/firmware/clang-format-tidy>` .
 
