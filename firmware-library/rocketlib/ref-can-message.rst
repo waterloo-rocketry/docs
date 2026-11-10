@@ -14,8 +14,8 @@ msg_actuator.h
 .. autodoxygenfile:: msg_actuator.h
    :project: rocketlib
 
-msg_common.h
-============
+msg_canards.h
+=============
 
 .. autodoxygenfile:: msg_canards.h
    :project: rocketlib

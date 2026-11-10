@@ -10,6 +10,7 @@ rocketlib
    ref-can-message.rst
    ref-can-buffer.rst
    ref-timer-driver.rst
+   ref-logging.rst
    littlefs.rst
    flash.rst
    howto-littlefs.rst
