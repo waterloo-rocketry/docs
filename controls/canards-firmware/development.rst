@@ -11,15 +11,13 @@ Lines of Code Statistics
 
 
 Docstring Standards for Embedded C
+=========================================
 
 Docstrings are mandated for controls firmware development to generate context for development. 
 
 =========================================
-
-Google is your best resource when it comes to what keywords to use. You do NOT need to include every single keyword. You only need to use what is relevant to the function. 
-
-Some common examples are: 
 1. Header Function Docstrings
+=========================================
 
 Header file documentation defines the **interface contract** for external callers. 
 It must specify memory constraints, alignment requirements, hardware dependencies, and exact return states, if applicable. 
@@ -30,9 +28,6 @@ Google is your best resource when it comes to what keywords to use. Some common 
   * **@pre**: Preconditions that must be met before calling (e.g., initialization checks, buffer alignment).
   * **@param[in/out]**: Directional parameter descriptions, explicitly stating memory location requirements (e.g., DMA-accessible memory).
   * **@return**: Explicit enumeration of all possible return codes.
-
-Header file documentation defines the **interface contract** for external callers. 
-It must specify memory constraints, alignment requirements, hardware dependencies, and exact return states, if applicable. 
   * **@satisfies**: Traceability tags linking implementation to system requirements.
 
 Example Header Docstring:
@@ -66,7 +61,9 @@ Example Header Docstring:
     w_status_t raw_logger_SD_read(uint8_t *buffer, uint32_t byte_address, uint32_t num_bytes,
                                   uint32_t timeout);
 
+=========================================
 2. Static Function Docstrings
+=========================================
 
 Docstrings for static functions shall be placed **above** the function definition in the source file. 
 
@@ -87,27 +84,9 @@ Example Static Function Docstring:
         // Implementation 
     }
 
-
-General Rule of Thumb for Docstrings
-
-1. **Use standard block comment formatting**: Open with `/**` and prefix subsequent lines with ` * ` (aligned with the asterisk).
-2. **Never use leading hyphens (`-`)**: Hyphens break Doxygen and Sphinx parsers, turning structured tags into plain text.
-3. **Explicitly document memory constraints**: In embedded systems, pointer parameters must state alignment requirements (`32-byte aligned`), memory regions (`non-DTCM`), and null-pointer behavior.
-
-2. In-Code Comments
-
-Avoid having large blocks of comments. The whole point of code comments is to make your implementation readable and easy to understand. 
-
-.. code-block:: c
-
-    // TODO: a task you need to finish later 
-    // NOTE: a note to yourself or others about the code 
-    // WARNING: a warning about a potential issue or pitfall
-    
-    // NOTE: DO NOT USE A TRAILING BACKLASH "\" INSIDE OF COMMENTS. 
-
-Some also use `FIXME` to indicate a known bug that needs fixing, but this is less common. 
+=========================================
 3. Syntax Rules Summary
+=========================================
 
 1. **Use standard block comment formatting**: Open with `/**` and prefix subsequent lines with ` * ` (aligned with the asterisk).
 2. **Never use leading hyphens (`-`)**: Hyphens break Doxygen and Sphinx parsers, turning structured tags into plain text.
