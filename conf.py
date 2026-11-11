@@ -63,8 +63,32 @@ extensions = [
 ]
 
 breathe_projects_source = {
-    "canlib" : ( "firmware-library/canlib/canlib", ["can.h", "message_types.h", "message/msg_actuator.h", "message/msg_common.h", "message/msg_general.h", "message/msg_gps.h", "message/msg_recovery.h", "message/msg_sensor.h", "message/msg_stream.h", "dspic33e/dspic33e_can.h", "mcp2515/mcp2515.h", "stm32h7/stm32h7_can.h", "pic18f26k83/pic18f26k83_can.h", "util/can_rcv_buffer.h", "util/can_tx_buffer.h", "util/safe_ring_buffer.h", "util/timing_util.h"] ),
-    "rocketlib" : ( "firmware-library/rocketlib/rocketlib", ["include/common.h", "include/crc8.h", "include/electrical.h", "include/i2c.h", "include/littlefs_sd_shim.h ", "include/low_pass_filter.h", "include/mbr.h", "include/pwm.h", "include/timer.h"])
+    "rocketlib" : ( "firmware-library/rocketlib/rocketlib", [
+        "can_buffer/can_rcv_buffer.h",
+        "can_buffer/can_tx_buffer.h",
+        "can_buffer/safe_ring_buffer.h",
+        "can_message/can.h",
+        "can_message/msg_actuator.h",
+        "can_message/msg_canards.h",
+        "can_message/msg_common.h",
+        "can_message/msg_general.h",
+        "can_message/msg_gps.h",
+        "can_message/msg_recovery.h",
+        "can_message/msg_sensor.h",
+        "can_message/msg_stream.h",
+        "can_message/msg_telemetry.h",
+        "can_message/packet_format.h",
+        "common/common.h",
+        "common/crc8.h",
+        "common/electrical.h",
+        "common/low_pass_filter.h",
+        "common/mathops.h",
+        "logging/mbr.h",
+        "mcp2515/mcp2515.h",
+        "pic18f26k83/pic18f26k83_can.h",
+        "pic18f26k83/pic18f26k83_can_timing_util.h",
+        "pic18f26k83/pic18f26k83_timer.h",
+        "stm32h7/stm32h7_can.h"])
 }
 
 breathe_show_include = False
